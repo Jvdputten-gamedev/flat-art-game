@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://bstp21c5uk2dw"]
+
+[ext_resource type="Texture2D" uid="uid://bw5m6sunjl313" path="res://resources/tiles/tileset.png" id="1_1yk1u"]
+[ext_resource type="Texture2D" uid="uid://dm3xxkp4fx20l" path="res://resources/tile.svg" id="2_ihnvl"]
+[ext_resource type="Texture2D" uid="uid://jhikypsxl6ir" path="res://resources/dwarf.svg" id="3_ayt5g"]
+[ext_resource type="Texture2D" uid="uid://7s5p5yg5vqdx" path="res://resources/tileSelected.svg" id="3_viu40"]
+[ext_resource type="Texture2D" uid="uid://c5ksri0gnxmmr" path="res://resources/goblin.svg" id="4_5g4tw"]
+[ext_resource type="Script" path="res://TileMap2.gd" id="4_lhnwc"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_reumd"]
+texture = ExtResource("1_1yk1u")
+texture_region_size = Vector2i(512, 368)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -37)
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, -37)
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, -37)
+3:0/0 = 0
+3:0/0/texture_origin = Vector2i(0, -37)
+4:0/0 = 0
+4:0/0/texture_origin = Vector2i(0, -37)
+5:0/0 = 0
+5:0/0/texture_origin = Vector2i(0, -37)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q2hni"]
+texture = ExtResource("2_ihnvl")
+texture_region_size = Vector2i(512, 368)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -37)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_npjg8"]
+texture = ExtResource("3_viu40")
+texture_region_size = Vector2i(512, 294)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_f3lj7"]
+tile_shape = 3
+tile_offset_axis = 1
+tile_size = Vector2i(512, 294)
+uv_clipping = true
+sources/1 = SubResource("TileSetAtlasSource_reumd")
+sources/2 = SubResource("TileSetAtlasSource_q2hni")
+sources/3 = SubResource("TileSetAtlasSource_npjg8")
+
+[node name="Proto" type="Node2D"]
+
+[node name="TileMap2" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_f3lj7")
+format = 2
+layer_0/name = "ground"
+layer_0/tile_data = PackedInt32Array(0, 2, 0, 1, 2, 0, 65536, 2, 0, 65537, 2, 0, 131072, 2, 0, 131073, 2, 0, 2, 2, 0, 65538, 2, 0, 131074, 2, 0, 196610, 2, 0, 262146, 2, 0, 196609, 2, 0, 262145, 2, 0, 262144, 2, 0, 196608, 2, 0, 3, 2, 0, 65539, 2, 0, 131075, 2, 0, 196611, 2, 0, 4, 2, 0, 65540, 2, 0, 131076, 2, 0, 196612, 2, 0, 262148, 2, 0, 65541, 2, 0, 327682, 2, 0, 262147, 2, 0, 327684, 2, 0, 262149, 2, 0, 196613, 2, 0, 131077, 2, 0, 5, 2, 0)
+layer_1/name = "highlight"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 0
+layer_1/tile_data = PackedInt32Array()
+script = ExtResource("4_lhnwc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1333, 359)
+scale = Vector2(0.830694, 0.795814)
+texture = ExtResource("3_ayt5g")
+
+[node name="Goblin" type="Sprite2D" parent="."]
+position = Vector2(710, 674)
+scale = Vector2(0.755412, 0.755412)
+texture = ExtResource("4_5g4tw")
+flip_h = true

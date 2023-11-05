@@ -1,0 +1,89 @@
+[gd_scene load_steps=13 format=3 uid="uid://bstp21c5uk2dw"]
+
+[ext_resource type="Texture2D" uid="uid://bw5m6sunjl313" path="res://resources/tiles/tileset.png" id="1_1yk1u"]
+[ext_resource type="Texture2D" uid="uid://dm3xxkp4fx20l" path="res://resources/tile.svg" id="2_ihnvl"]
+[ext_resource type="Texture2D" uid="uid://jhikypsxl6ir" path="res://resources/dwarf.svg" id="3_ayt5g"]
+[ext_resource type="Texture2D" uid="uid://7s5p5yg5vqdx" path="res://resources/tileSelected.svg" id="3_viu40"]
+[ext_resource type="Texture2D" uid="uid://c5ksri0gnxmmr" path="res://resources/goblin.svg" id="4_5g4tw"]
+[ext_resource type="Texture2D" uid="uid://60y72erxyvuo" path="res://resources/tileEdge.svg" id="4_8vl2r"]
+[ext_resource type="Script" path="res://TileMap2.gd" id="4_lhnwc"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_reumd"]
+texture = ExtResource("1_1yk1u")
+texture_region_size = Vector2i(512, 368)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -37)
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, -37)
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, -37)
+3:0/0 = 0
+3:0/0/texture_origin = Vector2i(0, -37)
+4:0/0 = 0
+4:0/0/texture_origin = Vector2i(0, -37)
+5:0/0 = 0
+5:0/0/texture_origin = Vector2i(0, -37)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q2hni"]
+texture = ExtResource("2_ihnvl")
+texture_region_size = Vector2i(512, 368)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -37)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_npjg8"]
+texture = ExtResource("3_viu40")
+texture_region_size = Vector2i(512, 294)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_odmap"]
+texture = ExtResource("4_8vl2r")
+texture_region_size = Vector2i(512, 292)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_f3lj7"]
+tile_shape = 3
+tile_offset_axis = 1
+tile_size = Vector2i(512, 292)
+uv_clipping = true
+sources/1 = SubResource("TileSetAtlasSource_reumd")
+sources/2 = SubResource("TileSetAtlasSource_q2hni")
+sources/3 = SubResource("TileSetAtlasSource_npjg8")
+sources/5 = SubResource("TileSetAtlasSource_odmap")
+
+[node name="Proto" type="Node2D"]
+
+[node name="TileMap2" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_f3lj7")
+format = 2
+layer_0/name = "ground"
+layer_0/tile_data = PackedInt32Array(0, 2, 0, 1, 2, 0, 65536, 2, 0, 65537, 2, 0, 2, 2, 0, 65538, 2, 0, 131074, 2, 0, 196610, 2, 0, 262146, 2, 0, 3, 2, 0, 65539, 2, 0, 131075, 2, 0, 196611, 2, 0, 4, 2, 0, 65540, 2, 0, 131076, 2, 0, 196612, 2, 0, 262148, 2, 0, 65541, 2, 0, 262147, 2, 0, 262149, 2, 0, 196613, 2, 0, 131077, 2, 0, 5, 2, 0, 131072, 2, 0, 196608, 2, 0, 262144, 2, 0, 131073, 2, 0, 196609, 2, 0, 262145, 2, 0)
+layer_1/name = "highlight"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 0
+layer_1/tile_data = PackedInt32Array()
+layer_2/name = "background"
+layer_2/enabled = true
+layer_2/modulate = Color(1, 1, 1, 1)
+layer_2/y_sort_enabled = false
+layer_2/y_sort_origin = 0
+layer_2/z_index = -1
+layer_2/tile_data = PackedInt32Array(-1, 5, 0, -65536, 5, 0, 0, 5, 0, -65535, 5, 0, -65534, 5, 0, 2, 5, 0, -65533, 5, 0, -65532, 5, 0, 4, 5, 0, -65531, 5, 0, -65530, 5, 0, 6, 5, 0, 5, 5, 0, 65540, 5, 0, 3, 5, 0, 65538, 5, 0, 1, 5, 0, 65536, 5, 0, 65535, 5, 0, 131071, 5, 0, 196607, 5, 0, 131072, 5, 0, 65537, 5, 0, 131073, 5, 0, 131074, 5, 0, 65539, 5, 0, 131075, 5, 0, 131076, 5, 0, 65541, 5, 0, 65542, 5, 0, 131078, 5, 0, 131077, 5, 0, 196612, 5, 0, 196611, 5, 0, 196610, 5, 0, 196609, 5, 0, 196608, 5, 0, 262143, 5, 0, 327679, 5, 0, 262144, 5, 0, 327680, 5, 0, 262145, 5, 0, 262146, 5, 0, 327682, 5, 0, 262147, 5, 0, 262148, 5, 0, 196613, 5, 0, 196614, 5, 0, 262150, 5, 0, 262149, 5, 0, 327684, 5, 0, 327683, 5, 0, 393218, 5, 0, 327681, 5, 0, 393216, 5, 0, 393215, 5, 0, 458751, 5, 0, 393217, 5, 0, 393219, 5, 0, 393220, 5, 0, 327685, 5, 0, 327686, 5, 0, 393222, 5, 0, 393221, 5, 0, -196612, 5, 0, -131076, 5, 0, -65540, 5, 0, -4, 5, 0, 65532, 5, 0, 131068, 5, 0, 196604, 5, 0, 262140, 5, 0, 327676, 5, 0, 393212, 5, 0, 458748, 5, 0, 524284, 5, 0, 589820, 5, 0, 655356, 5, 0, 720892, 5, 0, -196611, 5, 0, -131075, 5, 0, -65539, 5, 0, -3, 5, 0, 65533, 5, 0, 131069, 5, 0, 196605, 5, 0, 262141, 5, 0, 327677, 5, 0, 393213, 5, 0, 458749, 5, 0, 524285, 5, 0, 589821, 5, 0, 655357, 5, 0, 720893, 5, 0, -196610, 5, 0, -131074, 5, 0, -65538, 5, 0, -2, 5, 0, 65534, 5, 0, 131070, 5, 0, 196606, 5, 0, 262142, 5, 0, 327678, 5, 0, 393214, 5, 0, 458750, 5, 0, 524286, 5, 0, 589822, 5, 0, 655358, 5, 0, 720894, 5, 0, -196609, 5, 0, -131073, 5, 0, -65537, 5, 0, 524287, 5, 0, 589823, 5, 0, 655359, 5, 0, 720895, 5, 0, -262144, 5, 0, -196608, 5, 0, -131072, 5, 0, 458752, 5, 0, 524288, 5, 0, 589824, 5, 0, 655360, 5, 0, -262143, 5, 0, -196607, 5, 0, -131071, 5, 0, 458753, 5, 0, 524289, 5, 0, 589825, 5, 0, 655361, 5, 0, -262142, 5, 0, -196606, 5, 0, -131070, 5, 0, 458754, 5, 0, 524290, 5, 0, 589826, 5, 0, 655362, 5, 0, -262141, 5, 0, -196605, 5, 0, -131069, 5, 0, 458755, 5, 0, 524291, 5, 0, 589827, 5, 0, 655363, 5, 0, -262140, 5, 0, -196604, 5, 0, -131068, 5, 0, 458756, 5, 0, 524292, 5, 0, 589828, 5, 0, 655364, 5, 0, -262139, 5, 0, -196603, 5, 0, -131067, 5, 0, 458757, 5, 0, 524293, 5, 0, 589829, 5, 0, 655365, 5, 0, -262138, 5, 0, -196602, 5, 0, -131066, 5, 0, 458758, 5, 0, 524294, 5, 0, 589830, 5, 0, 655366, 5, 0, -262137, 5, 0, -196601, 5, 0, -131065, 5, 0, -65529, 5, 0, 7, 5, 0, 65543, 5, 0, 131079, 5, 0, 196615, 5, 0, 262151, 5, 0, 327687, 5, 0, 393223, 5, 0, 458759, 5, 0, 524295, 5, 0, 589831, 5, 0, 655367, 5, 0, -262136, 5, 0, -196600, 5, 0, -131064, 5, 0, -65528, 5, 0, 8, 5, 0, 65544, 5, 0, 131080, 5, 0, 196616, 5, 0, 262152, 5, 0, 327688, 5, 0, 393224, 5, 0, 458760, 5, 0, 524296, 5, 0, 589832, 5, 0, 655368, 5, 0, -262135, 5, 0, -196599, 5, 0, -131063, 5, 0, -65527, 5, 0, 9, 5, 0, 65545, 5, 0, 131081, 5, 0, 196617, 5, 0, 262153, 5, 0, 327689, 5, 0, 393225, 5, 0, 458761, 5, 0, 524297, 5, 0, 589833, 5, 0, 655369, 5, 0, -262134, 5, 0, -196598, 5, 0, -131062, 5, 0, -65526, 5, 0, 10, 5, 0, 65546, 5, 0, 131082, 5, 0, 196618, 5, 0, 262154, 5, 0, 327690, 5, 0, 393226, 5, 0, 458762, 5, 0, 524298, 5, 0, 589834, 5, 0, 655370, 5, 0)
+script = ExtResource("4_lhnwc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1333, 375)
+scale = Vector2(0.830694, 0.795814)
+texture = ExtResource("3_ayt5g")
+
+[node name="Goblin" type="Sprite2D" parent="."]
+position = Vector2(710, 674)
+scale = Vector2(0.755412, 0.755412)
+texture = ExtResource("4_5g4tw")
+flip_h = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1269, 856)
+zoom = Vector2(0.335, 0.335)
