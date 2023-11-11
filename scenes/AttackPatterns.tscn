@@ -1,13 +1,11 @@
 [gd_scene load_steps=4 format=3 uid="uid://dj0vtcw3oxfku"]
 
 [ext_resource type="TileSet" uid="uid://dltx6nii26ghv" path="res://prote_tileset.tres" id="1_fut6g"]
-[ext_resource type="Script" path="res://Scripts/AttackPatterns.gd" id="1_fy7ia"]
+[ext_resource type="Script" path="res://Scripts/AttackPatternsDemo.gd" id="1_rmdju"]
 [ext_resource type="Theme" uid="uid://dundj1k3w6wi4" path="res://resources/UI/ButtonTheme.tres" id="3_yc2ls"]
 
-[node name="AttackPatterns" type="Node2D" node_paths=PackedStringArray("tilemap", "direction_dropdown")]
-script = ExtResource("1_fy7ia")
-tilemap = NodePath("TileMap")
-direction_dropdown = NodePath("CanvasLayer/UI/VBoxContainer/Direction")
+[node name="AttackPatternsDemo" type="Node2D"]
+script = ExtResource("1_rmdju")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_fut6g")
@@ -68,4 +66,3 @@ text = "Adjacent
 [connection signal="item_selected" from="CanvasLayer/UI/VBoxContainer/Direction" to="." method="_on_direction_item_selected"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/TriangleUp" to="." method="_on_triangle_up_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/TriangleDown" to="." method="_on_triangle_down_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Adjacent" to="." method="_on_adjacent_pressed"]
