@@ -12,11 +12,10 @@ class Direction:
 	var cube_coords: Vector3i
 	var name: String
 
-	func _init(index: int, cube_coords: Vector3i, name: String):
-		print(index)
+	func _init(index: int, _cube_coords: Vector3i, _name: String):
 		self.idx = index
-		self.cube_coords = cube_coords
-		self.name = name
+		self.cube_coords = _cube_coords
+		self.name = _name
 	
 var NORTH = Direction.new(0, DIR_N, "North")
 var NORTHEAST = Direction.new(1, DIR_NE, "North east")
