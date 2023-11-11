@@ -4,7 +4,7 @@ class_name HexCell
 var cube_coords = Vector3(0, 0, 0) 
 var oddq_coords:
 	get:
-		get_oddq_coords()
+		return get_oddq_coords()
 	set(val):
 		set_oddq_coords(val)
 
@@ -32,7 +32,8 @@ func obj_to_coords(val):
 	if typeof(val) == TYPE_VECTOR3I:
 		return val
 	elif typeof(val) == TYPE_VECTOR2I:
-		return set_oddq_coords(val)
+		set_oddq_coords(val)
+		return cube_coords
 	elif typeof(val) == TYPE_OBJECT and val.has_method("get_cube_coords"):
 		return val.get_cube_coords()
 	return

@@ -17,12 +17,13 @@ const DIR_ALL = [DIR_N, DIR_NE, DIR_SE, DIR_S, DIR_SW, DIR_NW]
 
 
 func _ready():
-	self.test_north()
+	self.test_get_all_adjacent()
 
-func paint_hex_on_map(coordinates: Array[Vector2i]):
+func paint_hex_on_map(coordinates):
+	print(coordinates)
 	tilemap.set_cells_terrain_connect(layer, coordinates, terrain_set, attack_terrain)
 
-func hexcell_array_to_oddq_array(hex_cell_array: Array[HexCell]) -> Array[Vector2i]:
+func hexcell_array_to_oddq_array(hex_cell_array):
 	var oddq_array = []
 	for coord in hex_cell_array:
 		oddq_array.append(coord.oddq_coords)
@@ -30,14 +31,25 @@ func hexcell_array_to_oddq_array(hex_cell_array: Array[HexCell]) -> Array[Vector
 
 
 func test_north():
-	var cell = [self.get_adjacent(DIR_N)]
-	paint_hex_on_map(hexcell_array_to_oddq_array(cell))
+	var cells = Array()
+	cells.append(self.get_adjacent(DIR_N))
+	paint_hex_on_map(hexcell_array_to_oddq_array(cells))
+
+func test_get_all_adjacent():
+	var cells = Array()
+	for dir in DIR_ALL:
+		cells.append(self.get_adjacent(dir))
+	paint_hex_on_map(hexcell_array_to_oddq_array(cells))
+	
+
+func test_get_odd_q():
+	var cell = HexCell.new(center_cell.cube_coords)
+	print(cell.oddq_coords)
 
 func get_adjacent(dir: Vector3i) -> HexCell:
-	var cell = HexCell.new(Vector2i(1,1))
-	print("in adjacent", cell.cube_coords)
+	# comment
+	var cell = HexCell.new(center_cell.cube_coords + dir)
 	return cell
 
-	# return HexCell.new(center_cell.cube_coords + dir)
 	
 
