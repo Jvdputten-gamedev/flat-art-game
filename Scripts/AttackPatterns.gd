@@ -47,7 +47,6 @@ func test_get_odd_q():
 	print(cell.oddq_coords)
 
 func get_adjacent(dir: Vector3i) -> HexCell:
-	# comment
 	var cell = HexCell.new(center_cell.cube_coords + dir)
 	return cell
 
