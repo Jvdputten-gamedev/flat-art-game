@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dm3xxkp4fx20l"
-path="res://.godot/imported/tile.svg-ec76146ee0fa3c77bcb1d1ca20eb74f3.ctex"
+uid="uid://5kk3g04enfnm"
+path="res://.godot/imported/dwarf.svg-d381d947bb14c9e6b8d64a05851ebfba.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/tile.svg"
-dest_files=["res://.godot/imported/tile.svg-ec76146ee0fa3c77bcb1d1ca20eb74f3.ctex"]
+source_file="res://resources/art_source/dwarf/dwarf.svg"
+dest_files=["res://.godot/imported/dwarf.svg-d381d947bb14c9e6b8d64a05851ebfba.ctex"]
 
 [params]
 

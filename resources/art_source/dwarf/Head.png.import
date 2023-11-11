@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7s5p5yg5vqdx"
-path="res://.godot/imported/tileSelected.svg-07aaacccdccb4e6fc5a18ed9897ee94c.ctex"
+uid="uid://5fjydeg6kpf3"
+path="res://.godot/imported/Head.png-05d5796c92edb8e7d2576da19aa1f9a9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/tileSelected.svg"
-dest_files=["res://.godot/imported/tileSelected.svg-07aaacccdccb4e6fc5a18ed9897ee94c.ctex"]
+source_file="res://resources/art_source/dwarf/Head.png"
+dest_files=["res://.godot/imported/Head.png-05d5796c92edb8e7d2576da19aa1f9a9.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

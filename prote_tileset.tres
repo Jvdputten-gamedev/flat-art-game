@@ -1,18 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://bstp21c5uk2dw"]
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://dltx6nii26ghv"]
 
-[ext_resource type="Texture2D" uid="uid://rqlrtcuxuur1" path="res://resources/tiles/basic_tile.svg" id="2_jvwwa"]
-[ext_resource type="Texture2D" uid="uid://c5fsg886g3u6e" path="res://resources/tiles/basic_tiles.svg" id="3_2aal0"]
-[ext_resource type="Texture2D" uid="uid://cik3c328gcpay" path="res://resources/tiles/outline_tilemap_filled.svg" id="3_in2ui"]
-[ext_resource type="Script" path="res://Scripts/TileMap.gd" id="4_va2c5"]
+[ext_resource type="Texture2D" uid="uid://rqlrtcuxuur1" path="res://resources/tiles/basic_tile.svg" id="1_g2mfp"]
+[ext_resource type="Texture2D" uid="uid://cik3c328gcpay" path="res://resources/tiles/outline_tilemap_filled.svg" id="2_wgskq"]
+[ext_resource type="Texture2D" uid="uid://c5fsg886g3u6e" path="res://resources/tiles/basic_tiles.svg" id="3_d105u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nhgn3"]
-texture = ExtResource("2_jvwwa")
+texture = ExtResource("1_g2mfp")
 texture_region_size = Vector2i(256, 160)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, -16)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1v5ub"]
-texture = ExtResource("3_in2ui")
+texture = ExtResource("2_wgskq")
 texture_region_size = Vector2i(256, 128)
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -366,7 +365,7 @@ texture_region_size = Vector2i(256, 128)
 5:9/0/terrains_peering_bit/top_right_side = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_10m1i"]
-texture = ExtResource("3_2aal0")
+texture = ExtResource("3_d105u")
 texture_region_size = Vector2i(256, 160)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, -16)
@@ -377,7 +376,7 @@ texture_region_size = Vector2i(256, 160)
 3:0/0 = 0
 3:0/0/texture_origin = Vector2i(0, -16)
 
-[sub_resource type="TileSet" id="TileSet_yvtq7"]
+[resource]
 tile_shape = 3
 tile_offset_axis = 1
 tile_size = Vector2i(256, 128)
@@ -388,37 +387,3 @@ terrain_set_0/terrain_0/color = Color(1, 1, 1, 1)
 sources/2 = SubResource("TileSetAtlasSource_nhgn3")
 sources/3 = SubResource("TileSetAtlasSource_1v5ub")
 sources/4 = SubResource("TileSetAtlasSource_10m1i")
-
-[node name="Proto" type="Node2D"]
-
-[node name="TileMap3" type="TileMap" parent="."]
-tile_set = SubResource("TileSet_yvtq7")
-format = 2
-layer_0/name = "water"
-layer_1/name = "ground"
-layer_1/enabled = true
-layer_1/modulate = Color(1, 1, 1, 1)
-layer_1/y_sort_enabled = false
-layer_1/y_sort_origin = 0
-layer_1/z_index = 0
-layer_1/tile_data = PackedInt32Array(0, 4, 0, 65536, 4, 0, 131072, 4, 0, 196608, 4, 0, 262144, 4, 0, 196609, 4, 0, 131073, 4, 0, 65537, 4, 0, 1, 4, 0, 65538, 4, 0, 2, 4, 0, 131074, 4, 0, 196610, 4, 0, 262146, 4, 0, 262147, 4, 0, 196611, 4, 0, 131075, 4, 0, 65539, 4, 0, 3, 4, 0, 4, 4, 0, 65540, 4, 0, 131076, 4, 0, 196612, 4, 0, 262148, 4, 0)
-layer_2/name = "heal_area"
-layer_2/enabled = true
-layer_2/modulate = Color(0.117647, 0.737255, 0.45098, 1)
-layer_2/y_sort_enabled = false
-layer_2/y_sort_origin = 0
-layer_2/z_index = 0
-layer_2/tile_data = PackedInt32Array()
-layer_3/name = "attack_area"
-layer_3/enabled = true
-layer_3/modulate = Color(0.909804, 0.231373, 0.231373, 1)
-layer_3/y_sort_enabled = false
-layer_3/y_sort_origin = 0
-layer_3/z_index = 0
-layer_3/tile_data = PackedInt32Array()
-script = ExtResource("4_va2c5")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-140, -116)
-anchor_mode = 0
-zoom = Vector2(0.5, 0.5)
