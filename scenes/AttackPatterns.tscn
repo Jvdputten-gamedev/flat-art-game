@@ -4,8 +4,10 @@
 [ext_resource type="Script" path="res://Scripts/AttackPatternsDemo.gd" id="1_rmdju"]
 [ext_resource type="Theme" uid="uid://dundj1k3w6wi4" path="res://resources/UI/ButtonTheme.tres" id="3_yc2ls"]
 
-[node name="AttackPatternsDemo" type="Node2D"]
+[node name="AttackPatternsDemo" type="Node2D" node_paths=PackedStringArray("tilemap", "direction_dropdown")]
 script = ExtResource("1_rmdju")
+tilemap = NodePath("TileMap")
+direction_dropdown = NodePath("CanvasLayer/UI/VBoxContainer/Direction")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_fut6g")
