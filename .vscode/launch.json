@@ -9,7 +9,7 @@
             "port": 6007,
             "address": "tcp://127.0.0.1",
             "launch_game_instance": true,
-            "launch_scene": false,
+            "launch_scene": true,
             "scene_file": "scenes/AttackPatterns.tscn",
         }
     ]

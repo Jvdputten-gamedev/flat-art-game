@@ -1,27 +1,23 @@
 extends Node2D
 
 @export var tilemap: TileMap
+@export var direction_dropdown: OptionButton
 
 var center_cell: HexCell = HexCell.new(Vector2i(4,4))
-var terrain_set: int = 0
-var attack_terrain: int = 0
-var layer: int = 1
-
-const DIR_N = Vector3(0, -1, 1)
-const DIR_NE = Vector3(1, -1, 0)
-const DIR_SE = Vector3(1, 0, -1)
-const DIR_S = Vector3(0, 1, -1)
-const DIR_SW = Vector3(-1, 1, 0)
-const DIR_NW = Vector3(-1, 0, 1)
-const DIR_ALL = [DIR_N, DIR_NE, DIR_SE, DIR_S, DIR_SW, DIR_NW]
-
+const TERRAIN_SET: int = 0
+const ATTACK_TERRAIN: int = 0
+const ATTACK_LAYER: int = 1
 
 func _ready():
-	self.test_get_all_adjacent()
+	setup_dropdown()
+
+func setup_dropdown():
+	for dir in Directions.DIRECTIONS:
+		direction_dropdown.add_item(dir.name, dir.idx)
 
 func paint_hex_on_map(coordinates):
 	print(coordinates)
-	tilemap.set_cells_terrain_connect(layer, coordinates, terrain_set, attack_terrain)
+	tilemap.set_cells_terrain_connect(ATTACK_LAYER, coordinates, TERRAIN_SET, ATTACK_TERRAIN)
 
 func hexcell_array_to_oddq_array(hex_cell_array):
 	var oddq_array = []
@@ -29,18 +25,11 @@ func hexcell_array_to_oddq_array(hex_cell_array):
 		oddq_array.append(coord.oddq_coords)
 	return oddq_array
 
-
-func test_north():
+func get_all_adjacent():
 	var cells = Array()
-	cells.append(self.get_adjacent(DIR_N))
-	paint_hex_on_map(hexcell_array_to_oddq_array(cells))
-
-func test_get_all_adjacent():
-	var cells = Array()
-	for dir in DIR_ALL:
-		cells.append(self.get_adjacent(dir))
-	paint_hex_on_map(hexcell_array_to_oddq_array(cells))
-	
+	for dir in Directions.DIRECTIONS:
+		cells.append(self.get_adjacent(dir.cube_coords).oddq_coords)
+	return cells
 
 func test_get_odd_q():
 	var cell = HexCell.new(center_cell.cube_coords)
@@ -50,5 +39,45 @@ func get_adjacent(dir: Vector3i) -> HexCell:
 	var cell = HexCell.new(center_cell.cube_coords + dir)
 	return cell
 
-	
+func get_triangle_up():
+	var cells = Array()
+	var dirs = [Directions.NORTH, Directions.SOUTHEAST, Directions.SOUTHWEST]
+	for dir in dirs:
+		cells.append(self.get_adjacent(dir.cube_coords).oddq_coords)
+	return cells
 
+func get_triangle_down():
+	var cells = Array()
+	var dirs = [Directions.NORTHEAST, Directions.SOUTH, Directions.NORTHWEST]
+	for dir in dirs:
+		cells.append(self.get_adjacent(dir.cube_coords).oddq_coords)
+	return cells
+	
+func clear_terrain() -> void:
+	tilemap.clear_layer(ATTACK_LAYER)
+
+
+func _on_adjacent_pressed():
+	clear_terrain()
+	var cells = get_all_adjacent()
+	paint_hex_on_map(cells)
+
+
+func _on_triangle_up_pressed():
+	clear_terrain()
+	var cells = get_triangle_up()
+	paint_hex_on_map(cells)
+
+
+func _on_triangle_down_pressed():
+	clear_terrain()
+	var cells = get_triangle_down()
+	paint_hex_on_map(cells)
+
+
+func _on_direction_item_selected(index):
+	clear_terrain()
+	var cells = Array()
+	var dir = Directions.DIRECTIONS[index]
+	cells.append(self.get_adjacent(dir.cube_coords))
+	paint_hex_on_map(hexcell_array_to_oddq_array(cells))
