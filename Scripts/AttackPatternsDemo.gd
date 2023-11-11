@@ -22,5 +22,26 @@ func paint_hex_on_map(coordinates):
 func clear_terrain() -> void:
 	tilemap.clear_layer(ATTACK_LAYER)
 
+func _on_adjacent_pressed():
+	clear_terrain()
+	var cells = AttackPatterns.get_all_adjacent(center_cell)
+	paint_hex_on_map(cells)
+
+
+func _on_triangle_up_pressed():
+	clear_terrain()
+	var cells = AttackPatterns.get_triangle_up(center_cell)
+	paint_hex_on_map(cells)
+
+
+func _on_triangle_down_pressed():
+	clear_terrain()
+	var cells = AttackPatterns.get_triangle_down(center_cell)
+	paint_hex_on_map(cells)
+
 func _on_direction_item_selected(index:int):
-	AttackPatterns.test(index)
+	clear_terrain()
+	var cells = Array()
+	var dir = Directions.DIRECTIONS[index]
+	cells.append(AttackPatterns.get_adjacent(center_cell, dir.cube_coords).oddq_coords)
+	paint_hex_on_map(cells)
