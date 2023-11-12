@@ -16,7 +16,6 @@ func setup_dropdown():
 		direction_dropdown.add_item(dir.name, dir.idx)
 
 func paint_hex_on_map(coordinates):
-	print(coordinates)
 	tilemap.set_cells_terrain_connect(ATTACK_LAYER, coordinates, TERRAIN_SET, ATTACK_TERRAIN)
 	
 func clear_terrain() -> void:

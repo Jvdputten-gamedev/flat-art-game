@@ -3,5 +3,4 @@ extends Camera2D
 @export var rig: Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	position = rig.position
-
+	pass

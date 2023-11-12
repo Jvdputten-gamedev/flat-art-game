@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bstp21c5uk2dw"]
+[gd_scene load_steps=11 format=3 uid="uid://bstp21c5uk2dw"]
 
+[ext_resource type="Script" path="res://Scripts/proto.gd" id="1_o47nl"]
 [ext_resource type="Texture2D" uid="uid://rqlrtcuxuur1" path="res://resources/tiles/basic_tile.svg" id="2_jvwwa"]
 [ext_resource type="Texture2D" uid="uid://c5fsg886g3u6e" path="res://resources/tiles/basic_tiles.svg" id="3_2aal0"]
 [ext_resource type="Texture2D" uid="uid://cik3c328gcpay" path="res://resources/tiles/outline_tilemap_filled.svg" id="3_in2ui"]
 [ext_resource type="Script" path="res://Scripts/TileMap.gd" id="4_va2c5"]
+[ext_resource type="PackedScene" uid="uid://mj0lsqwow3mu" path="res://scenes/character_viewport.tscn" id="5_6tj81"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nhgn3"]
 texture = ExtResource("2_jvwwa")
@@ -389,7 +391,10 @@ sources/2 = SubResource("TileSetAtlasSource_nhgn3")
 sources/3 = SubResource("TileSetAtlasSource_1v5ub")
 sources/4 = SubResource("TileSetAtlasSource_10m1i")
 
-[node name="Proto" type="Node2D"]
+[node name="Proto" type="Node2D" node_paths=PackedStringArray("tilemap", "character")]
+script = ExtResource("1_o47nl")
+tilemap = NodePath("TileMap3")
+character = NodePath("CharacterViewport")
 
 [node name="TileMap3" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_yvtq7")
@@ -416,9 +421,18 @@ layer_3/y_sort_enabled = false
 layer_3/y_sort_origin = 0
 layer_3/z_index = 0
 layer_3/tile_data = PackedInt32Array()
+layer_4/name = "HighLight"
+layer_4/enabled = true
+layer_4/modulate = Color(1, 1, 1, 1)
+layer_4/y_sort_enabled = false
+layer_4/y_sort_origin = 0
+layer_4/z_index = 0
+layer_4/tile_data = PackedInt32Array()
 script = ExtResource("4_va2c5")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-140, -116)
 anchor_mode = 0
 zoom = Vector2(0.5, 0.5)
+
+[node name="CharacterViewport" parent="." instance=ExtResource("5_6tj81")]
+position = Vector2(-343, 388)
