@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://mj0lsqwow3mu"]
+
+[ext_resource type="PackedScene" uid="uid://b8krdp381ge50" path="res://scenes/dwarf.tscn" id="1_7nksg"]
+[ext_resource type="Script" path="res://Scripts/CharacterCamera.gd" id="2_decxh"]
+
+[node name="CharacterViewport" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(523, 411)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_left = -1805.0
+offset_top = -150.0
+offset_right = -781.0
+offset_bottom = 874.0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1024, 1024)
+render_target_update_mode = 4
+
+[node name="Camera2D2" type="Camera2D" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("rig")]
+position = Vector2(591, -158)
+zoom = Vector2(0.4, 0.4)
+script = ExtResource("2_decxh")
+rig = NodePath("../Container/Dwarf")
+
+[node name="Container" type="Node2D" parent="SubViewportContainer/SubViewport"]
+position = Vector2(602, 750)
+
+[node name="Dwarf" parent="SubViewportContainer/SubViewport/Container" instance=ExtResource("1_7nksg")]

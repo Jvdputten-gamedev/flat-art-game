@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dj0vtcw3oxfku"]
+[gd_scene load_steps=5 format=3 uid="uid://dj0vtcw3oxfku"]
 
 [ext_resource type="TileSet" uid="uid://dltx6nii26ghv" path="res://prote_tileset.tres" id="1_fut6g"]
 [ext_resource type="Script" path="res://Scripts/AttackPatternsDemo.gd" id="1_rmdju"]
 [ext_resource type="Theme" uid="uid://dundj1k3w6wi4" path="res://resources/UI/ButtonTheme.tres" id="3_yc2ls"]
+[ext_resource type="PackedScene" uid="uid://mj0lsqwow3mu" path="res://scenes/character_viewport.tscn" id="4_v73hs"]
 
 [node name="AttackPatternsDemo" type="Node2D" node_paths=PackedStringArray("tilemap", "direction_dropdown")]
 script = ExtResource("1_rmdju")
@@ -64,6 +65,9 @@ size_flags_horizontal = 0
 theme = ExtResource("3_yc2ls")
 text = "Adjacent
 "
+
+[node name="CharacterViewport" parent="." instance=ExtResource("4_v73hs")]
+position = Vector2(298, 296)
 
 [connection signal="item_selected" from="CanvasLayer/UI/VBoxContainer/Direction" to="." method="_on_direction_item_selected"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/TriangleUp" to="." method="_on_triangle_up_pressed"]
