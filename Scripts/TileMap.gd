@@ -5,7 +5,6 @@ const TERRAIN_SET = 0
 const HIGHLIGHT_TERRAIN = 0
 
 func paint_highlight_on_map(coordinates):
-	print(coordinates)
 	set_cells_terrain_connect(Layers.HIGHLIGHT, coordinates, TERRAIN_SET, HIGHLIGHT_TERRAIN)
 
 func clear_highlight() -> void:
