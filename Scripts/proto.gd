@@ -27,9 +27,6 @@ func _input(event):
 			var to_position = tilemap.map_to_local(hex_coords)
 			character.move_to_mouse(to_position)
 
-
-
-
 func hex_has_ground(hex_coords):
 	var data = tilemap.get_cell_tile_data(1, hex_coords)
 	if data:

@@ -5,16 +5,12 @@ extends Node2D
 var animation_player: AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready() -> void:
 	animation_player = character.get_animation_player()
 	pass # Replace with function body.
 
 
-func move_to_mouse(to: Vector2):
-	print("print in character_viewport")
-	print(to.x)
-	print(self.position.x)
-
+func move_to_position(to: Vector2) -> void:
 	if to.x > self.position.x:
 		self.scale.x = -0.5
 	else:

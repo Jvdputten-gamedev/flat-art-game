@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnlyfljmb4dbr"]
+
+[ext_resource type="Script" path="res://Scripts/level.gd" id="1_2sjcx"]
+[ext_resource type="TileSet" uid="uid://cloviblshkwle" path="res://resources/tiles/tile_set.tres" id="2_h4a5d"]
+[ext_resource type="Script" path="res://Scripts/TileMap.gd" id="3_oyrx8"]
+[ext_resource type="PackedScene" uid="uid://mj0lsqwow3mu" path="res://scenes/character_viewport.tscn" id="4_q7g7p"]
+
+[node name="Level" type="Node2D" node_paths=PackedStringArray("tilemap", "player")]
+script = ExtResource("1_2sjcx")
+tilemap = NodePath("TileMap")
+player = NodePath("CharacterViewport")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_h4a5d")
+format = 2
+layer_0/name = "Water"
+layer_1/name = "Ground"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 0
+layer_1/tile_data = PackedInt32Array(0, 4, 0, 65536, 4, 0, 131072, 4, 0, 196608, 4, 0, 262144, 4, 0, 262145, 4, 0, 196609, 4, 0, 131073, 4, 0, 65537, 4, 0, 1, 4, 0, 262146, 4, 0, 196610, 4, 0, 131074, 4, 0, 65538, 4, 0, 2, 4, 0, 262147, 4, 0, 196611, 4, 0, 131075, 4, 0, 65539, 4, 0, 3, 4, 0, 262148, 4, 0, 196612, 4, 0, 131076, 4, 0, 65540, 4, 0, 4, 4, 0)
+layer_2/name = "Highlight"
+layer_2/enabled = true
+layer_2/modulate = Color(1, 1, 1, 1)
+layer_2/y_sort_enabled = false
+layer_2/y_sort_origin = 0
+layer_2/z_index = 0
+layer_2/tile_data = PackedInt32Array()
+layer_3/name = "AOE"
+layer_3/enabled = true
+layer_3/modulate = Color(1, 1, 1, 1)
+layer_3/y_sort_enabled = false
+layer_3/y_sort_origin = 0
+layer_3/z_index = 0
+layer_3/tile_data = PackedInt32Array()
+script = ExtResource("3_oyrx8")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="CharacterViewport" parent="." instance=ExtResource("4_q7g7p")]
