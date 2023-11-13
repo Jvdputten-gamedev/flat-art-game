@@ -1,11 +1,48 @@
-[gd_scene load_steps=11 format=3 uid="uid://bstp21c5uk2dw"]
+[gd_scene load_steps=11 format=3 uid="uid://f82jpn8oyxn0"]
 
-[ext_resource type="Script" path="res://Scripts/proto.gd" id="1_o47nl"]
 [ext_resource type="Texture2D" uid="uid://rqlrtcuxuur1" path="res://resources/tiles/basic_tile.svg" id="2_jvwwa"]
 [ext_resource type="Texture2D" uid="uid://c5fsg886g3u6e" path="res://resources/tiles/basic_tiles.svg" id="3_2aal0"]
 [ext_resource type="Texture2D" uid="uid://cik3c328gcpay" path="res://resources/tiles/outline_tilemap_filled.svg" id="3_in2ui"]
-[ext_resource type="Script" path="res://Scripts/TileMap.gd" id="4_va2c5"]
+[ext_resource type="Script" path="res://Scripts/tile_map.gd" id="4_2v1ma"]
 [ext_resource type="PackedScene" uid="uid://mj0lsqwow3mu" path="res://scenes/character_viewport.tscn" id="5_6tj81"]
+
+[sub_resource type="GDScript" id="GDScript_42l60"]
+script/source = "extends Node2D
+
+var center_cell: HexCell = HexCell.new(Vector2i(2,2))
+@export var tilemap: TileMap
+@export var character: Node2D
+
+const HIGHLIGHT_LAYER = 4
+const TERRAIN_SET: int = 0
+const HIGHLIGHT_TERRAIN: int = 0
+
+func paint_highlight_on_map(coordinates):
+	tilemap.set_cells_terrain_connect(HIGHLIGHT_LAYER, coordinates, TERRAIN_SET, HIGHLIGHT_TERRAIN)
+
+func clear_terrain() -> void:
+	tilemap.clear_layer(HIGHLIGHT_LAYER)
+
+func _input(event):
+	if event is InputEventMouseMotion:
+		clear_terrain()
+		var hex_coords = tilemap.local_to_map(get_local_mouse_position())
+		if hex_has_ground(hex_coords):
+			paint_highlight_on_map([hex_coords])
+	
+	if event is InputEventMouseButton:
+		if event.button_index == 1:
+			var hex_coords = tilemap.local_to_map(get_local_mouse_position())
+			var to_position = tilemap.map_to_local(hex_coords)
+			character.move_to_mouse(to_position)
+
+func hex_has_ground(hex_coords):
+	var data = tilemap.get_cell_tile_data(1, hex_coords)
+	if data:
+		return true
+	else:
+		return false
+"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nhgn3"]
 texture = ExtResource("2_jvwwa")
@@ -392,7 +429,7 @@ sources/3 = SubResource("TileSetAtlasSource_1v5ub")
 sources/4 = SubResource("TileSetAtlasSource_10m1i")
 
 [node name="Proto" type="Node2D" node_paths=PackedStringArray("tilemap", "character")]
-script = ExtResource("1_o47nl")
+script = SubResource("GDScript_42l60")
 tilemap = NodePath("TileMap3")
 character = NodePath("CharacterViewport")
 metadata/_edit_vertical_guides_ = [-531.0]
@@ -429,7 +466,7 @@ layer_4/y_sort_enabled = false
 layer_4/y_sort_origin = 0
 layer_4/z_index = 0
 layer_4/tile_data = PackedInt32Array()
-script = ExtResource("4_va2c5")
+script = ExtResource("4_2v1ma")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0

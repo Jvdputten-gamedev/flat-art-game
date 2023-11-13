@@ -15,7 +15,11 @@ func move_to_position(to: Vector2) -> void:
 		self.scale.x = -0.5
 	else:
 		self.scale.x = 0.5 
+
+	move_to_adjacent_hex(to)
 	
+
+func move_to_adjacent_hex(to: Vector2) -> void:
 	var tween  = create_tween()
 	animation_player.play("walk")
 	tween.tween_property(self, "position", to, 0.45)

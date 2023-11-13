@@ -1,13 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://dj0vtcw3oxfku"]
 
 [ext_resource type="TileSet" uid="uid://dltx6nii26ghv" path="res://prote_tileset.tres" id="1_fut6g"]
-[ext_resource type="Script" path="res://Scripts/AttackPatternsDemo.gd" id="1_rmdju"]
+[ext_resource type="Script" path="res://Scripts/attack_patterns_demo.gd" id="1_rmdju"]
 [ext_resource type="Theme" uid="uid://dundj1k3w6wi4" path="res://resources/UI/ButtonTheme.tres" id="3_yc2ls"]
 
-[node name="AttackPatternsDemo" type="Node2D" node_paths=PackedStringArray("tilemap", "direction_dropdown")]
+[node name="AttackPatternsDemo" type="Node2D" node_paths=PackedStringArray("tilemap", "direction_dropdown", "slider")]
 script = ExtResource("1_rmdju")
 tilemap = NodePath("TileMap")
 direction_dropdown = NodePath("CanvasLayer/UI/VBoxContainer/Direction")
+slider = NodePath("CanvasLayer/UI/VBoxContainer/RangeSlider")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_fut6g")
@@ -65,7 +66,12 @@ theme = ExtResource("3_yc2ls")
 text = "Adjacent
 "
 
+[node name="RangeSlider" type="HSlider" parent="CanvasLayer/UI/VBoxContainer"]
+layout_mode = 2
+max_value = 4.0
+
 [connection signal="item_selected" from="CanvasLayer/UI/VBoxContainer/Direction" to="." method="_on_direction_item_selected"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/TriangleUp" to="." method="_on_triangle_up_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/TriangleDown" to="." method="_on_triangle_down_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Adjacent" to="." method="_on_adjacent_pressed"]
+[connection signal="drag_ended" from="CanvasLayer/UI/VBoxContainer/RangeSlider" to="." method="_on_range_slider_drag_ended"]

@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="Flat Game"
-run/main_scene="res://scenes/AttackPatterns.tscn"
+run/main_scene="res://scenes/attack_patterns.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Directions="*res://Scripts/Directions.gd"
+Directions="*res://Scripts/directions.gd"
 
 [display]
 

@@ -24,4 +24,3 @@ static func get_all_adjacent(from: HexCell):
 	for dir in Directions.DIRECTIONS:
 		cells.append(get_adjacent(from, dir.cube_coords).oddq_coords)
 	return cells
-

@@ -18,5 +18,7 @@ func hex_has_ground(hex_coords) -> bool:
 		return false
 
 
+
+
 	
 	

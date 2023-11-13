@@ -2,6 +2,7 @@ extends Node2D
 
 @export var tilemap: TileMap
 @export var direction_dropdown: OptionButton
+@export var slider: HSlider
 
 var center_cell: HexCell = HexCell.new(Vector2i(4,4))
 const TERRAIN_SET: int = 0
@@ -44,3 +45,14 @@ func _on_direction_item_selected(index:int):
 	var dir = Directions.DIRECTIONS[index]
 	cells.append(AttackPatterns.get_adjacent(center_cell, dir.cube_coords).oddq_coords)
 	paint_hex_on_map(cells)
+
+
+
+
+func _on_range_slider_drag_ended(value_changed:bool):
+	if value_changed:
+		clear_terrain()
+		var cells = center_cell.get_all_within(slider.value)
+		print(cells)
+		paint_hex_on_map(cells)
+
