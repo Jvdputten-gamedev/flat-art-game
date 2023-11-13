@@ -433,7 +433,7 @@ script = ExtResource("4_va2c5")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
-zoom = Vector2(0.5, 0.5)
+zoom = Vector2(0.9, 0.9)
 
 [node name="CharacterViewport" parent="." instance=ExtResource("5_6tj81")]
-position = Vector2(-505, 399)
+position = Vector2(507, 475)

@@ -25,20 +25,10 @@ func _input(event):
 		if event.button_index == 1:
 			var hex_coords = tilemap.local_to_map(get_local_mouse_position())
 			var to_position = tilemap.map_to_local(hex_coords)
+			character.move_to_mouse(to_position)
 
-			if to_position.x > character.position.x:
-				character.scale.x = -0.5
-			else:
-				character.scale.x = 0.5
-			
 
-			var anim_player = character.get_animation_player()
-			var tween  = create_tween()
-			tween.tween_property(character, "position", to_position, 0.8)
-			print(anim_player.playback_default_blend_time)
-			anim_player.play("walk")
-			await tween.finished 
-			anim_player.play("Idle")
+
 
 func hex_has_ground(hex_coords):
 	var data = tilemap.get_cell_tile_data(1, hex_coords)
