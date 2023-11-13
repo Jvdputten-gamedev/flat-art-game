@@ -192,7 +192,7 @@ position = Vector2(-206, -399)
 rotation = -0.0594028
 
 [node name="Shield" type="Marker2D" parent="Rig/Markers"]
-position = Vector2(174, -352)
+position = Vector2(145, -344)
 
 [node name="Toes" type="Marker2D" parent="Rig/Markers"]
 position = Vector2(-4987, 40)
@@ -247,16 +247,16 @@ scale = Vector2(0.999936, 0.999936)
 texture = ExtResource("1_dhkmc")
 
 [node name="RightFoot" type="Sprite2D" parent="Rig/Sprites"]
-position = Vector2(32.992, -233.161)
+position = Vector2(32.9918, -233.162)
 rotation = -0.0451847
-scale = Vector2(0.999937, 0.999937)
+scale = Vector2(0.999939, 0.999939)
 texture = ExtResource("2_f03dp")
 centered = false
 
 [node name="LeftFoot" type="Sprite2D" parent="Rig/Sprites"]
-position = Vector2(-24.3709, -115.321)
+position = Vector2(-24.3712, -115.321)
 rotation = -0.0435469
-scale = Vector2(0.999924, 0.999924)
+scale = Vector2(0.999922, 0.999922)
 texture = ExtResource("2_f03dp")
 
 [node name="LeftArmUpper" type="Sprite2D" parent="Rig/Sprites"]
@@ -297,14 +297,15 @@ scale = Vector2(1, 1)
 texture = ExtResource("7_f0337")
 
 [node name="RightArmLower" type="Sprite2D" parent="Rig/Sprites"]
-position = Vector2(209.938, -401.792)
-rotation = 2.19693
-scale = Vector2(0.999935, 0.999935)
+position = Vector2(182.351, -392.677)
+rotation = 2.22505
+scale = Vector2(0.999934, 0.999934)
 texture = ExtResource("4_eh2pa")
 
 [node name="RightArmUpper" type="Sprite2D" parent="Rig/Sprites"]
-position = Vector2(230.945, -522.792)
-rotation = 1.10223
+position = Vector2(219.097, -517.457)
+rotation = 1.33841
+scale = Vector2(1, 1)
 texture = ExtResource("3_oticy")
 
 [node name="Head" type="Sprite2D" parent="Rig/Sprites"]
@@ -314,9 +315,9 @@ scale = Vector2(1.0001, 1.0001)
 texture = ExtResource("10_s70f0")
 
 [node name="Shield" type="Sprite2D" parent="Rig/Sprites"]
-position = Vector2(146.974, -349.212)
-rotation = 2.08837
-scale = Vector2(0.999935, 0.999935)
+position = Vector2(117.933, -341.888)
+rotation = 2.11649
+scale = Vector2(0.999934, 0.999934)
 texture = ExtResource("9_wvcbg")
 
 [node name="Skeleton2D" type="Skeleton2D" parent="Rig"]
