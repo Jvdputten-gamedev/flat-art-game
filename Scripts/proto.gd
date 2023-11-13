@@ -24,7 +24,6 @@ func _input(event):
 	
 	if event is InputEventMouseButton:
 		if event.button_index == 1:
-			print("moving")
 			var hex_coords = tilemap.local_to_map(get_local_mouse_position())
 			character.position =  tilemap.map_to_local(hex_coords)
 

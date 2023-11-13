@@ -395,6 +395,7 @@ sources/4 = SubResource("TileSetAtlasSource_10m1i")
 script = ExtResource("1_o47nl")
 tilemap = NodePath("TileMap3")
 character = NodePath("CharacterViewport")
+metadata/_edit_vertical_guides_ = [-531.0]
 
 [node name="TileMap3" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_yvtq7")
@@ -435,4 +436,4 @@ anchor_mode = 0
 zoom = Vector2(0.5, 0.5)
 
 [node name="CharacterViewport" parent="." instance=ExtResource("5_6tj81")]
-position = Vector2(-343, 388)
+position = Vector2(-505, 399)
