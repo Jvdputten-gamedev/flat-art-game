@@ -12,7 +12,7 @@ func _ready() -> void:
 
 func move_along_path(path:Array) -> void:
 	_path = path
-	if path.size() > 2:
+	if path.size() > 0:
 		_path.pop_front() # remove starting position
 		move_to_next_position(_path.pop_front())
 
