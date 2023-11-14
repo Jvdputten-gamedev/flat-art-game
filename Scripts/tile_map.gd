@@ -14,7 +14,6 @@ func clear_highlight() -> void:
 func get_ground_cells() -> Array[Vector2i]:
 	return get_used_cells(Layers.GROUND)
 
-
 func get_ground_data(cell_coords) -> TileData:
 	return get_cell_tile_data(Layers.GROUND, cell_coords)
 
@@ -25,6 +24,13 @@ func cell_has_ground(cell_coords) -> bool:
 	else:
 		return false
 
+func get_surrounding_ground_cells(cell_coord) -> Array:
+	var out = Array()
+	var neighbors = get_surrounding_cells(cell_coord)
+	for neighbor in neighbors:
+		if cell_has_ground(neighbor):
+			out.append(neighbor)
+	return out 
 
 
 
