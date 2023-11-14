@@ -11,10 +11,14 @@ func paint_highlight_on_map(coordinates):
 func clear_highlight() -> void:
 	clear_layer(Layers.HIGHLIGHT)
 
+func get_ground_cells() -> Array[Vector2i]:
+	return get_used_cells(Layers.GROUND)
+
+
 func get_ground_data(cell_coords) -> TileData:
 	return get_cell_tile_data(Layers.GROUND, cell_coords)
 
-func hex_has_ground(cell_coords) -> bool:
+func cell_has_ground(cell_coords) -> bool:
 	var data = get_cell_tile_data(Layers.GROUND, cell_coords)
 	if data:
 		return true

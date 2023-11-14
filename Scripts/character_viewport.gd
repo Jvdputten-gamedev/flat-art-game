@@ -27,11 +27,13 @@ func move_to_next_position(to: Vector2) -> void:
 	var tween  = create_tween()
 	animation_player.play("walk")
 	tween.tween_property(self, "position", to, 0.45)
-	tween.connect("finished", on_hex_move_finished)
+	tween.connect("finished", _on_hex_move_finished)
 
-func on_hex_move_finished():
+func _on_hex_move_finished():
 	if _path.size() > 0:
 		var next = _path.pop_front()
 		move_to_next_position(next)
 	else:
 		animation_player.play("Idle")
+
+

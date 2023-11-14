@@ -15,15 +15,13 @@ func _input(event) -> void:
 	if event is InputEventMouseMotion:
 		tilemap.clear_highlight()
 		var hex_coords = tilemap.local_to_map(get_local_mouse_position())
-		if tilemap.hex_has_ground(hex_coords):
+		if tilemap.cell_has_ground(hex_coords):
 			tilemap.paint_highlight_on_map([hex_coords])
 	
 	if event is InputEventMouseButton:
-		if event.button_index == 1:
+		if event.is_action_pressed("LMB"):
 			var to_position = get_local_mouse_position()
 			var from_position = player.position
 
 			var path = Array(_astar.get_point_path_from_positions(from_position, to_position))
-			for point in path:
-				print(tilemap.local_to_map(point))
 			player.move_along_path(path)
