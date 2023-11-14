@@ -3,10 +3,13 @@ extends Node2D
 @export var tilemap: TileMap
 @export var player: Node2D
 @export var starting_pos: Vector2i
+var _astar: AStar2DHex
 
 
 func _ready() -> void:
 	player.position = tilemap.map_to_local(starting_pos)
+	_astar = AStar2DHex.new(tilemap)
+
 
 func _input(event) -> void:
 	if event is InputEventMouseMotion:
@@ -17,7 +20,10 @@ func _input(event) -> void:
 	
 	if event is InputEventMouseButton:
 		if event.button_index == 1:
-			var hex_coords = tilemap.local_to_map(get_local_mouse_position())
-			if tilemap.hex_has_ground(hex_coords):
-				var to_position = tilemap.map_to_local(hex_coords)
-				player.move_to_position(to_position)
+			var to_position = get_local_mouse_position()
+			var from_position = player.position
+
+			var path = Array(_astar.get_point_path_from_positions(from_position, to_position))
+			for point in path:
+				print(tilemap.local_to_map(point))
+			player.move_along_path(path)
