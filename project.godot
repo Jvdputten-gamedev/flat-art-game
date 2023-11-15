@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Directions="*res://Scripts/Globals/directions.gd"
 Globals="*res://Scripts/Globals/globals.gd"
 Enums="*res://Scripts/Globals/enums.gd"
+LevelEventBus="*res://Scripts/Globals/level_event_bus.gd"
 
 [display]
 

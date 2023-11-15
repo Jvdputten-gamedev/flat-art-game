@@ -1,6 +1,10 @@
 extends Node2D
 
 
+@export var services: Node
+@export var environment: Node2D
+@export var combatants: Node2D
+
 
 @export var tilemap: TileMap
 @export var player: Node2D
@@ -8,9 +12,11 @@ extends Node2D
 var _astar: AStar2DHex
 
 
-func _ready() -> void:
-	player.position = tilemap.map_to_local(starting_pos)
-	_astar = AStar2DHex.new(tilemap)
+func _ready():
+	setup_combatants()
+
+func setup_combatants():
+	combatants.setup()
 
 
 func _input(event) -> void:
