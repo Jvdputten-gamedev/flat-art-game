@@ -4,47 +4,37 @@ class_name AStar2DHex
 
 var _grid_size: Vector2i
 var _tilemap: TileMap
-var _astar_cell_id: Dictionary
 
 func _init(tilemap: TileMap) -> void:
 	self._tilemap = tilemap
 	_initialize_astar_grid()
 		
 
-
 func _initialize_astar_grid() -> void:
 	_grid_size = _tilemap.get_used_rect().size
-	print(_grid_size)
 	self.reserve_space(_grid_size.x * _grid_size.y)
 	update()
 
 func _get_astar_cell_id(cell: Vector2i) -> int:
-	return _astar_cell_id[cell]
-
-func _set_astar_cell_id() -> void:
-	_astar_cell_id = {}
-	var i = 0
-	for cell in _tilemap.get_ground_cells():
-		_astar_cell_id[cell] = i
-		i = i + 1
-	print(_astar_cell_id)
+	var id = abs(hash(str(cell.x) + str(cell.y)))
+	return id
 
 func update() -> void:
-	_set_astar_cell_id()
-	_update_astar_grid_points()
-	_update_astar_connections()
+	var cells = _tilemap.get_ground_cells()
+	_update_astar_grid_points(cells)
+	_update_astar_connections(cells)
 
-func _update_astar_grid_points() -> void:
+func _update_astar_grid_points(cells: Array[Vector2i]) -> void:
 	clear()
 	# Loop through all cells in the grid and add them as points in the astar grid
-	for cell in _astar_cell_id:
-		print(cell)
-		var id = _astar_cell_id[cell]
+	for cell in cells:
+		# var id = _astar_cell_id[cell]
+		var id = _get_astar_cell_id(cell)
 		self.add_point(id, _tilemap.map_to_local(cell))
 	
 
-func _update_astar_connections() -> void:
-	for cell in _astar_cell_id:
+func _update_astar_connections(cells: Array[Vector2i]) -> void:
+	for cell in cells:
 		_update_neighbor_connections(cell)
 	
 
@@ -63,6 +53,8 @@ func get_point_path_from_positions(from_pos: Vector2i, to_pos: Vector2i) -> Pack
 	if self.has_point(from_id) and self.has_point(to_id):
 		return self.get_point_path(from_id, to_id)
 	return [] 
+
+
 
 
 

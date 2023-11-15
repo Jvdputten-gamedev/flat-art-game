@@ -4,6 +4,7 @@ extends Node2D
 @export var character: Node2D
 var animation_player: AnimationPlayer
 var _path: Array
+var _moving: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,8 +16,6 @@ func move_along_path(path:Array) -> void:
 	if path.size() > 0:
 		_path.pop_front() # remove starting position
 		move_to_next_position(_path.pop_front())
-
-
 
 func move_to_next_position(to: Vector2) -> void:
 	"""Move to the position in world space"""
