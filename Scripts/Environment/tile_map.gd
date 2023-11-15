@@ -5,6 +5,11 @@ const HIGHLIGHT_TERRAIN = 0
 
 enum Layers {WATER = 0, GROUND = 1, HIGHLIGHT = 2, AOE = 3}
 
+
+func _ready():
+	var celldata = get_cell_source_id(Layers.GROUND, Vector2i(0,0))
+	celldata.modulate = Color(1,1,1)
+
 func paint_highlight_on_map(coordinates):
 	set_cells_terrain_connect(Layers.HIGHLIGHT, coordinates, TERRAIN_SET, HIGHLIGHT_TERRAIN)
 

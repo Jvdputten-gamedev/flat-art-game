@@ -1,5 +1,7 @@
 extends Node2D
 
+
+
 @export var tilemap: TileMap
 @export var player: Node2D
 @export var starting_pos: Vector2i
