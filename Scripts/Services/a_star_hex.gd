@@ -1,9 +1,12 @@
 extends AStar2D
 class_name AStar2DHex
 
-@export var tilemap: TileMap
 
-func _ready() -> void:
+var tilemap: TileMap
+
+
+func _init() -> void:
+	self.tilemap = Globals.tilemap
 	_initialize_astar_grid()
 
 	

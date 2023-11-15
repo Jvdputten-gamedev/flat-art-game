@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cnlyfljmb4dbr"]
+[gd_scene load_steps=9 format=3 uid="uid://cnlyfljmb4dbr"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_2sjcx"]
 [ext_resource type="TileSet" uid="uid://cloviblshkwle" path="res://resources/tiles/tile_set.tres" id="2_h4a5d"]
 [ext_resource type="Script" path="res://Scripts/Services/services.gd" id="2_hbmfm"]
 [ext_resource type="Script" path="res://Scripts/Environment/tile_map.gd" id="3_a6q2n"]
-[ext_resource type="Script" path="res://Scripts/Services/navigation_service.gd" id="3_pfxis"]
 [ext_resource type="PackedScene" uid="uid://mj0lsqwow3mu" path="res://scenes/character_viewport.tscn" id="4_q7g7p"]
 [ext_resource type="Script" path="res://Scripts/Environment/environment.gd" id="4_v4aib"]
 [ext_resource type="Script" path="res://Scripts/Combatants/combatants.gd" id="7_xh1as"]
@@ -25,7 +24,6 @@ script = ExtResource("2_hbmfm")
 navigation_service = NodePath("NavigationService")
 
 [node name="NavigationService" type="Node" parent="Services"]
-script = ExtResource("3_pfxis")
 
 [node name="CombatService" type="Node" parent="Services"]
 
