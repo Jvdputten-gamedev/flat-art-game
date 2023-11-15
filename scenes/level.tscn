@@ -7,10 +7,23 @@
 
 [node name="Level" type="Node2D" node_paths=PackedStringArray("tilemap", "player")]
 script = ExtResource("1_2sjcx")
-tilemap = NodePath("TileMap")
-player = NodePath("CharacterViewport")
+tilemap = NodePath("Environment/TileMap")
+player = NodePath("Combatants/PlayerCombatantGroup/Dwarf")
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-602, -208)
+anchor_mode = 0
+zoom = Vector2(0.5, 0.5)
+
+[node name="Services" type="Node" parent="."]
+
+[node name="NavigationService" type="Node" parent="Services"]
+
+[node name="CombatService" type="Node" parent="Services"]
+
+[node name="Environment" type="Node2D" parent="."]
+
+[node name="TileMap" type="TileMap" parent="Environment"]
 tile_set = ExtResource("2_h4a5d")
 format = 2
 layer_0/name = "Water"
@@ -38,9 +51,10 @@ layer_3/z_index = 0
 layer_3/tile_data = PackedInt32Array()
 script = ExtResource("3_a7w2o")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-602, -208)
-anchor_mode = 0
-zoom = Vector2(0.5, 0.5)
+[node name="Combatants" type="Node2D" parent="."]
 
-[node name="CharacterViewport" parent="." instance=ExtResource("4_q7g7p")]
+[node name="PlayerCombatantGroup" type="Node2D" parent="Combatants"]
+
+[node name="Dwarf" parent="Combatants/PlayerCombatantGroup" instance=ExtResource("4_q7g7p")]
+
+[node name="EnemyCombatantGroup" type="Node2D" parent="Combatants"]
