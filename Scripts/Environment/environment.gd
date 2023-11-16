@@ -1,7 +1,7 @@
 extends Node2D
 
-@export var tilemap: TileMap
-
+func initialize() -> void:
+    $TileMap.initialize()
 
 
 

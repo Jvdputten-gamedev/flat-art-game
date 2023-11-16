@@ -1,29 +1,28 @@
-[gd_scene load_steps=9 format=3 uid="uid://cnlyfljmb4dbr"]
+[gd_scene load_steps=10 format=3 uid="uid://cnlyfljmb4dbr"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_2sjcx"]
+[ext_resource type="Script" path="res://Scripts/Services/services.gd" id="2_3yklw"]
 [ext_resource type="TileSet" uid="uid://cloviblshkwle" path="res://resources/tiles/tile_set.tres" id="2_h4a5d"]
-[ext_resource type="Script" path="res://Scripts/Services/services.gd" id="2_hbmfm"]
 [ext_resource type="Script" path="res://Scripts/Environment/tile_map.gd" id="3_a6q2n"]
+[ext_resource type="Script" path="res://Scripts/Services/navigation_service.gd" id="3_tf8g4"]
 [ext_resource type="PackedScene" uid="uid://mj0lsqwow3mu" path="res://scenes/character_viewport.tscn" id="4_q7g7p"]
 [ext_resource type="Script" path="res://Scripts/Environment/environment.gd" id="4_v4aib"]
 [ext_resource type="Script" path="res://Scripts/Combatants/combatants.gd" id="7_xh1as"]
 [ext_resource type="Script" path="res://Scripts/Combatants/player_combatant_group.gd" id="8_hfe4i"]
 
-[node name="Level" type="Node2D" node_paths=PackedStringArray("tilemap", "player")]
+[node name="Level" type="Node2D"]
 script = ExtResource("1_2sjcx")
-tilemap = NodePath("Environment/TileMap")
-player = NodePath("")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-602, -208)
 anchor_mode = 0
 zoom = Vector2(0.5, 0.5)
 
-[node name="Services" type="Node2D" parent="." node_paths=PackedStringArray("navigation_service")]
-script = ExtResource("2_hbmfm")
-navigation_service = NodePath("NavigationService")
+[node name="Services" type="Node" parent="."]
+script = ExtResource("2_3yklw")
 
 [node name="NavigationService" type="Node" parent="Services"]
+script = ExtResource("3_tf8g4")
 
 [node name="CombatService" type="Node" parent="Services"]
 
@@ -61,10 +60,8 @@ script = ExtResource("3_a6q2n")
 [node name="Combatants" type="Node2D" parent="."]
 script = ExtResource("7_xh1as")
 
-[node name="PlayerCombatantGroup" type="Node2D" parent="Combatants" node_paths=PackedStringArray("navigation_service", "player")]
+[node name="PlayerCombatantGroup" type="Node2D" parent="Combatants"]
 script = ExtResource("8_hfe4i")
-navigation_service = NodePath("../../Services/NavigationService")
-player = NodePath("CharacterViewport")
 
 [node name="CharacterViewport" parent="Combatants/PlayerCombatantGroup" instance=ExtResource("4_q7g7p")]
 

@@ -1,4 +1,8 @@
 extends Node
 
+func register():
+	ServiceLocator.register_navigation_service($NavigationService as Service)
 
-@export var navigation_service: Node
+func initialize() -> void:
+	print('in services')
+	$NavigationService.initialize_astar()

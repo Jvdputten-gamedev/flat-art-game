@@ -35,4 +35,3 @@ func _on_hex_move_finished():
 	else:
 		animation_player.play("Idle")
 
-

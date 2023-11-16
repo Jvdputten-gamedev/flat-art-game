@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+ServiceLocator="*res://Scripts/Services/locator.gd"
 Directions="*res://Scripts/Globals/directions.gd"
 Globals="*res://Scripts/Globals/globals.gd"
 Enums="*res://Scripts/Globals/enums.gd"
