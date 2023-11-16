@@ -1,5 +1,6 @@
 extends Node2D
 
+@export var player_combatant_group: Node2D
 
 func initialize():
-    $PlayerCombatantGroup.initialize()
+	player_combatant_group.initialize()

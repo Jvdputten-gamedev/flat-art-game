@@ -11,7 +11,11 @@ func _ready() -> void:
 	animation_player = character.get_animation_player()
 	pass # Replace with function body.
 
+func is_moving() -> bool:
+	return _moving
+
 func move_along_path(path:Array) -> void:
+	_moving = true
 	_path = path
 	if path.size() > 0:
 		_path.pop_front() # remove starting position
@@ -33,5 +37,6 @@ func _on_hex_move_finished():
 		var next = _path.pop_front()
 		move_to_next_position(next)
 	else:
+		_moving = false
 		animation_player.play("Idle")
 
