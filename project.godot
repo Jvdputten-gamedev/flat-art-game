@@ -22,6 +22,7 @@ Directions="*res://Scripts/Globals/directions.gd"
 Globals="*res://Scripts/Globals/globals.gd"
 Enums="*res://Scripts/Globals/enums.gd"
 LevelEventBus="*res://Scripts/Globals/level_event_bus.gd"
+UIEventBus="*res://Scripts/Globals/ui_event_bus.gd"
 
 [display]
 
@@ -37,5 +38,10 @@ project/assembly_name="Flat Game"
 LMB={
 "deadzone": 0.5,
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(147, 13),"global_position":Vector2(151, 56),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+RMB={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":2,"position":Vector2(89, 14),"global_position":Vector2(93, 57),"factor":1.0,"button_index":2,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }

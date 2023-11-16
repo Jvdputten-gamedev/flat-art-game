@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="188"
+   height="97.13781"
+   viewBox="0 0 49.741664 25.701046"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   sodipodi:docname="Goober.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     showborder="true"
+     inkscape:zoom="0.73139029"
+     inkscape:cx="45.119549"
+     inkscape:cy="326.09128"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="1912"
+     inkscape:window-y="573"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer2" />
+  <defs
+     id="defs1" />
+  <g
+     id="g2"
+     inkscape:label="Bottom"
+     transform="matrix(0.69085645,0,0,0.69633409,54.819664,-344.85814)">
+    <rect
+       style="fill:#0eaf9b;stroke-width:1.45406"
+       id="rect3-9-5"
+       width="7.7693224"
+       height="26.133169"
+       x="-15.119616"
+       y="495.24811" />
+    <rect
+       style="fill:#0eaf9b;stroke-width:1.00937"
+       id="rect6-9"
+       width="72"
+       height="12.735489"
+       x="-79.350296"
+       y="519.42169" />
+  </g>
+</svg>

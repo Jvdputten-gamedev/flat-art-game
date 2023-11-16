@@ -9,15 +9,14 @@ var _moving: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	animation_player = character.get_animation_player()
-	pass # Replace with function body.
 
 func is_moving() -> bool:
 	return _moving
 
 func move_along_path(path:Array) -> void:
-	_moving = true
 	_path = path
 	if path.size() > 0:
+		_moving = true
 		_path.pop_front() # remove starting position
 		move_to_next_position(_path.pop_front())
 

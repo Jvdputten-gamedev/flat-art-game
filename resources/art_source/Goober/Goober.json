@@ -1,0 +1,92 @@
+{
+    "skeleton": {
+        "images": "images"
+    },
+    "bones": [
+        {
+            "name": "root"
+        }
+    ],
+    "slots": [
+        {
+            "name": "Back",
+            "attachment": "Back",
+            "bone": "root"
+        },
+        {
+            "name": "Bottom",
+            "attachment": "Bottom",
+            "bone": "root"
+        },
+        {
+            "name": "LeftLeg",
+            "attachment": "LeftLeg",
+            "bone": "root"
+        },
+        {
+            "name": "Top",
+            "attachment": "Top",
+            "bone": "root"
+        },
+        {
+            "name": "RightLeg",
+            "attachment": "RightLeg",
+            "bone": "root"
+        }
+    ],
+    "skins": [
+        {
+            "name": "default",
+            "attachments": {
+                "Back": {
+                    "Back": {
+                        "x": 12.0,
+                        "y": -105.5,
+                        "width": 154,
+                        "height": 88,
+                        "path": "Back"
+                    }
+                },
+                "Bottom": {
+                    "Bottom": {
+                        "x": 0.5,
+                        "y": -108.0,
+                        "width": 187,
+                        "height": 97,
+                        "path": "Bottom"
+                    }
+                },
+                "LeftLeg": {
+                    "LeftLeg": {
+                        "x": -56.0,
+                        "y": -165.5,
+                        "width": 28,
+                        "height": 46,
+                        "path": "LeftLeg"
+                    }
+                },
+                "Top": {
+                    "Top": {
+                        "x": 0.0,
+                        "y": 40.0,
+                        "width": 188,
+                        "height": 297,
+                        "path": "Top"
+                    }
+                },
+                "RightLeg": {
+                    "RightLeg": {
+                        "x": 58.0,
+                        "y": -165.5,
+                        "width": 28,
+                        "height": 46,
+                        "path": "RightLeg"
+                    }
+                }
+            }
+        }
+    ],
+    "animations": {
+        "animation": {}
+    }
+}

@@ -5,7 +5,7 @@ extends Node
 
 func register():
 	ServiceLocator.register_navigation_service(navigation_service as Service)
+	ServiceLocator.register_combat_service(combat_service as Service)
 
 func initialize() -> void:
-	print('in services')
 	navigation_service.initialize_astar()

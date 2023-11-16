@@ -1,7 +1,7 @@
 extends Node2D
 class_name HexCell
 
-var cube_coords = Vector3(0, 0, 0)
+var cube_coords = Vector3i(0, 0, 0)
 
 var axial_coords:
 	get:
@@ -87,13 +87,13 @@ func get_adjacent(dir):
 	return cell
 
 func get_all_adjacent():
-	var cells = Array()
+	var cells: Array[Vector2i] = []
 	for dir in Directions.DIRECTIONS:
 		cells.append(get_adjacent(dir.cube_coords).oddq_coords)
 	return cells
 
-func get_all_within(distance):
-	var cells = Array()
+func get_all_within(distance: int):
+	var cells: Array[Vector2i] = []
 	for dx in range(-distance, distance + 1):
 		for dy in range(max(-distance, -distance - dx), min(distance, distance - dx) + 1):
 			cells.append(HexCell.new(self.cube_coords + axial_to_cube_coords(Vector2i(dx, dy))).oddq_coords)

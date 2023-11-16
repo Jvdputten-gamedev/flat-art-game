@@ -2,7 +2,7 @@ extends Node
 
 var services = {}
 
-enum Services {NAVIGATION_SERVICE = 0}
+enum Services {NAVIGATION_SERVICE = 0, COMBAT_SERVICE = 1}
 
 func _ready():
 	print("Service locator ready")
@@ -21,5 +21,11 @@ func _get_service(service_id: Services) -> Service:
 func register_navigation_service(service: Service) -> void:
 	_register_service(Services.NAVIGATION_SERVICE, service)
 
+func register_combat_service(service: Service) -> void:
+	_register_service(Services.COMBAT_SERVICE, service)
+
 func get_navigation_service() -> Service:
 	return _get_service(Services.NAVIGATION_SERVICE)
+
+func get_combat_service() -> Service:
+	return _get_service(Services.COMBAT_SERVICE)

@@ -1,4 +1,5 @@
 extends TileMap
+class_name HexTileMap
 
 const TERRAIN_SET = 0
 const HIGHLIGHT_TERRAIN = 0
@@ -12,11 +13,26 @@ func initialize():
 	var navigation_service = ServiceLocator.get_navigation_service()
 	navigation_service._tilemap = self
 
-func paint_highlight_on_map(coordinates):
-	set_cells_terrain_connect(Layers.HIGHLIGHT, coordinates, TERRAIN_SET, HIGHLIGHT_TERRAIN)
+func paint_highlight_on_map(cells: Array[Vector2i]):
+	cells = _intersect_with_ground(cells)
+	set_cells_terrain_connect(Layers.HIGHLIGHT, cells, TERRAIN_SET, HIGHLIGHT_TERRAIN)
+
+func paint_AOE_on_map(cells):
+	cells = _intersect_with_ground(cells)	
+	set_cells_terrain_connect(Layers.AOE, cells, TERRAIN_SET, HIGHLIGHT_TERRAIN)
 
 func clear_highlight() -> void:
 	clear_layer(Layers.HIGHLIGHT)
+
+func _intersect_with_ground(cells: Array[Vector2i]) -> Array[Vector2i]:
+	var out: Array[Vector2i] = []
+	for cell in cells:
+		if cell_has_ground(cell):
+			out.append(cell as Vector2i)
+	return out
+
+func clear_AOE() -> void:
+	clear_layer(Layers.AOE)
 
 func get_ground_cells() -> Array[Vector2i]:
 	return get_used_cells(Layers.GROUND)
