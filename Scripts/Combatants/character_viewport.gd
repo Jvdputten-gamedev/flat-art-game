@@ -1,4 +1,4 @@
-extends Node2D
+extends Unit
 
 
 @export var character: Node2D

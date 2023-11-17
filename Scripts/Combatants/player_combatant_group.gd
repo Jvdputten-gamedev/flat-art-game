@@ -4,6 +4,7 @@ extends CombatantGroup
 
 func initialize() -> void:
 	super.initialize()
+
 	player.position = navigation_service.map_to_local(Vector2i(0,0))
 	combat_service.player_position = player.position
 	combat_service.player_range = 3
