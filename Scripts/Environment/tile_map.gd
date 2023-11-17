@@ -4,7 +4,7 @@ class_name HexTileMap
 const TERRAIN_SET = 0
 const HIGHLIGHT_TERRAIN = 0
 
-enum Layers {WATER = 0, GROUND = 1, HIGHLIGHT = 2, AOE = 3}
+enum Layers {WATER = 0, GROUND = 1, AOE = 2, HIGHLIGHT = 3}
 
 func _ready():
 	print("Tile map ready")

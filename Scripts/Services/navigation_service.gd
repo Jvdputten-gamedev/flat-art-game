@@ -27,8 +27,10 @@ func _on_move_pressed():
 	var combat_service = ServiceLocator.get_combat_service()
 	var player_hex = _tilemap.local_to_map(combat_service.player_position)
 	var hexcell = HexCell.new(player_hex)
-	var move_range = hexcell.get_all_within(3)
-	_tilemap.paint_AOE_on_map(move_range)
+	var cells_in_range = hexcell.get_all_within(combat_service.player_range)
+	_tilemap.paint_AOE_on_map(cells_in_range)
+
+	
 	
 
 
