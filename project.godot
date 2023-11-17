@@ -21,8 +21,8 @@ ServiceLocator="*res://Scripts/Services/locator.gd"
 Directions="*res://Scripts/Globals/directions.gd"
 Globals="*res://Scripts/Globals/globals.gd"
 Enums="*res://Scripts/Globals/enums.gd"
-LevelEventBus="*res://Scripts/Globals/level_event_bus.gd"
 UIEventBus="*res://Scripts/Globals/ui_event_bus.gd"
+GameEventBus="*res://Scripts/Globals/game_event_bus.gd"
 
 [display]
 

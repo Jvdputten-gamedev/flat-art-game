@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cnlyfljmb4dbr"]
+[gd_scene load_steps=18 format=3 uid="uid://cnlyfljmb4dbr"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_2sjcx"]
 [ext_resource type="Script" path="res://Scripts/Services/services.gd" id="2_3yklw"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://Scripts/Combatants/player_combatant_group.gd" id="8_hfe4i"]
 [ext_resource type="PackedScene" uid="uid://cbrm52ymlqmct" path="res://scenes/goober.tscn" id="11_a7cy3"]
 [ext_resource type="PackedScene" uid="uid://cnvtjbehch6co" path="res://scenes/gui.tscn" id="12_paf35"]
+[ext_resource type="Script" path="res://Scripts/camera_controller.gd" id="13_be142"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wofjk"]
 frequency = 0.018
@@ -110,7 +111,7 @@ layer_3/enabled = true
 layer_3/modulate = Color(1, 1, 1, 1)
 layer_3/y_sort_enabled = false
 layer_3/y_sort_origin = 0
-layer_3/z_index = 1
+layer_3/z_index = 0
 layer_3/tile_data = PackedInt32Array()
 script = ExtResource("3_a6q2n")
 
@@ -133,9 +134,10 @@ y_sort_enabled = true
 [node name="Goober" parent="Combatants/EnemyCombatantGroup" instance=ExtResource("11_a7cy3")]
 position = Vector2(1091, 266)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-364, -133)
-anchor_mode = 0
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("current_player")]
+position = Vector2(743, 439)
 zoom = Vector2(0.5, 0.5)
+script = ExtResource("13_be142")
+current_player = NodePath("../Combatants/PlayerCombatantGroup/CharacterViewport")
 
 [node name="UI" parent="." instance=ExtResource("12_paf35")]
