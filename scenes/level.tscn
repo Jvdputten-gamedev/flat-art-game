@@ -49,10 +49,10 @@ script = ExtResource("2_3yklw")
 navigation_service = NodePath("NavigationService")
 combat_service = NodePath("CombatService")
 
-[node name="NavigationService" type="Node" parent="Services"]
+[node name="NavigationService" type="Node2D" parent="Services"]
 script = ExtResource("3_tf8g4")
 
-[node name="CombatService" type="Node" parent="Services"]
+[node name="CombatService" type="Node2D" parent="Services"]
 script = ExtResource("4_q3s4i")
 
 [node name="Environment" type="Node2D" parent="."]
@@ -137,20 +137,40 @@ script = ExtResource("16_dwp1c")
 initial_state = NodePath("PlayerTurn")
 
 [node name="PlayerTurn" type="Node" parent="Combatants/StateChart/TurnOrders"]
+script = ExtResource("16_dwp1c")
+initial_state = NodePath("Base")
+
+[node name="Base" type="Node" parent="Combatants/StateChart/TurnOrders/PlayerTurn"]
 script = ExtResource("17_kum6d")
 
-[node name="OnPlayerTurnEnd" type="Node" parent="Combatants/StateChart/TurnOrders/PlayerTurn"]
+[node name="Move" type="Node" parent="Combatants/StateChart/TurnOrders/PlayerTurn"]
+script = ExtResource("17_kum6d")
+
+[node name="Attack" type="Node" parent="Combatants/StateChart/TurnOrders/PlayerTurn"]
+script = ExtResource("17_kum6d")
+
+[node name="OnEndTurnPressed" type="Node" parent="Combatants/StateChart/TurnOrders/PlayerTurn"]
 script = ExtResource("18_4d232")
 to = NodePath("../../EnemyTurn")
-event = &"end_player_turn"
+event = &"end_turn_pressed"
+
+[node name="OnMovePressed" type="Node" parent="Combatants/StateChart/TurnOrders/PlayerTurn"]
+script = ExtResource("18_4d232")
+to = NodePath("../Move")
+event = &"move_pressed"
+
+[node name="OnAttackPressed" type="Node" parent="Combatants/StateChart/TurnOrders/PlayerTurn"]
+script = ExtResource("18_4d232")
+to = NodePath("../Attack")
+event = &"attack_pressed"
+
+[node name="OnActionCanceled" type="Node" parent="Combatants/StateChart/TurnOrders/PlayerTurn"]
+script = ExtResource("18_4d232")
+to = NodePath("../Base")
+event = &"action_canceled"
 
 [node name="EnemyTurn" type="Node" parent="Combatants/StateChart/TurnOrders"]
 script = ExtResource("17_kum6d")
-
-[node name="OnEnemyTurnEnd" type="Node" parent="Combatants/StateChart/TurnOrders/EnemyTurn"]
-script = ExtResource("18_4d232")
-to = NodePath("../../PlayerTurn")
-event = &"end_enemy_turn"
 
 [node name="PlayerCombatantGroup" type="Node2D" parent="Combatants" node_paths=PackedStringArray("player")]
 y_sort_enabled = true
@@ -190,3 +210,6 @@ grow_vertical = 1
 scale = Vector2(0.549295, 0.611425)
 size_flags_horizontal = 8
 initial_node_to_watch = NodePath("../../Combatants/StateChart")
+
+[connection signal="state_unhandled_input" from="Combatants/StateChart/TurnOrders/PlayerTurn" to="Combatants/PlayerCombatantGroup" method="_on_player_turn_state_unhandled_input"]
+[connection signal="state_unhandled_input" from="Combatants/StateChart/TurnOrders/PlayerTurn/Move" to="Combatants/PlayerCombatantGroup" method="_on_move_state_unhandled_input"]

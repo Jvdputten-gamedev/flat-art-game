@@ -8,10 +8,16 @@ func _ready():
 	BattleEventBus.connect("EnemyTurnEnd", _on_enemy_turn_end)
 
 func _on_move_pressed():
-	UIEventBus.emit_signal("MovePressed")
+	UiEventBus.emit_signal("MovePressed")
+
+func _on_attack_pressed():
+	UiEventBus.emit_signal("AttackPressed")
 
 func _on_end_turn_pressed():
-	UIEventBus.emit_signal("EndTurnPressed")
+	UiEventBus.emit_signal("EndTurnPressed")
+
+
+
 
 func _on_enemy_turn_start():
 	_disable_ui()
@@ -31,3 +37,5 @@ func _enable_ui():
 func _on_enemy_turn_end():
 	_enable_ui()
 	turn_label.text = "Player turn" 
+
+

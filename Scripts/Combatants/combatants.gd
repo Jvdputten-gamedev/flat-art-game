@@ -7,9 +7,14 @@ extends Node2D
 var is_player_turn: bool
 
 func _ready():
-	UIEventBus.connect("EndTurnPressed", _on_end_turn_pressed)
+	UiEventBus.connect("MovePressed", _on_move_pressed)
+	UiEventBus.connect("AttackPressed", _on_attack_pressed)
+	UiEventBus.connect("EndTurnPressed", _on_end_turn_pressed)
+
+	BattleEventBus.connect("ActionCanceled", _on_action_canceled)
 	BattleEventBus.connect("EnemyTurnEnd", _on_enemy_turn_end)
-	is_player_turn = true
+
+
 	player_combatant_group.start_turn()
 
 func initialize():
@@ -28,10 +33,19 @@ func _next_combatant_group():
 	var next_group = get_next_combatant_group()
 	next_group.start_turn()
 
+
+func _on_move_pressed():
+	_state_chart.send_event("move_pressed")
+
+func _on_attack_pressed():
+	_state_chart.send_event("attack_pressed")
+
 func _on_end_turn_pressed():
 	_next_combatant_group()
-	_state_chart.send_event("end_player_turn")
+	_state_chart.send_event("end_turn_pressed")
 
+func _on_action_canceled():
+	_state_chart.send_event("action_canceled")
 
 func _on_enemy_turn_end():
 	_next_combatant_group()

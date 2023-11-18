@@ -24,6 +24,9 @@ func paint_AOE_on_map(cells):
 func clear_highlight() -> void:
 	clear_layer(Layers.HIGHLIGHT)
 
+func clear_AOE() -> void:
+	clear_layer(Layers.AOE)
+	
 func _intersect_with_ground(cells: Array[Vector2i]) -> Array[Vector2i]:
 	var out: Array[Vector2i] = []
 	for cell in cells:
@@ -31,11 +34,12 @@ func _intersect_with_ground(cells: Array[Vector2i]) -> Array[Vector2i]:
 			out.append(cell as Vector2i)
 	return out
 
-func clear_AOE() -> void:
-	clear_layer(Layers.AOE)
 
 func get_ground_cells() -> Array[Vector2i]:
 	return get_used_cells(Layers.GROUND)
+
+func get_AOE_cells() -> Array[Vector2i]:
+	return get_used_cells(Layers.AOE)
 
 func get_random_available_cell() -> Vector2i:
 	var cells = get_ground_cells()
