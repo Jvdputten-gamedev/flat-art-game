@@ -29,9 +29,9 @@ func start_turn() -> void:
 func _on_player_turn_state_unhandled_input(event) -> void:
 	# If clicked outside highlight area, cancel action
 	if event.is_action_pressed("LMB"):
-		print("Clicked anywhere canceling action")
 		navigation_service.tilemap.clear_AOE()
-		BattleEventBus.emit_signal("ActionCanceled")
+		BattleEventBus.emit_signal("ActionEnded")
+		print("Back to base")
 
 
 func _on_move_state_unhandled_input(event) -> void:
@@ -39,4 +39,5 @@ func _on_move_state_unhandled_input(event) -> void:
 		# If clicked in hightlighted area, perform action
 		if navigation_service.is_local_mouse_position_in_AOE():
 			print("Moving")
-			BattleEventBus.emit_signal("ActionCanceled")
+			BattleEventBus.emit_signal("ActionEnded")
+

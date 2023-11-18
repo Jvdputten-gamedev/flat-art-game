@@ -164,10 +164,10 @@ script = ExtResource("18_4d232")
 to = NodePath("../Attack")
 event = &"attack_pressed"
 
-[node name="OnActionCanceled" type="Node" parent="Combatants/StateChart/TurnOrders/PlayerTurn"]
+[node name="OnActionEnded" type="Node" parent="Combatants/StateChart/TurnOrders/PlayerTurn"]
 script = ExtResource("18_4d232")
 to = NodePath("../Base")
-event = &"action_canceled"
+event = &"action_ended"
 
 [node name="EnemyTurn" type="Node" parent="Combatants/StateChart/TurnOrders"]
 script = ExtResource("17_kum6d")

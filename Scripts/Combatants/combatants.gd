@@ -10,8 +10,8 @@ func _ready():
 	UiEventBus.connect("MovePressed", _on_move_pressed)
 	UiEventBus.connect("AttackPressed", _on_attack_pressed)
 	UiEventBus.connect("EndTurnPressed", _on_end_turn_pressed)
-
-	BattleEventBus.connect("ActionCanceled", _on_action_canceled)
+	
+	BattleEventBus.connect("ActionEnded", _on_action_ended)
 	BattleEventBus.connect("EnemyTurnEnd", _on_enemy_turn_end)
 
 
@@ -44,8 +44,8 @@ func _on_end_turn_pressed():
 	_next_combatant_group()
 	_state_chart.send_event("end_turn_pressed")
 
-func _on_action_canceled():
-	_state_chart.send_event("action_canceled")
+func _on_action_ended():
+	_state_chart.send_event("action_ended")
 
 func _on_enemy_turn_end():
 	_next_combatant_group()

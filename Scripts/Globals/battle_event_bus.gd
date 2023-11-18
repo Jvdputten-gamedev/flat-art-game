@@ -5,4 +5,4 @@ signal PlayerTurnStart
 signal PlayerTurnEnd
 signal EnemyTurnStart
 signal EnemyTurnEnd
-signal ActionCanceled
+signal ActionEnded
