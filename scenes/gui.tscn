@@ -3,9 +3,10 @@
 [ext_resource type="Theme" uid="uid://dundj1k3w6wi4" path="res://resources/UI/ButtonTheme.tres" id="1_5y3bx"]
 [ext_resource type="Script" path="res://Scripts/UI/ui.gd" id="1_j6ma7"]
 
-[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("turn_label")]
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("turn_label", "buttons_container")]
 script = ExtResource("1_j6ma7")
 turn_label = NodePath("Control/MarginContainer/MarginContainer/TurnLabel")
+buttons_container = NodePath("Control/MarginContainer/Buttons")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -38,29 +39,29 @@ layout_mode = 2
 theme = ExtResource("1_5y3bx")
 text = "Player turn"
 
-[node name="VBoxContainer" type="HBoxContainer" parent="Control/MarginContainer"]
+[node name="Buttons" type="HBoxContainer" parent="Control/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/separation = 50
 alignment = 1
 
-[node name="Move" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+[node name="Move" type="Button" parent="Control/MarginContainer/Buttons"]
 layout_mode = 2
 theme = ExtResource("1_5y3bx")
 theme_override_constants/outline_size = 0
 text = "Move
 "
 
-[node name="Attack" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+[node name="Attack" type="Button" parent="Control/MarginContainer/Buttons"]
 layout_mode = 2
 theme = ExtResource("1_5y3bx")
 text = "Attack
 "
 
-[node name="EndTurn" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+[node name="EndTurn" type="Button" parent="Control/MarginContainer/Buttons"]
 layout_mode = 2
 theme = ExtResource("1_5y3bx")
 text = "End turn"
 
-[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/Move" to="." method="_on_move_pressed"]
-[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/EndTurn" to="." method="_on_end_turn_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/Buttons/Move" to="." method="_on_move_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/Buttons/EndTurn" to="." method="_on_end_turn_pressed"]

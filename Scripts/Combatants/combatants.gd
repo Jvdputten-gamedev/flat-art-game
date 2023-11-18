@@ -7,7 +7,8 @@ var is_player_turn: bool
 
 
 func _ready():
-	UIEventBus.connect("EndTurnPressed", _on_end_turn)
+	UIEventBus.connect("EndTurnPressed", _on_end_turn_pressed)
+	BattleEventBus.connect("EnemyTurnEnd", _on_enemy_turn_end)
 	is_player_turn = true
 	player_combatant_group.start_turn()
 
@@ -23,10 +24,16 @@ func get_next_combatant_group() -> CombatantGroup:
 		is_player_turn = true
 		return player_combatant_group
 
-
-func _on_end_turn():
+func _next_combatant_group():
 	var next_group = get_next_combatant_group()
 	next_group.start_turn()
+
+func _on_end_turn_pressed():
+	_next_combatant_group()
+
+func _on_enemy_turn_end():
+	_next_combatant_group()
+
 
 
 
