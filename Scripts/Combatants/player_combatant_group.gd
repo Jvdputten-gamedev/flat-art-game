@@ -10,6 +10,10 @@ func initialize() -> void:
 	combat_service.player_range = 3
 
 
+func start_turn() -> void:
+	print("Start player turn")
+
+
 func _unhandled_input(event) -> void:
 	if event is InputEventMouseButton:
 		if event.is_action_pressed("LMB"):

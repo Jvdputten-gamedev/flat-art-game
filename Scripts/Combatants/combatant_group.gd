@@ -18,3 +18,7 @@ func _initialize_combatants():
 		num_combatants += 1
 		combatants.append(child as Unit)
 
+
+func start_turn():
+	pass
+

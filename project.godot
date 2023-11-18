@@ -22,7 +22,7 @@ Directions="*res://Scripts/Globals/directions.gd"
 Globals="*res://Scripts/Globals/globals.gd"
 Enums="*res://Scripts/Globals/enums.gd"
 UIEventBus="*res://Scripts/Globals/ui_event_bus.gd"
-GameEventBus="*res://Scripts/Globals/game_event_bus.gd"
+BattleEventBus="*res://Scripts/Globals/battle_event_bus.gd"
 
 [display]
 
