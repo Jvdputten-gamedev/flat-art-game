@@ -23,7 +23,6 @@ Globals="*res://Scripts/Globals/globals.gd"
 Enums="*res://Scripts/Globals/enums.gd"
 UIEventBus="*res://Scripts/Globals/ui_event_bus.gd"
 BattleEventBus="*res://Scripts/Globals/battle_event_bus.gd"
-Panku="*res://addons/panku_console/console.tscn"
 
 [display]
 
@@ -36,7 +35,7 @@ project/assembly_name="Flat Game"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_state_charts/plugin.cfg", "res://addons/panku_console/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot_state_charts/plugin.cfg")
 
 [input]
 
