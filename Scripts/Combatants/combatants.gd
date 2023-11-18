@@ -5,7 +5,6 @@ extends Node2D
 
 var is_player_turn: bool
 
-
 func _ready():
 	UIEventBus.connect("EndTurnPressed", _on_end_turn_pressed)
 	BattleEventBus.connect("EnemyTurnEnd", _on_enemy_turn_end)

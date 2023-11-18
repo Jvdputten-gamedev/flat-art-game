@@ -14,9 +14,10 @@ func initialize():
 
 
 func _initialize_combatants():
-	for child in get_children():
+	for unit in get_children():
 		num_combatants += 1
-		combatants.append(child as Unit)
+		unit.position = navigation_service.get_random_available_position()
+		combatants.append(unit as Unit)
 
 
 func start_turn():

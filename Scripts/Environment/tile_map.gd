@@ -11,7 +11,7 @@ func _ready():
 
 func initialize():
 	var navigation_service = ServiceLocator.get_navigation_service()
-	navigation_service._tilemap = self
+	navigation_service.tilemap = self
 
 func paint_highlight_on_map(cells: Array[Vector2i]):
 	cells = _intersect_with_ground(cells)
@@ -36,6 +36,10 @@ func clear_AOE() -> void:
 
 func get_ground_cells() -> Array[Vector2i]:
 	return get_used_cells(Layers.GROUND)
+
+func get_random_available_cell() -> Vector2i:
+	var cells = get_ground_cells()
+	return cells.pick_random()
 
 func get_ground_data(cell_coord: Vector2i) -> TileData:
 	return get_cell_tile_data(Layers.GROUND, cell_coord)
