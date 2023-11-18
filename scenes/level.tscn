@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://cnlyfljmb4dbr"]
+[gd_scene load_steps=25 format=3 uid="uid://cnlyfljmb4dbr"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_2sjcx"]
 [ext_resource type="Script" path="res://Scripts/Services/services.gd" id="2_3yklw"]
 [ext_resource type="TileSet" uid="uid://cloviblshkwle" path="res://resources/tiles/tile_set.tres" id="2_h4a5d"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="2_r5u8r"]
 [ext_resource type="Script" path="res://Scripts/Environment/tile_map.gd" id="3_a6q2n"]
 [ext_resource type="Script" path="res://Scripts/Services/navigation_service.gd" id="3_tf8g4"]
 [ext_resource type="Script" path="res://Scripts/Services/combat_service.gd" id="4_q3s4i"]
@@ -16,6 +17,10 @@
 [ext_resource type="PackedScene" uid="uid://cnvtjbehch6co" path="res://scenes/gui.tscn" id="12_paf35"]
 [ext_resource type="Script" path="res://Scripts/camera_controller.gd" id="13_be142"]
 [ext_resource type="Script" path="res://Scripts/Combatants/units/goober.gd" id="14_7gae0"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="15_iqmln"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="16_dwp1c"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="17_kum6d"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="18_4d232"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wofjk"]
 frequency = 0.018
@@ -38,6 +43,12 @@ script = ExtResource("1_2sjcx")
 services = NodePath("Services")
 environment = NodePath("Environment")
 combatants = NodePath("Combatants")
+
+[node name="StateChartDebugger" parent="." instance=ExtResource("2_r5u8r")]
+offset_left = -9.0
+offset_top = -25.0
+offset_right = 9.0
+offset_bottom = 25.0
 
 [node name="Services" type="Node" parent="." node_paths=PackedStringArray("navigation_service", "combat_service")]
 script = ExtResource("2_3yklw")
@@ -117,11 +128,12 @@ layer_3/z_index = 0
 layer_3/tile_data = PackedInt32Array()
 script = ExtResource("3_a6q2n")
 
-[node name="Combatants" type="Node2D" parent="." node_paths=PackedStringArray("player_combatant_group", "enemy_combatant_group")]
+[node name="Combatants" type="Node2D" parent="." node_paths=PackedStringArray("player_combatant_group", "enemy_combatant_group", "_state_chart")]
 y_sort_enabled = true
 script = ExtResource("7_xh1as")
 player_combatant_group = NodePath("PlayerCombatantGroup")
 enemy_combatant_group = NodePath("EnemyCombatantGroup")
+_state_chart = NodePath("StateChart")
 
 [node name="PlayerCombatantGroup" type="Node2D" parent="Combatants" node_paths=PackedStringArray("player")]
 y_sort_enabled = true
@@ -139,6 +151,29 @@ script = ExtResource("12_6ldg5")
 position = Vector2(1091, 266)
 script = ExtResource("14_7gae0")
 
+[node name="StateChart" type="Node" parent="Combatants"]
+script = ExtResource("15_iqmln")
+
+[node name="Root" type="Node" parent="Combatants/StateChart"]
+script = ExtResource("16_dwp1c")
+initial_state = NodePath("PlayerTurn")
+
+[node name="PlayerTurn" type="Node" parent="Combatants/StateChart/Root"]
+script = ExtResource("17_kum6d")
+
+[node name="OnPlayerTurnEnd" type="Node" parent="Combatants/StateChart/Root/PlayerTurn"]
+script = ExtResource("18_4d232")
+to = NodePath("../../EnemyTurn")
+event = &"end_player_turn"
+
+[node name="EnemyTurn" type="Node" parent="Combatants/StateChart/Root"]
+script = ExtResource("17_kum6d")
+
+[node name="OnEnemyTurnEnd" type="Node" parent="Combatants/StateChart/Root/EnemyTurn"]
+script = ExtResource("18_4d232")
+to = NodePath("../../PlayerTurn")
+event = &"end_enemy_turn"
+
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("current_player")]
 position = Vector2(743, 439)
 zoom = Vector2(0.5, 0.5)
@@ -146,3 +181,6 @@ script = ExtResource("13_be142")
 current_player = NodePath("../Combatants/PlayerCombatantGroup/CharacterViewport")
 
 [node name="UI" parent="." instance=ExtResource("12_paf35")]
+
+[connection signal="state_stepped" from="Combatants/StateChart/Root/PlayerTurn" to="Combatants" method="_on_player_turn_state_stepped"]
+[connection signal="state_stepped" from="Combatants/StateChart/Root/EnemyTurn" to="Combatants" method="_on_enemy_turn_state_stepped"]
