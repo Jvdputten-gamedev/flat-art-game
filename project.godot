@@ -23,7 +23,6 @@ Globals="*res://Scripts/Globals/globals.gd"
 Enums="*res://Scripts/Globals/enums.gd"
 UiEventBus="*res://Scripts/Globals/ui_event_bus.gd"
 BattleEventBus="*res://Scripts/Globals/battle_event_bus.gd"
-Panku="*res://addons/panku_console/console.tscn"
 
 [display]
 
