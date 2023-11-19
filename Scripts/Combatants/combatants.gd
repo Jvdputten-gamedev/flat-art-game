@@ -13,6 +13,7 @@ func _ready():
 	
 	BattleEventBus.connect("ActionEnded", _on_action_ended)
 	BattleEventBus.connect("EnemyTurnEnd", _on_enemy_turn_end)
+	
 
 
 	player_combatant_group.start_turn()

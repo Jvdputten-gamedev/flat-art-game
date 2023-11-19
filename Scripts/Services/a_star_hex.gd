@@ -45,6 +45,7 @@ func _update_neighbor_connections(cell_coord: Vector2i) -> void:
 func get_local_point_path(from_pos: Vector2, to_pos: Vector2) -> PackedVector2Array:
 	var from_cell = _tilemap.local_to_map(from_pos)
 	var to_cell = _tilemap.local_to_map(to_pos)
+	
 	var from_id = _get_astar_cell_id(from_cell)
 	var to_id = _get_astar_cell_id(to_cell)
 	if self.has_point(from_id) and self.has_point(to_id):

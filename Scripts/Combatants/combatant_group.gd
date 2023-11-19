@@ -15,12 +15,13 @@ func initialize():
 
 func _initialize_combatants():
 	print("    Add nodes to combatant list")
-	for unit in get_children():
+	for combatant in get_children():
 		num_combatants += 1
-		unit.position = navigation_service.get_random_available_position()
-		combatants.append(unit as Combatant)
+		var cell = navigation_service.tilemap.get_random_available_cell()
+		combatant.position = navigation_service.map_to_local(cell)
+		combatant.cell_coord = cell
+		combatants.append(combatant as Combatant)
 
-	print("    Update cell dictionary")
 
 
 func start_turn():

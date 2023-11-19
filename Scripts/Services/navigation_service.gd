@@ -5,6 +5,7 @@ var _astar: AStar2DHex
 
 func _ready() -> void:
 	UiEventBus.connect("MovePressed", _on_move_pressed)
+
 	
 func initialize() -> void:
 	print("  3.1 Initialize navigation service, setup pathfinding")
@@ -33,8 +34,15 @@ func get_random_available_position():
 func map_to_local(coord: Vector2i) -> Vector2:
 	return tilemap.map_to_local(coord)
 
+func local_to_map(_position: Vector2) -> Vector2i:
+	return tilemap.local_to_map(_position)
+
 func get_local_point_path(from_position: Vector2i, to_position: Vector2i) -> Array:
 	return _astar.get_local_point_path(from_position, to_position)
+
+
+### Signal responses ###
+### ---------------- ###
 
 func _on_move_pressed():
 	# Get the cell coordinate of the player
@@ -43,6 +51,9 @@ func _on_move_pressed():
 	var hexcell = HexCell.new(player_hex)
 	var cells_in_range = hexcell.get_all_within(combat_service.player_range)
 	tilemap.paint_AOE_on_map(cells_in_range)
+
+
+
 
 	
 	

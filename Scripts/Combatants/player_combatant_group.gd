@@ -1,6 +1,6 @@
 extends CombatantGroup
 
-@export var player: Node2D
+@export var player: Combatant
 
 func initialize() -> void:
 	print("  4.1 Initializing player combatant group")
@@ -10,17 +10,18 @@ func initialize() -> void:
 
 func start_turn() -> void:
 	pass
-# func _unhandled_input(event) -> void:
-# 	if event is InputEventMouseButton:
-# 		if event.is_action_pressed("LMB"):
-# 			if player.is_moving():
-# 				return
+func _unhandled_input(event) -> void:
+	if event is InputEventMouseButton:
+		if event.is_action_pressed("LMB"):
+			if player.is_moving():
+				return
 
-# 			var to_position = get_local_mouse_position()
-# 			var from_position = player.position
+			var to_cell = navigation_service.get_cell_at_local_mouse_position()
+			if to_cell in navigation_service.tilemap.get_ground_cells():
+				player.cell_coord = to_cell
 
-# 			var path = navigation_service.get_local_point_path(from_position, to_position)
-# 			player.move_along_path(path)
+			var path = navigation_service.get_local_point_path(player.position, get_local_mouse_position())
+			player.move_along_path(path)
 
 
 func _on_player_turn_state_unhandled_input(event) -> void:
