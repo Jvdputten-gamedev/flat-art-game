@@ -8,4 +8,6 @@ func register():
 	ServiceLocator.register_combat_service(combat_service as Service)
 
 func initialize() -> void:
-	navigation_service.initialize_astar()
+	print("3. Initializing services")
+	navigation_service.initialize()
+	combat_service.initialize()

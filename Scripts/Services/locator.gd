@@ -5,7 +5,7 @@ var services = {}
 enum Services {NAVIGATION_SERVICE = 0, COMBAT_SERVICE = 1}
 
 func _ready():
-	print("Service locator ready")
+	print("1. Service locator ready")
 
 
 func _register_service(service_id: Services, service: Service) -> void:
@@ -19,9 +19,11 @@ func _get_service(service_id: Services) -> Service:
 		return null
 
 func register_navigation_service(service: Service) -> void:
+	print("  1.1 Register navigation service")
 	_register_service(Services.NAVIGATION_SERVICE, service)
 
 func register_combat_service(service: Service) -> void:
+	print("  1.2 Register combat service")
 	_register_service(Services.COMBAT_SERVICE, service)
 
 func get_navigation_service() -> Service:

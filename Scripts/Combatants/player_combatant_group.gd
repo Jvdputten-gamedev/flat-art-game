@@ -3,16 +3,13 @@ extends CombatantGroup
 @export var player: Node2D
 
 func initialize() -> void:
+	print("  4.1 Initializing player combatant group")
 	super.initialize()
 
-	combat_service.player_position = player.position
-	combat_service.player_range = 3
 
 
 func start_turn() -> void:
-	print("Start player turn")
-
-
+	pass
 # func _unhandled_input(event) -> void:
 # 	if event is InputEventMouseButton:
 # 		if event.is_action_pressed("LMB"):

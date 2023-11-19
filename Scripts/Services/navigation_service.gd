@@ -4,10 +4,10 @@ var tilemap: HexTileMap
 var _astar: AStar2DHex
 
 func _ready() -> void:
-	print("Navigation service ready")
 	UiEventBus.connect("MovePressed", _on_move_pressed)
 	
-func initialize_astar() -> void:
+func initialize() -> void:
+	print("  3.1 Initialize navigation service, setup pathfinding")
 	_astar = AStar2DHex.new(tilemap)
 
 func set_tilemap(map: TileMap) -> void:

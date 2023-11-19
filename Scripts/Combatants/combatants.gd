@@ -18,6 +18,7 @@ func _ready():
 	player_combatant_group.start_turn()
 
 func initialize():
+	print("4. Initialize combatants")
 	player_combatant_group.initialize()
 	enemy_combatant_group.initialize()
 

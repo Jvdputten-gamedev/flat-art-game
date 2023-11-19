@@ -1,7 +1,5 @@
 extends Service
 
 
-var player_position: Vector2
-var player_range: int
-
-
+func initialize():
+    print("  3.2 Initialize combat service")

@@ -14,10 +14,13 @@ func initialize():
 
 
 func _initialize_combatants():
+	print("    Add nodes to combatant list")
 	for unit in get_children():
 		num_combatants += 1
 		unit.position = navigation_service.get_random_available_position()
 		combatants.append(unit as Unit)
+
+	print("    Update cell dictionary")
 
 
 func start_turn():

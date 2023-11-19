@@ -2,6 +2,7 @@ extends CombatantGroup
 
 
 func initialize() -> void:
+	print("  4.2 Initializing enemy combatant group")
 	super.initialize()
 
 func start_turn() -> void:

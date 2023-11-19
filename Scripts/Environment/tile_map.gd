@@ -12,17 +12,19 @@ var _cell_data: Dictionary
 
 
 func initialize():
-	print(" Initialize tile map")
+	print("  2.1 Add tilemap to navigation service")
 	var navigation_service = ServiceLocator.get_navigation_service()
 	navigation_service.tilemap = self
 	initialize_cell_data()
 	set_cell_data(Vector2i(0,0), player)
 
 func initialize_cell_data():
+	print("  2.2 Initialize cell data dictionary")
 	_cell_data = {}
 	var cells = get_ground_cells()
 	for cell_coord in cells:
 		_cell_data[cell_coord] = null
+	
 
 func get_cell_data(cell_coord: Vector2i):
 	return _cell_data[cell_coord]
