@@ -92,9 +92,12 @@ func get_all_adjacent():
 		cells.append(get_adjacent(dir.cube_coords).oddq_coords)
 	return cells
 
-func get_all_within(distance: int):
+func get_all_within(distance: int, remove_origin = true):
 	var cells: Array[Vector2i] = []
 	for dx in range(-distance, distance + 1):
 		for dy in range(max(-distance, -distance - dx), min(distance, distance - dx) + 1):
 			cells.append(HexCell.new(self.cube_coords + axial_to_cube_coords(Vector2i(dx, dy))).oddq_coords)
+
+	if remove_origin:
+		cells.erase(self.oddq_coords)
 	return cells

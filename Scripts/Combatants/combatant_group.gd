@@ -7,6 +7,7 @@ var navigation_service: Node
 var combat_service: Node
 
 
+
 func initialize():
 	navigation_service = ServiceLocator.get_navigation_service()
 	combat_service = ServiceLocator.get_combat_service()
@@ -21,7 +22,6 @@ func _initialize_combatants():
 		combatant.position = navigation_service.map_to_local(cell)
 		combatant.cell_coord = cell
 		combatants.append(combatant as Combatant)
-
 
 
 func start_turn():

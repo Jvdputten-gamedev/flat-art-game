@@ -11,6 +11,7 @@ func _ready() -> void:
 	animation_player = character.get_animation_player()
 	allegiance = Allegiance.FRIENDLY
 	unit_name = "Dwarf"
+	movement_range = 3
 
 func is_moving() -> bool:
 	return _moving

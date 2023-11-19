@@ -6,36 +6,11 @@ const HIGHLIGHT_TERRAIN = 0
 
 enum Layers {WATER = 0, GROUND = 1, AOE = 2, HIGHLIGHT = 3}
 
-@export var player: Node2D
-
-var _cell_occupant: Dictionary
-
-func _ready():
-	BattleEventBus.connect("CombatantMoved",_on_combatant_moved)
 
 func initialize():
 	print("  2.1 Add tilemap to navigation service")
 	var navigation_service = ServiceLocator.get_navigation_service()
 	navigation_service.tilemap = self
-	initialize_cell_data()
-
-
-func initialize_cell_data():
-	print("  2.2 Initialize cell data dictionary")
-	_cell_occupant = {}
-	var cells = get_ground_cells()
-	for cell_coord in cells:
-		_cell_occupant[cell_coord] = null
-	
-
-func get_cell_occupant(cell_coord: Vector2i):
-	if cell_coord in _cell_occupant.keys():
-		return _cell_occupant[cell_coord]
-	return null
-
-func set_cell_occupant(cell_coord: Vector2i, value: Object):
-	_cell_occupant[cell_coord] = value
-
 
 func paint_highlight_on_map(cells: Array[Vector2i]):
 	cells = _intersect_with_ground(cells)
@@ -94,20 +69,7 @@ func _input(event) -> void:
 		if cell_has_ground(cell_coord):
 			paint_highlight_on_map([cell_coord])
 
-	if event.is_action_pressed("LMB"):
-		var cell_coord = local_to_map(get_local_mouse_position())
-		print("cell occupant ", get_cell_occupant(cell_coord))
 
-
-### Signal response ###
-
-func _on_combatant_moved(combatant, from_cell, to_cell):
-	#assert(combatant == _cell_occupant[from_cell], "Something went wrong, signaled combatant was not at the initial from_cell")
-
-	_cell_occupant[from_cell] = null
-	_cell_occupant[to_cell] = combatant
-
-	print(combatant.to_string() + "Moved from " + str(from_cell) + " to " + str(to_cell))
 		
 
 

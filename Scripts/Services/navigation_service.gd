@@ -5,7 +5,6 @@ var _astar: AStar2DHex
 
 func _ready() -> void:
 	UiEventBus.connect("MovePressed", _on_move_pressed)
-
 	
 func initialize() -> void:
 	print("  3.1 Initialize navigation service, setup pathfinding")

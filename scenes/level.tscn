@@ -95,7 +95,7 @@ offset_right = -321.0
 offset_bottom = -24.9999
 scale = Vector2(3.25274, 3.08047)
 
-[node name="TileMap" type="TileMap" parent="Environment" node_paths=PackedStringArray("player")]
+[node name="TileMap" type="TileMap" parent="Environment"]
 tile_set = ExtResource("2_h4a5d")
 format = 2
 layer_0/name = "Water"
@@ -121,7 +121,6 @@ layer_3/y_sort_origin = 0
 layer_3/z_index = 0
 layer_3/tile_data = PackedInt32Array()
 script = ExtResource("3_a6q2n")
-player = NodePath("../../Combatants/PlayerCombatantGroup/CharacterViewport")
 
 [node name="Combatants" type="Node2D" parent="." node_paths=PackedStringArray("player_combatant_group", "enemy_combatant_group", "_state_chart")]
 y_sort_enabled = true
