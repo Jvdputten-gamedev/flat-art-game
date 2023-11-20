@@ -71,7 +71,7 @@ initial_state = NodePath("Base")
 [node name="Base" type="Node" parent="Managers/GameStateManager/StateChart/TurnOrders/PlayerTurn"]
 script = ExtResource("17_kum6d")
 
-[node name="CombatantInfo" type="Node" parent="Managers/GameStateManager/StateChart/TurnOrders/PlayerTurn"]
+[node name="CombatantClicked" type="Node" parent="Managers/GameStateManager/StateChart/TurnOrders/PlayerTurn"]
 script = ExtResource("17_kum6d")
 
 [node name="Attack" type="Node" parent="Managers/GameStateManager/StateChart/TurnOrders/PlayerTurn"]
@@ -79,7 +79,7 @@ script = ExtResource("17_kum6d")
 
 [node name="OnCombatantClicked" type="Node" parent="Managers/GameStateManager/StateChart/TurnOrders/PlayerTurn"]
 script = ExtResource("18_4d232")
-to = NodePath("../CombatantInfo")
+to = NodePath("../CombatantClicked")
 event = &"combatant_clicked"
 
 [node name="OnActionCanceled" type="Node" parent="Managers/GameStateManager/StateChart/TurnOrders/PlayerTurn"]
@@ -217,5 +217,5 @@ scale = Vector2(0.549295, 0.611425)
 size_flags_horizontal = 8
 initial_node_to_watch = NodePath("../../Managers/GameStateManager/StateChart")
 
-[connection signal="state_unhandled_input" from="Managers/GameStateManager/StateChart/TurnOrders/PlayerTurn/Base" to="Combatants/PlayerCombatantGroup" method="_on_base_state_unhandled_input"]
-[connection signal="state_unhandled_input" from="Managers/GameStateManager/StateChart/TurnOrders/PlayerTurn/CombatantInfo" to="Combatants/PlayerCombatantGroup" method="_on_move_state_unhandled_input"]
+[connection signal="state_unhandled_input" from="Managers/GameStateManager/StateChart/TurnOrders/PlayerTurn/Base" to="Combatants" method="_on_base_state_unhandled_input"]
+[connection signal="state_unhandled_input" from="Managers/GameStateManager/StateChart/TurnOrders/PlayerTurn/CombatantClicked" to="Combatants" method="_on_combatant_clicked_state_unhandled_input"]

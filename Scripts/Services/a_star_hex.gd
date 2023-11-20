@@ -3,9 +3,14 @@ class_name AStar2DHex
 
 var _tilemap: TileMap
 
+func _ready():
+	pass
+
 func _init(tilemap: TileMap) -> void:
 	self._tilemap = tilemap
 	_initialize_astar_grid()
+	BattleEventBus.connect("CombatantMoved", _on_combatant_moved)
+	print("connect to combatantmoved")
 
 	
 func _initialize_astar_grid() -> void:
@@ -42,6 +47,14 @@ func _update_neighbor_connections(cell_coord: Vector2i) -> void:
 		var to_id = _get_astar_cell_id(neighbor)
 		self.connect_points(id, to_id, false)
 
+func _occupy_cell(cell: Vector2i):
+	var cell_id = _get_astar_cell_id(cell)
+	set_point_disabled(cell_id, true)
+
+func _free_cell(cell: Vector2i):
+	var cell_id = _get_astar_cell_id(cell)
+	set_point_disabled(cell_id, false)
+
 func get_local_point_path(from_pos: Vector2, to_pos: Vector2) -> PackedVector2Array:
 	var from_cell = _tilemap.local_to_map(from_pos)
 	var to_cell = _tilemap.local_to_map(to_pos)
@@ -51,3 +64,9 @@ func get_local_point_path(from_pos: Vector2, to_pos: Vector2) -> PackedVector2Ar
 	if self.has_point(from_id) and self.has_point(to_id):
 		return Array(self.get_point_path(from_id, to_id))
 	return [] 
+
+
+### Signal responses ###
+func _on_combatant_moved(_combatant, from_cell, to_cell):
+	_free_cell(from_cell)
+	_occupy_cell(to_cell)

@@ -24,6 +24,13 @@ func get_cell_occupant(cell_coord: Vector2i):
 		return _cell_occupant[cell_coord]
 	return null
 
+func cell_has_occupant(cell_coord: Vector2i):
+	var occupant = get_cell_occupant(cell_coord)
+	if occupant:
+		return true
+	else:
+		return false
+
 func get_combatant_on_current_mouse_position():
 	return get_cell_occupant(navigation_service.get_cell_at_local_mouse_position())
 	

@@ -5,31 +5,55 @@ extends Node2D
 
 var is_player_turn: bool
 
+var navigation_service: Node
+var combat_service: Node
+
+var selected_combatant: Combatant
+
 
 func _ready():
-
-
-	player_combatant_group.start_turn()
+	pass
 
 func initialize():
+	navigation_service = ServiceLocator.get_navigation_service()
+	combat_service = ServiceLocator.get_combat_service()
+
 	print("4. Initialize combatants")
 	player_combatant_group.initialize()
 	enemy_combatant_group.initialize()
 	
 
 
-func get_next_combatant_group() -> CombatantGroup:
-	if is_player_turn:
-		is_player_turn = false
-		return enemy_combatant_group
-	else:
-		is_player_turn = true
-		return player_combatant_group
+func _on_base_state_unhandled_input(event):
 
+	if event.is_action_pressed("LMB"):
+		var combatant = combat_service.get_combatant_on_current_mouse_position()
+		if combatant:
+			selected_combatant = combatant
+			combat_service.show_combatant_movement_range(combatant)
+			BattleEventBus.emit_signal("CombatantClicked")
+		else:
+			selected_combatant = null
+			
+		
 
-func _next_combatant_group():
-	var next_group = get_next_combatant_group()
-	next_group.start_turn()
+func _on_combatant_clicked_state_unhandled_input(event):
+	if event.is_action_pressed("LMB"):
+
+		if selected_combatant not in player_combatant_group.combatants:
+			BattleEventBus.emit_signal("ActionCanceled")
+			return
+
+		# If clicked in hightlighted area, perform action
+		if navigation_service.is_local_mouse_position_in_AOE():
+			if selected_combatant.is_moving():
+				return
+			
+			var path = navigation_service.get_local_point_path(selected_combatant.position, get_local_mouse_position())
+			selected_combatant.move_along_path(path)
+			selected_combatant.cell_coord  = navigation_service.get_cell_at_local_mouse_position()
+
+		BattleEventBus.emit_signal("ActionCanceled")
 
 
 
