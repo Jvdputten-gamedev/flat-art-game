@@ -81,6 +81,7 @@ func compute_move_cost(from_cell: Vector2i, to_cell: Vector2i) -> int:
 func _on_combatant_moved(_combatant, from_cell, to_cell):
 	var from_id = _get_astar_cell_id(from_cell)
 	var to_id = _get_astar_cell_id(to_cell)
+	print("Movement cost: ", self.get_point_path(from_id, to_id).size() - 1)
 
 	_free_cell(from_cell)
 	_occupy_cell(to_cell)

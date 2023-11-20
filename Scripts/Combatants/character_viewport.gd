@@ -42,3 +42,7 @@ func _on_hex_move_finished():
 		_moving = false
 		animation_player.play("Idle")
 
+func attack_pattern():
+	var cells = HexCell.new(cell_coord).get_all_adjacent()
+	return cells
+

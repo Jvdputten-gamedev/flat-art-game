@@ -86,10 +86,10 @@ func get_adjacent(dir):
 	var cell = HexCell.new(self.cube_coords + dir)
 	return cell
 
-func get_all_adjacent():
+func get_all_adjacent() -> Array[Vector2i]:
 	var cells: Array[Vector2i] = []
 	for dir in Directions.DIRECTIONS:
-		cells.append(get_adjacent(dir.cube_coords).oddq_coords)
+		cells.append(get_adjacent(dir.cube_coords).oddq_coords as Vector2i)
 	return cells
 
 func get_all_within(distance: int, remove_origin = true):

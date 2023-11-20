@@ -9,4 +9,5 @@ signal EnemyTurnEnd
 
 signal ActionCanceled
 signal CombatantMoved(combatant: Combatant, from_cell: Vector2i, to_cell: Vector2i)
-signal CombatantClicked()
+signal CombatantClicked
+signal PlayerCombatantClicked

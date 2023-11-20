@@ -5,6 +5,7 @@ const TERRAIN_SET = 0
 const HIGHLIGHT_TERRAIN = 0
 
 enum Layers {WATER = 0, GROUND = 1, AOE = 2, HIGHLIGHT = 3}
+enum AoeColors {GREEN, BLUE, RED}
 
 var navigation_service
 var combat_service
@@ -22,7 +23,9 @@ func paint_highlight_on_map(cells: Array[Vector2i]):
 	cells = _intersect_with_available(cells)
 	set_cells_terrain_connect(Layers.HIGHLIGHT, cells, TERRAIN_SET, HIGHLIGHT_TERRAIN)
 
-func paint_AOE_on_map(cells):	
+func paint_AOE_on_map(cells, color=Color.LIME_GREEN):	
+	clear_AOE()
+	set_layer_modulate(Layers.AOE, color)
 	set_cells_terrain_connect(Layers.AOE, cells, TERRAIN_SET, HIGHLIGHT_TERRAIN)
 
 func clear_highlight() -> void:

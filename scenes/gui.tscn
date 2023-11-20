@@ -56,4 +56,5 @@ layout_mode = 2
 theme = ExtResource("1_5y3bx")
 text = "End turn"
 
+[connection signal="pressed" from="Control/MarginContainer/Buttons/Attack" to="." method="_on_attack_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/Buttons/EndTurn" to="." method="_on_end_turn_pressed"]

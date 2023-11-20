@@ -12,7 +12,7 @@ var selected_combatant: Combatant
 
 
 func _ready():
-	pass
+	UiEventBus.connect("AttackButtonPressed", _on_attack_button_pressed)
 
 func initialize():
 	navigation_service = ServiceLocator.get_navigation_service()
@@ -32,6 +32,8 @@ func _on_base_state_unhandled_input(event):
 			selected_combatant = combatant
 			navigation_service.show_combatant_movement_range(combatant)
 			BattleEventBus.emit_signal("CombatantClicked")
+			if combatant in player_combatant_group.combatants:
+				BattleEventBus.emit_signal("PlayerCombatantClicked")
 		else:
 			selected_combatant = null
 			
@@ -54,6 +56,14 @@ func _on_combatant_clicked_state_unhandled_input(event):
 			selected_combatant.cell_coord  = navigation_service.get_cell_at_local_mouse_position()
 
 		BattleEventBus.emit_signal("ActionCanceled")
+
+
+### Signal responses ###
+func _on_attack_button_pressed():
+	var attack_pattern = selected_combatant.attack_pattern()
+	combat_service.highlight_attack_pattern(attack_pattern)
+
+	print('Attack pressed from combatants')
 
 
 
