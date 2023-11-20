@@ -14,8 +14,12 @@ func set_tilemap(map: TileMap) -> void:
 func update_astar() -> void: 
 	_astar.update()
 
-func get_cell_at_local_mouse_position() -> Vector2i:
-	return tilemap.local_to_map(get_local_mouse_position())
+func get_cell_at_local_mouse_position():
+	var cell = tilemap.local_to_map(get_local_mouse_position())
+	if tilemap.cell_has_ground(cell):
+		return cell
+	else:
+		return null
 
 func is_local_mouse_position_in_AOE() -> bool:
 	var mouse_cell = get_cell_at_local_mouse_position()
@@ -27,7 +31,6 @@ func is_local_mouse_position_in_AOE() -> bool:
 func get_random_available_position():
 	return map_to_local(tilemap.get_random_available_cell())
 
-
 func map_to_local(coord: Vector2i) -> Vector2:
 	return tilemap.map_to_local(coord)
 
@@ -37,6 +40,16 @@ func local_to_map(_position: Vector2) -> Vector2i:
 func get_local_point_path(from_position: Vector2i, to_position: Vector2i) -> Array:
 	return _astar.get_local_point_path(from_position, to_position)
 
+func show_combatant_movement_range(combatant: Combatant):
+	var hexcell = HexCell.new(combatant.cell_coord)
+	var cells = hexcell.get_all_within(combatant.movement_range)
+	cells = tilemap._intersect_with_ground(cells)
+	cells = tilemap._intersect_with_available(cells)
+	
+	for cell in cells:
+		print(_astar.compute_move_cost(combatant.cell_coord, cell))
+
+	tilemap.paint_AOE_on_map(cells)
 
 
 

@@ -65,6 +65,10 @@ func get_local_point_path(from_pos: Vector2, to_pos: Vector2) -> PackedVector2Ar
 		return Array(self.get_point_path(from_id, to_id))
 	return [] 
 
+func compute_move_cost(from_cell: Vector2i, to_cell: Vector2i) -> float:
+	var from_id = _get_astar_cell_id(from_cell)
+	var to_id = _get_astar_cell_id(to_cell)
+	return _compute_cost(from_id, to_id)
 
 ### Signal responses ###
 func _on_combatant_moved(_combatant, from_cell, to_cell):

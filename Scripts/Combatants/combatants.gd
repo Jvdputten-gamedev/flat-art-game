@@ -30,7 +30,7 @@ func _on_base_state_unhandled_input(event):
 		var combatant = combat_service.get_combatant_on_current_mouse_position()
 		if combatant:
 			selected_combatant = combatant
-			combat_service.show_combatant_movement_range(combatant)
+			navigation_service.show_combatant_movement_range(combatant)
 			BattleEventBus.emit_signal("CombatantClicked")
 		else:
 			selected_combatant = null

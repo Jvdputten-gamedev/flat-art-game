@@ -3,7 +3,6 @@ class_name HexTileMap
 
 const TERRAIN_SET = 0
 const HIGHLIGHT_TERRAIN = 0
-const INVALID_CELL = Vector2i(-100,-100)
 
 enum Layers {WATER = 0, GROUND = 1, AOE = 2, HIGHLIGHT = 3}
 
@@ -23,8 +22,7 @@ func paint_highlight_on_map(cells: Array[Vector2i]):
 	cells = _intersect_with_available(cells)
 	set_cells_terrain_connect(Layers.HIGHLIGHT, cells, TERRAIN_SET, HIGHLIGHT_TERRAIN)
 
-func paint_AOE_on_map(cells):
-	cells = _intersect_with_available(cells)	
+func paint_AOE_on_map(cells):	
 	set_cells_terrain_connect(Layers.AOE, cells, TERRAIN_SET, HIGHLIGHT_TERRAIN)
 
 func clear_highlight() -> void:
@@ -34,9 +32,15 @@ func clear_AOE() -> void:
 	clear_layer(Layers.AOE)
 	
 func _intersect_with_available(cells: Array[Vector2i]) -> Array[Vector2i]:
+	return _filter_cells(cells, cell_is_available)
+
+func _intersect_with_ground(cells: Array[Vector2i]) -> Array[Vector2i]:
+	return _filter_cells(cells, cell_has_ground)
+
+func _filter_cells(cells: Array[Vector2i], filter: Callable) -> Array[Vector2i]:
 	var out: Array[Vector2i] = []
 	for cell in cells:
-		if cell_is_available(cell):
+		if filter.call(cell):
 			out.append(cell as Vector2i)
 	return out
 
@@ -52,7 +56,7 @@ func get_random_available_cell() -> Vector2i:
 	for cell in cells:
 		if cell_is_available(cell):
 			return cell
-	return INVALID_CELL
+	return Globals.INVALID_CELL
 
 func get_ground_data(cell_coord: Vector2i) -> TileData:
 	return get_cell_tile_data(Layers.GROUND, cell_coord)
@@ -65,7 +69,7 @@ func cell_has_ground(cell_coord: Vector2i) -> bool:
 		return false
 
 func cell_is_available(cell_coord: Vector2i) -> bool:
-	if combat_service.cell_has_occupant(cell_coord) or !cell_has_ground(cell_coord):
+	if combat_service.cell_has_occupant(cell_coord):
 		return false
 	else:
 		return true

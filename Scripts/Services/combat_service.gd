@@ -22,7 +22,8 @@ func initialize_cell_data():
 func get_cell_occupant(cell_coord: Vector2i):
 	if cell_coord in _cell_occupant.keys():
 		return _cell_occupant[cell_coord]
-	return null
+	else:
+		return null
 
 func cell_has_occupant(cell_coord: Vector2i):
 	var occupant = get_cell_occupant(cell_coord)
@@ -39,10 +40,6 @@ func set_cell_occupant(cell_coord: Vector2i, value: Object):
 	_cell_occupant[cell_coord] = value
 
 
-func show_combatant_movement_range(combatant: Combatant):
-	var hexcell = HexCell.new(combatant.cell_coord)
-	var movement_range_cells = hexcell.get_all_within(combatant.movement_range)
-	navigation_service.tilemap.paint_AOE_on_map(movement_range_cells)
 
 
 ### Signal responses ###
