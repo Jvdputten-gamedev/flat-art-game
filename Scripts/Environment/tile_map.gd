@@ -75,11 +75,8 @@ func cell_is_available(cell_coord: Vector2i) -> bool:
 		return true
 
 func get_surrounding_ground_cells(cell_coord: Vector2i) -> Array[Vector2i]:
-	var out: Array[Vector2i] = []
 	var neighbors = get_surrounding_cells(cell_coord)
-	for neighbor in neighbors:
-		if cell_has_ground(neighbor):
-			out.append(neighbor as Vector2i)
+	var out = _intersect_with_ground(neighbors)
 	return out
 
 

@@ -18,6 +18,12 @@ func _initialize_astar_grid() -> void:
 	self.reserve_space(grid_size.x * grid_size.y)
 	update()
 
+func _compute_cost(from_id: int, to_id: int):
+	# connected points are always adjacent, the cost is always 1
+	# The actual cost is defined in the add_point function
+	return 1
+
+
 func _get_astar_cell_id(cell: Vector2i) -> int:
 	var id = abs(hash(str(cell.x) + str(cell.y)))
 	return id
@@ -65,12 +71,16 @@ func get_local_point_path(from_pos: Vector2, to_pos: Vector2) -> PackedVector2Ar
 		return Array(self.get_point_path(from_id, to_id))
 	return [] 
 
-func compute_move_cost(from_cell: Vector2i, to_cell: Vector2i) -> float:
+func compute_move_cost(from_cell: Vector2i, to_cell: Vector2i) -> int:
 	var from_id = _get_astar_cell_id(from_cell)
 	var to_id = _get_astar_cell_id(to_cell)
-	return _compute_cost(from_id, to_id)
+
+	return self.get_point_path(from_id, to_id).size() - 1
 
 ### Signal responses ###
 func _on_combatant_moved(_combatant, from_cell, to_cell):
+	var from_id = _get_astar_cell_id(from_cell)
+	var to_id = _get_astar_cell_id(to_cell)
+
 	_free_cell(from_cell)
 	_occupy_cell(to_cell)

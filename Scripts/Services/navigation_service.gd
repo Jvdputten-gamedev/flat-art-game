@@ -46,10 +46,12 @@ func show_combatant_movement_range(combatant: Combatant):
 	cells = tilemap._intersect_with_ground(cells)
 	cells = tilemap._intersect_with_available(cells)
 	
+	var out: Array[Vector2i] = []
 	for cell in cells:
-		print(_astar.compute_move_cost(combatant.cell_coord, cell))
-
-	tilemap.paint_AOE_on_map(cells)
+		var move_cost = _astar.compute_move_cost(combatant.cell_coord, cell)
+		if move_cost <= combatant.movement_range:
+			out.append(cell as Vector2i)
+	tilemap.paint_AOE_on_map(out)
 
 
 
