@@ -2,15 +2,12 @@ extends Node2D
 
 @export var player_combatant_group: Node2D
 @export var enemy_combatant_group: Node2D
-@export var _state_chart: StateChart
 
 var is_player_turn: bool
 
 
 func _ready():
-	UiEventBus.connect("EndTurnPressed", _on_end_turn_pressed)
-	
-	BattleEventBus.connect("EnemyTurnEnd", _on_enemy_turn_end)
+
 
 	player_combatant_group.start_turn()
 
@@ -36,16 +33,7 @@ func _next_combatant_group():
 
 
 
-### Signal response ###
 
-
-func _on_end_turn_pressed():
-	_next_combatant_group()
-	_state_chart.send_event("end_turn_pressed")
-
-func _on_enemy_turn_end():
-	_next_combatant_group()
-	_state_chart.send_event("end_enemy_turn")
 
 
 
