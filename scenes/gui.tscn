@@ -39,11 +39,21 @@ layout_mode = 2
 theme = ExtResource("1_5y3bx")
 text = "Player turn"
 
+[node name="MarginContainer2" type="MarginContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Debug_button" type="Button" parent="Control/MarginContainer/MarginContainer2"]
+layout_mode = 2
+theme = ExtResource("1_5y3bx")
+text = "Debug
+"
+
 [node name="Buttons" type="HBoxContainer" parent="Control/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/separation = 50
-alignment = 1
 
 [node name="Attack" type="Button" parent="Control/MarginContainer/Buttons"]
 layout_mode = 2
@@ -56,5 +66,6 @@ layout_mode = 2
 theme = ExtResource("1_5y3bx")
 text = "End turn"
 
+[connection signal="pressed" from="Control/MarginContainer/MarginContainer2/Debug_button" to="." method="_on_debug_button_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/Buttons/Attack" to="." method="_on_attack_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/Buttons/EndTurn" to="." method="_on_end_turn_pressed"]

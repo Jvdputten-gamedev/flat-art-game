@@ -51,6 +51,5 @@ func _on_player_combatant_clicked():
 func _on_action_canceled():
 	_disable_buttons()
 
-
-
-
+func _on_debug_button_pressed():
+	pass
