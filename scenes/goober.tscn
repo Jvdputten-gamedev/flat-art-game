@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cbrm52ymlqmct"]
+[gd_scene load_steps=10 format=3 uid="uid://cbrm52ymlqmct"]
 
 [ext_resource type="Texture2D" uid="uid://d0cjukuvca3ot" path="res://resources/art_source/Goober/images/Back.svg" id="1_510jg"]
 [ext_resource type="Texture2D" uid="uid://7gxitso5lv5g" path="res://resources/art_source/dwarf/shaddow.svg" id="1_pirpb"]
@@ -47,9 +47,64 @@ tracks/2/keys = {
 "values": [Vector2(0, -3), Vector2(0, 0), Vector2(0, -3)]
 }
 
+[sub_resource type="Animation" id="Animation_yfns4"]
+resource_name = "Walk"
+length = 0.4
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rig/Skeleton2D/Hip/LeftLeg:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.174169, 0.0, -0.206616, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Rig/Skeleton2D/Hip/RightLeg:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.259625, 0.0, 0.143941, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Rig/Skeleton2D/Hip/Head:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.2, 0.25, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.139626, 0.13702, 0.134146, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Rig/Skeleton2D/Hip:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 30), Vector2(0, 35), Vector2(0, 30), Vector2(0, 35), Vector2(0, 30)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5ds3g"]
 _data = {
-"Idle": SubResource("Animation_2fc2f")
+"Idle": SubResource("Animation_2fc2f"),
+"Walk": SubResource("Animation_yfns4")
 }
 
 [node name="Goober" type="Node2D"]
@@ -67,32 +122,35 @@ texture = ExtResource("1_pirpb")
 
 [node name="Back" type="Sprite2D" parent="Rig/Sprites"]
 texture_filter = 1
-position = Vector2(-1, -73)
+position = Vector2(-1, -70.1618)
 texture = ExtResource("1_510jg")
 
 [node name="Head" type="Sprite2D" parent="Rig/Sprites"]
 texture_filter = 3
-position = Vector2(-1, -220)
+position = Vector2(3.06631, -217.081)
+rotation = 0.039489
 texture = ExtResource("2_ngl05")
 
 [node name="Bottom" type="Sprite2D" parent="Rig/Sprites"]
-position = Vector2(-1, -76)
+position = Vector2(-1, -73.1618)
 texture = ExtResource("3_vtgir")
 
 [node name="LeftLeg" type="Sprite2D" parent="Rig/Sprites"]
 texture_filter = 1
-position = Vector2(-51, -23)
+position = Vector2(-55.6416, -20.4773)
+rotation = 0.0949609
 texture = ExtResource("4_l51is")
 
 [node name="RightLeg" type="Sprite2D" parent="Rig/Sprites"]
-position = Vector2(42, -23)
+position = Vector2(49.3421, -20.7038)
+rotation = -0.147376
 texture = ExtResource("5_52ucw")
 
 [node name="Skeleton2D" type="Skeleton2D" parent="Rig"]
 position = Vector2(-1, -103)
 
 [node name="Hip" type="Bone2D" parent="Rig/Skeleton2D"]
-position = Vector2(0, 30)
+position = Vector2(0, 32.8382)
 rest = Transform2D(1, 0, 0, 1, 0, 30)
 
 [node name="BottomRemote" type="RemoteTransform2D" parent="Rig/Skeleton2D/Hip"]
@@ -104,6 +162,7 @@ remote_path = NodePath("../../../Sprites/Back")
 
 [node name="LeftLeg" type="Bone2D" parent="Rig/Skeleton2D/Hip"]
 position = Vector2(-49, 1)
+rotation = 0.0949609
 rest = Transform2D(1, 0, 0, 1, -49, 1)
 auto_calculate_length_and_angle = false
 length = 50.0
@@ -115,6 +174,7 @@ remote_path = NodePath("../../../../Sprites/LeftLeg")
 
 [node name="RightLeg" type="Bone2D" parent="Rig/Skeleton2D/Hip"]
 position = Vector2(43, 0)
+rotation = -0.147376
 rest = Transform2D(1, 0, 0, 1, 43, 0)
 auto_calculate_length_and_angle = false
 length = 50.0
@@ -126,6 +186,7 @@ remote_path = NodePath("../../../../Sprites/RightLeg")
 
 [node name="Head" type="Bone2D" parent="Rig/Skeleton2D/Hip"]
 position = Vector2(0, -44)
+rotation = 0.039489
 rest = Transform2D(1, 0, 0, 1, 0, -61)
 auto_calculate_length_and_angle = false
 length = 108.4

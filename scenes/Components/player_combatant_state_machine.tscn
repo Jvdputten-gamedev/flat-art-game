@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://bp7g7u2jikn6k"]
+
+[ext_resource type="Script" path="res://Scripts/Components/player_combatant_state_machine.gd" id="1_o2mek"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_7ugja"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="3_kk43q"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="4_uvbga"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="5_onuoy"]
+
+[node name="player_combatant_state_machine" type="Node"]
+script = ExtResource("1_o2mek")
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("2_7ugja")
+
+[node name="Root" type="Node" parent="StateChart"]
+script = ExtResource("3_kk43q")
+initial_state = NodePath("TurnStart")
+
+[node name="TurnStart" type="Node" parent="StateChart/Root"]
+script = ExtResource("4_uvbga")
+
+[node name="OnMoved" type="Node" parent="StateChart/Root/TurnStart"]
+script = ExtResource("5_onuoy")
+to = NodePath("../../Moved")
+event = &"on_move"
+
+[node name="Moved" type="Node" parent="StateChart/Root"]
+script = ExtResource("4_uvbga")
+
+[node name="OnAttacked" type="Node" parent="StateChart/Root/Moved"]
+script = ExtResource("5_onuoy")
+to = NodePath("../../Attacked")
+event = &"on_attacked"
+
+[node name="UndoMove" type="Node" parent="StateChart/Root/Moved"]
+script = ExtResource("5_onuoy")
+to = NodePath("../../TurnStart")
+event = &"on_undo_move"
+
+[node name="Attacked" type="Node" parent="StateChart/Root"]
+script = ExtResource("4_uvbga")
+
+[node name="OnEndTurn" type="Node" parent="StateChart/Root/Attacked"]
+script = ExtResource("5_onuoy")
+to = NodePath("../../TurnEnd")
+event = &"on_end_turn"
+
+[node name="TurnEnd" type="Node" parent="StateChart/Root"]
+script = ExtResource("4_uvbga")
+
+[node name="OnRedoTurn" type="Node" parent="StateChart/Root"]
+script = ExtResource("5_onuoy")
+to = NodePath("../TurnStart")
+event = &"on_redo_turn"

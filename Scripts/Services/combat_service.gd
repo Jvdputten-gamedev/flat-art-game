@@ -17,6 +17,7 @@ func initialize_cell_data():
 	print("  2.2 Initialize cell data dictionary")
 	_cell_occupant = {}
 	var cells = _tilemap.get_ground_cells()
+
 	for cell_coord in cells:
 		_cell_occupant[cell_coord] = null
 
@@ -43,6 +44,7 @@ func set_cell_occupant(cell_coord: Vector2i, value: Object):
 
 
 func highlight_attack_pattern(attack_pattern: Array[Vector2i]):
+	attack_pattern = _tilemap._intersect_with_ground(attack_pattern)
 	_tilemap.paint_AOE_on_map(attack_pattern, Color.RED)
 
 
