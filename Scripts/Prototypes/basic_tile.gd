@@ -1,7 +1,10 @@
-extends Node2D
+extends HexCell
 class_name BasicTile
 
 @export var sprite: Sprite2D
+
+var highground: bool = false
+var occupant: Node2D  
 
 """
 cellsize is 256 x 128
@@ -17,17 +20,15 @@ with (0,0) as reference:
 
 combined this becomes
 (i*192, j*128 + 64*i%2) + 128, 64
+
 """
 
 
-static func cell_to_cell_center(cell: Vector2i, offset):
-	var i = cell.x
-	var j = cell.y
-	var center = Vector2(i*192, j*128 + 64*(i%2)) + Vector2(128, 64)
-	center.y += offset
-	return center
 
 func initialize(cell: Vector2i, offset):
 	position = BasicTile.cell_to_cell_center(cell, offset)
 	z_index = -100 + 2*cell.y + cell.x%2
+
+	if cell.y < 3:
+		highground = true
 	return self

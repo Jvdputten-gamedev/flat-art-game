@@ -1,17 +1,9 @@
-[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://dltx6nii26ghv"]
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://wqb3tkqt2iah"]
 
-[ext_resource type="Texture2D" uid="uid://rqlrtcuxuur1" path="res://resources/tiles/basic_tile.svg" id="1_g2mfp"]
-[ext_resource type="Texture2D" uid="uid://cik3c328gcpay" path="res://resources/tiles/outline_tilemap_filled.svg" id="2_wgskq"]
-[ext_resource type="Texture2D" uid="uid://c5fsg886g3u6e" path="res://resources/tiles/basic_tiles.svg" id="3_d105u"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nhgn3"]
-texture = ExtResource("1_g2mfp")
-texture_region_size = Vector2i(256, 160)
-0:0/0 = 0
-0:0/0/texture_origin = Vector2i(0, -16)
+[ext_resource type="Texture2D" uid="uid://cik3c328gcpay" path="res://resources/tiles/outline_tilemap_filled.svg" id="1_ysvjm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1v5ub"]
-texture = ExtResource("2_wgskq")
+texture = ExtResource("1_ysvjm")
 texture_region_size = Vector2i(256, 128)
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -364,18 +356,6 @@ texture_region_size = Vector2i(256, 128)
 5:9/0/terrains_peering_bit/top_side = 0
 5:9/0/terrains_peering_bit/top_right_side = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_10m1i"]
-texture = ExtResource("3_d105u")
-texture_region_size = Vector2i(256, 160)
-0:0/0 = 0
-0:0/0/texture_origin = Vector2i(0, -16)
-1:0/0 = 0
-1:0/0/texture_origin = Vector2i(0, -16)
-2:0/0 = 0
-2:0/0/texture_origin = Vector2i(0, -48)
-3:0/0 = 0
-3:0/0/texture_origin = Vector2i(0, -16)
-
 [resource]
 tile_shape = 3
 tile_offset_axis = 1
@@ -384,6 +364,4 @@ uv_clipping = true
 terrain_set_0/mode = 2
 terrain_set_0/terrain_0/name = "Outline_filled"
 terrain_set_0/terrain_0/color = Color(1, 1, 1, 1)
-sources/2 = SubResource("TileSetAtlasSource_nhgn3")
 sources/3 = SubResource("TileSetAtlasSource_1v5ub")
-sources/4 = SubResource("TileSetAtlasSource_10m1i")

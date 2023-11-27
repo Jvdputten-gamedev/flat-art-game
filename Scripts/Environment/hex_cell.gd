@@ -2,6 +2,7 @@ extends Node2D
 class_name HexCell
 
 var cube_coords = Vector3i(0, 0, 0)
+var cell_size: float = 128
 
 var axial_coords:
 	get:
@@ -45,6 +46,25 @@ func obj_to_coords(val):
 	elif typeof(val) == TYPE_OBJECT and val.has_method("get_cube_coords"):
 		return val.get_cube_coords()
 	return
+
+func round_coords(val):
+	# Rounds floaty coordinate to the nearest whole number cube coords
+	if typeof(val) == TYPE_VECTOR2:
+		val = axial_to_cube_coords(val)
+	
+	# Straight round them
+	var rounded = Vector3(round(val.x), round(val.y), round(val.z))
+	
+	# But recalculate the one with the largest diff so that x+y+z=0
+	var diffs = (rounded - val).abs()
+	if diffs.x > diffs.y and diffs.x > diffs.z:
+		rounded.x = -rounded.y - rounded.z
+	elif diffs.y > diffs.z:
+		rounded.y = -rounded.x - rounded.z
+	else:
+		rounded.z = -rounded.x - rounded.y
+	
+	return rounded
 		
 	
 func get_axial_coords():
@@ -58,7 +78,7 @@ func set_cube_coords(val):
 	if abs(val.x + val.y + val.z) > 0.0001:
 		print("WARNING: Invalid cube coordinates for hex (x+y+z!=0): ", val)
 		return
-	cube_coords = val
+	cube_coords = round_coords(val)
 
 func axial_to_cube_coords(val) -> Vector3i:
 	var x = val.x
@@ -78,6 +98,8 @@ func get_oddq_coords() -> Vector2i:
 	var col = self.cube_coords.x
 	var row = self.cube_coords.y + (self.cube_coords.x - (self.cube_coords.x & 1)) / 2
 	return Vector2i(col,row)
+
+
 
 """
 Finding neighbours

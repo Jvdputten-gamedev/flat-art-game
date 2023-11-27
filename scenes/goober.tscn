@@ -127,7 +127,7 @@ texture = ExtResource("1_510jg")
 
 [node name="Head" type="Sprite2D" parent="Rig/Sprites"]
 texture_filter = 3
-position = Vector2(3.06631, -217.081)
+position = Vector2(3.06631, -217.082)
 rotation = 0.039489
 texture = ExtResource("2_ngl05")
 
@@ -137,12 +137,12 @@ texture = ExtResource("3_vtgir")
 
 [node name="LeftLeg" type="Sprite2D" parent="Rig/Sprites"]
 texture_filter = 1
-position = Vector2(-55.6416, -20.4773)
+position = Vector2(-55.6416, -20.4774)
 rotation = 0.0949609
 texture = ExtResource("4_l51is")
 
 [node name="RightLeg" type="Sprite2D" parent="Rig/Sprites"]
-position = Vector2(49.3421, -20.7038)
+position = Vector2(49.3422, -20.7038)
 rotation = -0.147376
 texture = ExtResource("5_52ucw")
 
