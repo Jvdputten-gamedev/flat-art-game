@@ -23,12 +23,11 @@ combined this becomes
 
 """
 
+func initialize(hex):
 
+	position = hex.to_point()
+	var cell = hex.oddq_coords
 
-func initialize(cell: Vector2i, offset):
-	position = BasicTile.cell_to_cell_center(cell, offset)
 	z_index = -100 + 2*cell.y + cell.x%2
-
-	if cell.y < 3:
-		highground = true
 	return self
+

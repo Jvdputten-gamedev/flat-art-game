@@ -1,5 +1,5 @@
 extends Node2D
-
+class_name TileSystem
 
 
 @export var tilemap: TileMap
@@ -13,7 +13,7 @@ extends Node2D
 
 var tiles: Dictionary
 
-var cell_size: float = 128  # Defined as the distance between center and right corner in pixels
+var hex_size: float = 128  # Defined as the distance between center and right corner in pixels
 
 
 func _ready():
@@ -22,18 +22,16 @@ func _ready():
 
 func spawn_tiles():
 	tiles = {}
-	for cell in tilemap.get_used_cells(0):
-		_spawn_tile_at_cell(cell)
+	for cell: Vector2 in tilemap.get_used_cells(0):
+		var hex = HexCell.new(cell)
+		_initialize_tile_at(hex)
 		tilemap.set_cell(0, cell)
 
-func _spawn_tile_at_cell(cell: Vector2i):
+func _initialize_tile_at(hex: HexCell):
 	var tile
-	if cell.y < 3:
-		tile = basic_tile.instantiate().initialize(cell, -highground_offset)
-	else:
-		tile = basic_tile.instantiate().initialize(cell, 0)
+	tile = basic_tile.instantiate().initialize(hex)
 	tile_container.add_child(tile)
-	tiles[cell] = tile
+	tiles[hex] = tile
 
 
 func hex_to_local(hex: HexCell) -> Vector2:
@@ -45,11 +43,12 @@ func hex_to_local(hex: HexCell) -> Vector2:
 	[ 6/4, 0  
 	1/2, 1]
 	"""
-	var x = cell_size * (1.5 * hex.axial_coords.x)
-	var y = cell_size * (0.5 * hex.axial_coords.x + hex.axial_coords.y)
+
+	var x = hex_size * (1.5 * hex.axial_coords.x)
+	var y = hex_size * (0.5 * hex.axial_coords.x + hex.axial_coords.y)
 	return Vector2(x, y)
 
-func local_to_hex(point: Vector2i) -> HexCell:
+func local_to_hex(point: Vector2) -> HexCell:
 	"""
 	size = 128
 	basis x = (x = 6/4, y = 1/2)
@@ -58,9 +57,10 @@ func local_to_hex(point: Vector2i) -> HexCell:
 	[ 2/3, 0  
 	-1/3, 1]
 	"""
-	var q = (2./3 * point.x) / cell_size
-	var r = (-1./3 * point.x + 1 * point.y) / cell_size
-	return HexCell.new(Vector2(q, r))
+	var q = (2./3 * point.x) / hex_size
+	var r = (-1./3 * point.x + 1 * point.y) / hex_size
+	var hex = HexCell.new(Vector2(q, r), true)
+	return hex
 
 
 func mouse_to_hex() -> HexCell:
