@@ -22,7 +22,7 @@ func _ready():
 
 func spawn_tiles():
 	tiles = {}
-	for cell: Vector2 in tilemap.get_used_cells(0):
+	for cell in tilemap.get_used_cells(0):
 		var hex = HexCell.new(cell)
 		_initialize_tile_at(hex)
 		tilemap.set_cell(0, cell)
@@ -37,11 +37,11 @@ func _initialize_tile_at(hex: HexCell):
 func hex_to_local(hex: HexCell) -> Vector2:
 	"""
 	size = 128
-	basis x = (x = 6/4, y = 1/2)
+	basis x = (x = 6/4, y = 0.5)
 	basis y = (x=0, y= 1)
 
 	[ 6/4, 0  
-	1/2, 1]
+	0.5, 1]
 	"""
 
 	var x = hex_size * (1.5 * hex.axial_coords.x)
@@ -51,15 +51,17 @@ func hex_to_local(hex: HexCell) -> Vector2:
 func local_to_hex(point: Vector2) -> HexCell:
 	"""
 	size = 128
-	basis x = (x = 6/4, y = 1/2)
+	basis x = (x = 6/4, y = 1)
 	basis y = (x=0, y= 1)
 
 	[ 2/3, 0  
 	-1/3, 1]
 	"""
 	var q = (2./3 * point.x) / hex_size
-	var r = (-1./3 * point.x + 1 * point.y) / hex_size
-	var hex = HexCell.new(Vector2(q, r), true)
+	var r = (-1./3 * point.x + point.y) / hex_size
+	var hex = HexCell.new(Vector2(q, r))
+	print(hex.cube_coords)
+	print(hex.oddq_coords)
 	return hex
 
 

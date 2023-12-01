@@ -23,7 +23,7 @@ combined this becomes
 
 """
 
-func initialize(hex):
+func initialize(hex: HexCell):
 
 	position = hex.to_point()
 	var cell = hex.oddq_coords

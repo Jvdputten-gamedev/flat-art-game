@@ -19,19 +19,17 @@ func _input(event) -> void:
 		_clear_highlights()
 
 		var hex = tilesystem.mouse_to_hex()
-		print(hex)
-		var tile
+		tilemap_base.set_cells_terrain_connect(0, [hex.oddq_coords], 0, 0)
 
-		if tilesystem.tiles.has(hex):
-			tile = tilesystem.tiles[hex]
-		else:
-			return 
+		#if tilesystem.tiles.has(hex):
+		#	tile = tilesystem.tiles[hex]
+		#else:
+		#	return 
 
 		# if cell.highground:
 			
 		# 	tilemap_highground.set_cells_terrain_connect(0, [cell_coord], 0, 0)
-		# else:
-		# 	tilemap_base.set_cells_terrain_connect(0, [cell_coord], 0, 0)
+
 
 func _clear_highlights():
 	tilemap_base.clear_layer(0)

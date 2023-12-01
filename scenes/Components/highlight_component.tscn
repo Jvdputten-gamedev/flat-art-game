@@ -4,20 +4,15 @@
 [ext_resource type="TileSet" uid="uid://wqb3tkqt2iah" path="res://resources/tiles/highlight_tileset.tres" id="1_l54fe"]
 
 [node name="HighlightComponent" type="Node2D"]
+position = Vector2(-128, -64)
 script = ExtResource("1_esjwh")
 
 [node name="HighlightHighground" type="TileMap" parent="."]
-position = Vector2(0, -32)
 tile_set = ExtResource("1_l54fe")
 format = 2
 layer_0/name = "Highlight"
 layer_0/modulate = Color(0, 0.690196, 0.701961, 1)
 layer_1/name = "AOE"
-layer_1/enabled = true
-layer_1/modulate = Color(1, 1, 1, 1)
-layer_1/y_sort_enabled = false
-layer_1/y_sort_origin = 0
-layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array()
 
 [node name="HighlightGround" type="TileMap" parent="."]
@@ -26,9 +21,4 @@ format = 2
 layer_0/name = "Highlight"
 layer_0/modulate = Color(0.956863, 0.658824, 0.8, 1)
 layer_1/name = "AOE"
-layer_1/enabled = true
-layer_1/modulate = Color(1, 1, 1, 1)
-layer_1/y_sort_enabled = false
-layer_1/y_sort_origin = 0
-layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array()
