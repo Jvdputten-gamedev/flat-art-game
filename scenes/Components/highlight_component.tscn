@@ -13,4 +13,5 @@ format = 2
 layer_0/name = "Highlight"
 layer_0/modulate = Color(0.956863, 0.658824, 0.8, 1)
 layer_1/name = "AOE"
+layer_1/modulate = Color(0, 0.772549, 0.772549, 1)
 layer_1/tile_data = PackedInt32Array()
