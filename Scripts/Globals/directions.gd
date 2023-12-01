@@ -1,18 +1,18 @@
 extends Node2D
 
-const DIR_N = Vector3i(0, -1, 1)
-const DIR_NE = Vector3i(1, -1, 0)
-const DIR_SE = Vector3i(1, 0, -1)
-const DIR_S = Vector3i(0, 1, -1)
-const DIR_SW = Vector3i(-1, 1, 0)
-const DIR_NW = Vector3i(-1, 0, 1)
+const DIR_N = Vector3(0, -1, 1)
+const DIR_NE = Vector3(1, -1, 0)
+const DIR_SE = Vector3(1, 0, -1)
+const DIR_S = Vector3(0, 1, -1)
+const DIR_SW = Vector3(-1, 1, 0)
+const DIR_NW = Vector3(-1, 0, 1)
 
 class Direction:
 	var idx: int
-	var cube_coords: Vector3i
+	var cube_coords: Vector3
 	var name: String
 
-	func _init(index: int, _cube_coords: Vector3i, _name: String):
+	func _init(index: int, _cube_coords: Vector3, _name: String):
 		self.idx = index
 		self.cube_coords = _cube_coords
 		self.name = _name
