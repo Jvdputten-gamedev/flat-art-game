@@ -11,16 +11,17 @@ script = ExtResource("1_p6b7i")
 tilemap = NodePath("TileMap")
 basic_tile = ExtResource("2_v81nx")
 tile_container = NodePath("GroundTiles")
+quake_delay = null
 sine_time = 1.0
 transition_type = 4
 ease_type = 1
-highground_offset = 64
+highground_offset = null
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("3_breaw")
 format = 2
 layer_0/name = "base"
-layer_0/tile_data = PackedInt32Array(131074, 4, 0, 0, 4, 0, 2, 4, 0, 131072, 4, 0, 196608, 4, 0, 262144, 4, 0, 327680, 4, 0, 393216, 4, 0, 3, 4, 0, 4, 4, 0, 65540, 4, 0)
+layer_0/tile_data = PackedInt32Array(131074, 4, 0, 0, 4, 0, 2, 4, 0, 131072, 4, 0, 196608, 4, 0, 262144, 4, 0, 327680, 4, 0, 393216, 4, 0, 3, 4, 0, 4, 4, 0, 65540, 4, 0, 65536, 4, 0, 1, 4, 0, 65537, 4, 0, 65538, 4, 0, 65539, 4, 0, 131076, 4, 0, 131075, 4, 0, 196610, 4, 0, 131073, 4, 0, 196609, 4, 0, 196611, 4, 0, 196612, 4, 0, 262146, 4, 0, 262145, 4, 0, 327682, 4, 0, 262147, 4, 0, 262148, 4, 0, 327684, 4, 0, 327683, 4, 0, 393218, 4, 0, 327681, 4, 0)
 layer_1/name = "elevation"
 layer_1/tile_data = PackedInt32Array()
 

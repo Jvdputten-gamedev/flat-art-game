@@ -31,51 +31,28 @@ func _initialize_tile_at(hex: HexCell):
 	var tile
 	tile = basic_tile.instantiate().initialize(hex)
 	tile_container.add_child(tile)
-	tiles[hex] = tile
+	tiles[hex.id] = tile
 
-
-func hex_to_local(hex: HexCell) -> Vector2:
-	"""
-	size = 128
-	basis x = (x = 6/4, y = 0.5)
-	basis y = (x=0, y= 1)
-
-	[ 6/4, 0  
-	0.5, 1]
-	"""
-
-	var x = hex_size * (1.5 * hex.axial_coords.x)
-	var y = hex_size * (0.5 * hex.axial_coords.x + hex.axial_coords.y)
-	return Vector2(x, y)
 
 func local_to_hex(point: Vector2) -> HexCell:
 	"""
-	size = 128
-	basis x = (x = 6/4, y = 1)
-	basis y = (x=0, y= 1)
-
 	[ 2/3, 0  
 	-1/3, 1]
 	"""
 	var q = (2./3 * point.x) / hex_size
 	var r = (-1./3 * point.x + point.y) / hex_size
 	var hex = HexCell.new(Vector2(q, r))
-	print(hex.cube_coords)
-	print(hex.oddq_coords)
 	return hex
 
 
 func mouse_to_hex() -> HexCell:
 	return local_to_hex(get_local_mouse_position())
 
-
 func mouse_to_hex_center():
 	var hex: HexCell = mouse_to_hex()
-	return hex_to_local(hex)
-
+	return hex.to_point()
 
 ### Signal callbacks	
-
 func _on_button_pressed():
 	var tween = get_tree().create_tween().set_parallel().set_ease(ease_type)
 	for key in tiles:

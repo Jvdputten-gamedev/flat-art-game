@@ -21,6 +21,11 @@ var oddq_coords:
 	set(val):
 		set_oddq_coords(val)
 
+var id:
+	get:
+		return abs(hash(str(oddq_coords.x) + str(oddq_coords.y)))
+		
+
 
 
 func _init(coords=null):
@@ -83,11 +88,7 @@ func get_axial_coords():
 	return Vector2(self.cube_coords.x, self.cube_coords.y)
 		
 func set_axial_coords(val: Vector2):
-	set_cube_coords(axial_to_cube_coords(val))
-			
-
-func set_cube_coords(val: Vector3):
-	print("in set cube")
+	cube_coords = axial_to_cube_coords(val)
 
 func axial_to_cube_coords(val) -> Vector3:
 	var x = val.x
@@ -98,7 +99,6 @@ func oddq_to_cube(val: Vector2i) -> Vector3:
 	var q = val.x
 	var r = val.y - (val.x - (val.x&1)) / 2
 	return Vector3(q, r, -q-r)
-
 
 func set_oddq_coords(val: Vector2i):
 	var x = val.x
