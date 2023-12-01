@@ -7,14 +7,6 @@
 position = Vector2(-128, -64)
 script = ExtResource("1_esjwh")
 
-[node name="HighlightHighground" type="TileMap" parent="."]
-tile_set = ExtResource("1_l54fe")
-format = 2
-layer_0/name = "Highlight"
-layer_0/modulate = Color(0, 0.690196, 0.701961, 1)
-layer_1/name = "AOE"
-layer_1/tile_data = PackedInt32Array()
-
 [node name="HighlightGround" type="TileMap" parent="."]
 tile_set = ExtResource("1_l54fe")
 format = 2

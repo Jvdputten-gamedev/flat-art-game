@@ -26,8 +26,6 @@ var id:
 		return abs(hash(str(oddq_coords.x) + str(oddq_coords.y)))
 		
 
-
-
 func _init(coords=null):
 	if coords:
 		cube_coords = self.obj_to_coords(coords)
@@ -135,7 +133,7 @@ func to_point() -> Vector2:
 Finding neighbours
 """
 func get_adjacent(dir):
-	var cell = HexCell.new(self.cube_coords + dir)
+	var cell = HexCell.new(self.cube_coords + Vector3(dir))
 	return cell
 
 func get_all_adjacent() -> Array[Vector2]:

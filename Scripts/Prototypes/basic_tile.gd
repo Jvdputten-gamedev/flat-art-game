@@ -28,11 +28,7 @@ func initialize(hex: HexCell):
 	position = hex.to_point()
 
 	var cell = hex.oddq_coords
-	z_index = -100 + 2*cell.y + cell.x%2
-
-	if cell.y > 2 and cell.y < 4:
-		highground = true
-		position.y -= 32
+	z_index = -100 + 2*cell.y + abs(cell.x%2)
 
 	return self
 
