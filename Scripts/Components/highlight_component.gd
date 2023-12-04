@@ -9,7 +9,7 @@ var tilemap: TileMap
 
 func _ready():
 	tilemap = $HighlightGround
-	tilemap.set_layer_modulate(0, highlight_color)
+	tilemap.set_layer_modulate(1, highlight_color)
 	
 func _input(event) -> void:
 	if event is InputEventMouseMotion:
@@ -19,10 +19,10 @@ func _input(event) -> void:
 		if tilesystem.tiles.has(hex.id):
 
 			var tile = tilesystem.tiles[hex.id]
-			tilemap.set_cells_terrain_connect(0, [hex.oddq_coords], 0, 0)
+			tilemap.set_cells_terrain_connect(1, [hex.oddq_coords], 0, 0)
 
 	if event.is_action_pressed("LMB"):
-		_clear_highlights()
+		_clear_aoe()
 		var hex = tilesystem.mouse_to_hex()
 		paint_aoe(hex.get_all_adjacent())
 
@@ -31,12 +31,12 @@ func paint_aoe(hexes) -> void:
 	var oddq_list: Array[Vector2i] = []
 	for hex in hexes:
 		oddq_list.append(hex.oddq_coords)
-	tilemap.set_cells_terrain_connect(1, oddq_list, 0, 0)
+	tilemap.set_cells_terrain_connect(0, oddq_list, 0, 0)
 
 
 func _clear_highlights():
-	tilemap.clear_layer(0)
+	tilemap.clear_layer(1)
 
 func _clear_aoe():
-	tilemap.clear_layer(1)
+	tilemap.clear_layer(0)
 

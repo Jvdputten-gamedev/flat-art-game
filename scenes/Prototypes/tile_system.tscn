@@ -18,7 +18,7 @@ ease_type = 1
 highground_offset = null
 
 [node name="HighlightComponent" parent="." node_paths=PackedStringArray("tilesystem") instance=ExtResource("5_uun75")]
-highlight_color = Color(0.784314, 0.211765, 0.329412, 1)
+highlight_color = Color(1, 1, 1, 1)
 tilesystem = NodePath("..")
 
 [node name="GroundTiles" type="Node2D" parent="."]
