@@ -17,7 +17,6 @@ var hex_size: float = 128  # Defined as the distance between center and right co
 
 
 func _ready():
-	print("tile system ooeuoeuer")
 	spawn_tiles()
 
 

@@ -28,11 +28,10 @@ func _input(event) -> void:
 
 
 func paint_aoe(hexes) -> void:
-	#var oddq_list = []
-	#for hex in hexes:
-		#oddq_list.append(hex.oddq_coords)
-	tilemap.set_cells_terrain_connect(1, hexes, 0, 0)
-
+	var oddq_list: Array[Vector2i] = []
+	for hex in hexes:
+		oddq_list.append(hex.oddq_coords)
+	tilemap.set_cells_terrain_connect(1, oddq_list, 0, 0)
 
 
 func _clear_highlights():
