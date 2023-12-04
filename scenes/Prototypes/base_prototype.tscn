@@ -1,0 +1,63 @@
+[gd_scene load_steps=11 format=3 uid="uid://0xh1jsv6wi7v"]
+
+[ext_resource type="Script" path="res://Scripts/level.gd" id="1_qnowb"]
+[ext_resource type="Script" path="res://Scripts/Services/tile_service.gd" id="5_xi41n"]
+[ext_resource type="Script" path="res://Scripts/Services/services.gd" id="7_2wfdh"]
+[ext_resource type="Script" path="res://Scripts/Services/navigation_service.gd" id="8_3s25g"]
+[ext_resource type="Script" path="res://Scripts/Services/combat_service.gd" id="9_3r0v4"]
+[ext_resource type="Script" path="res://Scripts/Environment/environment.gd" id="10_f2nyx"]
+[ext_resource type="TileSet" uid="uid://cloviblshkwle" path="res://resources/tiles/tile_set.tres" id="11_cwq8x"]
+[ext_resource type="Script" path="res://Scripts/Combatants/combatants.gd" id="14_da1d3"]
+[ext_resource type="Script" path="res://Scripts/Combatants/player_combatant_group.gd" id="15_3li0k"]
+[ext_resource type="Script" path="res://Scripts/Combatants/enemy_combatant_group.gd" id="17_4772k"]
+
+[node name="Level" type="Node2D" node_paths=PackedStringArray("services", "environment", "combatants")]
+script = ExtResource("1_qnowb")
+services = NodePath("Services")
+environment = NodePath("Environment")
+combatants = NodePath("Combatants")
+
+[node name="Services" type="Node" parent="." node_paths=PackedStringArray("navigation_service", "combat_service")]
+script = ExtResource("7_2wfdh")
+navigation_service = NodePath("NavigationService")
+combat_service = NodePath("CombatService")
+
+[node name="NavigationService" type="Node2D" parent="Services"]
+script = ExtResource("8_3s25g")
+
+[node name="CombatService" type="Node2D" parent="Services"]
+script = ExtResource("9_3r0v4")
+
+[node name="TileService" type="Node2D" parent="Services"]
+script = ExtResource("5_xi41n")
+
+[node name="Environment" type="Node2D" parent="."]
+script = ExtResource("10_f2nyx")
+
+[node name="TileMap" type="TileMap" parent="Environment"]
+position = Vector2(-128, -64)
+tile_set = ExtResource("11_cwq8x")
+format = 2
+layer_0/name = "base"
+layer_0/tile_data = PackedInt32Array(-65536, 4, 0, -1, 4, 0, -131072, 4, 0, -196608, 4, 0, -262144, 4, 0, 0, 4, 0, 65536, 4, 0, 131072, 4, 0, 196608, 4, 0, 262144, 4, 0, -2, 4, 0, -65535, 4, 0, -65534, 4, 0, -262143, 4, 0, -196607, 4, 0, -131071, 4, 0, -131070, 4, 0, -196606, 4, 0, -196609, 4, 0, -131074, 4, 0, -65538, 4, 0, -131073, 4, 0, -65537, 4, 0, 65535, 4, 0, 131070, 4, 0, 65532, 4, 0, -3, 4, 0, 65533, 4, 0, 65534, 4, 0, 262142, 4, 0, 196607, 4, 0, 262143, 4, 0, 131071, 4, 0, 196606, 4, 0, 196609, 4, 0, 196610, 4, 0, 131074, 4, 0, 65538, 4, 0, 65537, 4, 0, 131073, 4, 0, 1, 4, 0, 4, 4, 0, 3, 4, 0, 2, 4, 0, -65533, 4, 0, -4, 4, 0, -65540, 4, 0, -65539, 4, 0, -131075, 4, 0, 65540, 4, 0, 65539, 4, 0, 131075, 4, 0, 131076, 4, 0, 131069, 4, 0, -131069, 4, 0, -65532, 4, 0, -131068, 4, 0, -196605, 4, 0, 131068, 4, 0, 196604, 4, 0, 196605, 4, 0)
+layer_1/name = "elevation"
+layer_1/tile_data = PackedInt32Array()
+
+[node name="GroundTiles" type="Node2D" parent="Environment"]
+
+[node name="Combatants" type="Node2D" parent="." node_paths=PackedStringArray("player_combatant_group", "enemy_combatant_group")]
+y_sort_enabled = true
+script = ExtResource("14_da1d3")
+player_combatant_group = NodePath("PlayerCombatantGroup")
+enemy_combatant_group = NodePath("EnemyCombatantGroup")
+
+[node name="PlayerCombatantGroup" type="Node2D" parent="Combatants"]
+y_sort_enabled = true
+script = ExtResource("15_3li0k")
+
+[node name="EnemyCombatantGroup" type="Node2D" parent="Combatants"]
+y_sort_enabled = true
+script = ExtResource("17_4772k")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)

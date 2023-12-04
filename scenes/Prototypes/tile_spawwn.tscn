@@ -1,25 +1,20 @@
 [gd_scene load_steps=6 format=3 uid="uid://dgsc3nyjgtctt"]
 
-[ext_resource type="Script" path="res://Scripts/Prototypes/tile_system.gd" id="1_p6b7i"]
-[ext_resource type="PackedScene" uid="uid://bamfqxvw65iu2" path="res://scenes/Prototypes/basic_tile.tscn" id="2_v81nx"]
+[ext_resource type="Script" path="res://Scripts/Prototypes/tile_spawn.gd" id="1_6bbdk"]
+[ext_resource type="PackedScene" uid="uid://bamfqxvw65iu2" path="res://scenes/Prototypes/basic_tile.tscn" id="2_rxiwa"]
 [ext_resource type="TileSet" uid="uid://cloviblshkwle" path="res://resources/tiles/tile_set.tres" id="3_breaw"]
 [ext_resource type="Theme" uid="uid://dundj1k3w6wi4" path="res://resources/UI/ButtonTheme.tres" id="4_7y8um"]
 [ext_resource type="PackedScene" uid="uid://c65s74ie2kw7m" path="res://scenes/Components/highlight_component.tscn" id="5_uun75"]
 
-[node name="TileSystem" type="Node2D" node_paths=PackedStringArray("tilemap", "tile_container")]
-script = ExtResource("1_p6b7i")
+[node name="TileSpawn" type="Node2D" node_paths=PackedStringArray("tilemap", "tile_container")]
+script = ExtResource("1_6bbdk")
 tilemap = NodePath("TileMap")
-basic_tile = ExtResource("2_v81nx")
+basic_tile = ExtResource("2_rxiwa")
 tile_container = NodePath("GroundTiles")
-quake_delay = null
-sine_time = 1.0
-transition_type = 4
-ease_type = 1
-highground_offset = null
 
-[node name="HighlightComponent" parent="." node_paths=PackedStringArray("tilesystem") instance=ExtResource("5_uun75")]
+[node name="HighlightComponent" parent="." instance=ExtResource("5_uun75")]
 highlight_color = Color(1, 1, 1, 1)
-tilesystem = NodePath("..")
+aoe_color = Color(1, 0.517647, 0.45098, 1)
 
 [node name="GroundTiles" type="Node2D" parent="."]
 

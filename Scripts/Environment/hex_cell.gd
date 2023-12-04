@@ -123,7 +123,6 @@ func to_point() -> Vector2:
 	[ 6/4, 0  
 	1/2, 1]
 	"""
-
 	var x = hex_size * (1.5 * axial_coords.x)
 	var y = hex_size * (0.5 * axial_coords.x + axial_coords.y)
 	return Vector2(x, y)
@@ -142,12 +141,14 @@ func get_all_adjacent():
 		hexes.append(get_adjacent(dir.cube_coords))
 	return hexes
 
-func get_all_within(distance: int, remove_origin = true):
+func get_all_within(distance: int, add_origin = false):
 	var hexes: Array[HexCell] = []
 	for dx in range(-distance, distance + 1):
 		for dy in range(max(-distance, -distance - dx), min(distance, distance - dx) + 1):
+			if dx == 0 and dy == 0:
+				continue
 			hexes.append(HexCell.new(self.cube_coords + axial_to_cube_coords(Vector2(dx, dy))))
 
-	if remove_origin:
-		hexes.erase(self)
+	if add_origin:
+		hexes.append(self)
 	return hexes

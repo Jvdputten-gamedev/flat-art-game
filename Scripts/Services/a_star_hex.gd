@@ -1,22 +1,21 @@
 extends AStar2D
 class_name AStar2DHex
 
-var _tilemap: TileMap
+var tile_service: TileService
 
 func _ready():
 	pass
 
-func _init(tilemap: TileMap) -> void:
-	self._tilemap = tilemap
+func _init() -> void:
+	tile_service = ServiceLocator.get_tile_service()
 	_initialize_astar_grid()
 	BattleEventBus.connect("CombatantMoved", _on_combatant_moved)
-	print("connect to combatantmoved")
+	print("connect to CombatantMoved")
 
 	
 func _initialize_astar_grid() -> void:
-	var grid_size = _tilemap.get_used_rect().size
-	self.reserve_space(grid_size.x * grid_size.y)
-	update()
+	#update()
+	pass
 
 func _compute_cost(from_id: int, to_id: int):
 	# connected points are always adjacent, the cost is always 1
@@ -29,59 +28,47 @@ func _get_astar_cell_id(cell: Vector2i) -> int:
 	return id
 
 func update() -> void:
-	var cells = _tilemap.get_ground_cells()
-	_update_astar_grid_points(cells)
-	_update_astar_connections(cells)
+	var tiles = tile_service.get_used_tiles()
+	_update_astar_grid_points(tiles)
+	_update_astar_connections(tiles)
 
-func _update_astar_grid_points(cells: Array[Vector2i]) -> void:
+func _update_astar_grid_points(tiles: Array[BasicTile]) -> void:
 	clear()
-	# Loop through all cells in the grid and add them as points in the astar grid
-	for cell in cells:
-		var id = _get_astar_cell_id(cell)
-		self.add_point(id, _tilemap.map_to_local(cell))
+	# Loop through all hexes in the grid and add them as points in the astar grid
+	for tile in tiles:
+		self.add_point(tile.id, tile.to_point())
 	
 
-func _update_astar_connections(cells: Array[Vector2i]) -> void:
-	for cell in cells:
-		_update_neighbor_connections(cell)
+func _update_astar_connections(tiles: Array[BasicTile]) -> void:
+	for tile in tiles:
+		_update_neighbor_connections(tile)
 	
 
-func _update_neighbor_connections(cell_coord: Vector2i) -> void:
-	var id = _get_astar_cell_id(cell_coord)
-	var neighbors = _tilemap.get_surrounding_ground_cells(cell_coord)
+func _update_neighbor_connections(tile: BasicTile) -> void:
+	var neighbors = tile.get_all_adjacent()
 	for neighbor in neighbors:
-		var to_id = _get_astar_cell_id(neighbor)
-		self.connect_points(id, to_id, false)
+		self.connect_points(tile.id, neighbor.id, false)
 
-func _occupy_cell(cell: Vector2i):
-	var cell_id = _get_astar_cell_id(cell)
-	set_point_disabled(cell_id, true)
+func _occupy_hex(tile: BasicTile):
+	set_point_disabled(tile.id, true)
 
-func _free_cell(cell: Vector2i):
-	var cell_id = _get_astar_cell_id(cell)
-	set_point_disabled(cell_id, false)
+func _free_hex(tile: BasicTile):
+	set_point_disabled(tile.id, false)
 
 func get_local_point_path(from_pos: Vector2, to_pos: Vector2) -> PackedVector2Array:
-	var from_cell = _tilemap.local_to_map(from_pos)
-	var to_cell = _tilemap.local_to_map(to_pos)
+	var from_hex = tile_service.local_to_hex(from_pos)
+	var to_hex = tile_service.local_to_map(to_pos)
 	
-	var from_id = _get_astar_cell_id(from_cell)
-	var to_id = _get_astar_cell_id(to_cell)
-	if self.has_point(from_id) and self.has_point(to_id):
-		return Array(self.get_point_path(from_id, to_id))
+	if self.has_point(from_hex.id) and self.has_point(to_hex.id):
+		return Array(self.get_point_path(from_hex.id, to_hex.id))
 	return [] 
 
-func compute_move_cost(from_cell: Vector2i, to_cell: Vector2i) -> int:
-	var from_id = _get_astar_cell_id(from_cell)
-	var to_id = _get_astar_cell_id(to_cell)
-
-	return self.get_point_path(from_id, to_id).size() - 1
+func compute_move_cost(from_hex: HexCell, to_hex: HexCell) -> int:
+	return self.get_point_path(from_hex.id, to_hex.id).size() - 1
 
 ### Signal responses ###
-func _on_combatant_moved(_combatant, from_cell, to_cell):
-	var from_id = _get_astar_cell_id(from_cell)
-	var to_id = _get_astar_cell_id(to_cell)
-	print("Movement cost: ", self.get_point_path(from_id, to_id).size() - 1)
+func _on_combatant_moved(_combatant, from_hex, to_hex):
+	print("Movement cost: ", self.get_point_path(from_hex.id, to_hex.id).size() - 1)
 
-	_free_cell(from_cell)
-	_occupy_cell(to_cell)
+	_free_hex(from_hex)
+	_occupy_hex(to_hex)

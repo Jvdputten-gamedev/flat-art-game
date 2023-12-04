@@ -2,7 +2,7 @@ extends Node
 
 var services = {}
 
-enum Services {NAVIGATION_SERVICE = 0, COMBAT_SERVICE = 1}
+enum Services {TILE_SERVICE = 0, NAVIGATION_SERVICE = 1, COMBAT_SERVICE = 2}
 
 func _ready():
 	print("1. Service locator ready")
@@ -18,12 +18,16 @@ func _get_service(service_id: Services) -> Service:
 		print("Warning, service not set")
 		return null
 
+func register_tile_service(service: Service) -> void:
+	print("  1.1 Register tile service")
+	_register_service(Services.TILE_SERVICE, service)
+
 func register_navigation_service(service: Service) -> void:
-	print("  1.1 Register navigation service")
+	print("  1.2 Register navigation service")
 	_register_service(Services.NAVIGATION_SERVICE, service)
 
 func register_combat_service(service: Service) -> void:
-	print("  1.2 Register combat service")
+	print("  1.3 Register combat service")
 	_register_service(Services.COMBAT_SERVICE, service)
 
 func get_navigation_service() -> Service:
@@ -31,3 +35,6 @@ func get_navigation_service() -> Service:
 
 func get_combat_service() -> Service:
 	return _get_service(Services.COMBAT_SERVICE)
+
+func get_tile_service() -> Service:
+	return _get_service(Services.TILE_SERVICE)

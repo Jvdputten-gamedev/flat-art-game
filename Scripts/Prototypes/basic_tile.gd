@@ -3,7 +3,6 @@ class_name BasicTile
 
 @export var sprite: Sprite2D
 
-var highground: bool = false
 var occupant: Node2D  
 
 """
@@ -24,7 +23,6 @@ combined this becomes
 """
 
 func initialize(hex: HexCell):
-
 	position = hex.to_point()
 
 	var cell = hex.oddq_coords
