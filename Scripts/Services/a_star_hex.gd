@@ -10,7 +10,7 @@ func _init() -> void:
 	tile_service = ServiceLocator.get_tile_service()
 	_initialize_astar_grid()
 	BattleEventBus.connect("CombatantMoved", _on_combatant_moved)
-	print("connect to CombatantMoved")
+	#print("connect to CombatantMoved")
 
 	
 func _initialize_astar_grid() -> void:

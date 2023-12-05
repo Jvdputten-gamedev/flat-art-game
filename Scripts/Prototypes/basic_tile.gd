@@ -24,6 +24,7 @@ combined this becomes
 
 func initialize(hex: HexCell):
 	position = hex.to_point()
+	cube_coords = hex.cube_coords
 
 	var cell = hex.oddq_coords
 	z_index = -100 + 2*cell.y + abs(cell.x%2)

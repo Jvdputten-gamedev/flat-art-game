@@ -1,4 +1,5 @@
 extends Service
+class_name NavigationService
 
 var tilemap: HexTileMap
 var _astar: AStar2DHex

@@ -12,8 +12,8 @@ config_version=5
 
 config/name="Flat Game"
 run/main_scene="res://scenes/level.tscn"
-config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://icon.svg"
+config/features=PackedStringArray("4.1", "Forward Plus")
+config/icon="res://resources/goblin.svg"
 
 [autoload]
 
@@ -24,6 +24,7 @@ Enums="*res://Scripts/Globals/enums.gd"
 UiEventBus="*res://Scripts/Globals/ui_event_bus.gd"
 BattleEventBus="*res://Scripts/Globals/battle_event_bus.gd"
 Panku="*res://addons/panku_console/console.tscn"
+EventBus="*res://Scripts/Globals/event_bus.gd"
 
 [display]
 
@@ -36,7 +37,7 @@ project/assembly_name="Flat Game"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_state_charts/plugin.cfg", "res://addons/panku_console/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot_state_charts/plugin.cfg")
 
 [file_customization]
 

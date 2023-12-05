@@ -15,7 +15,7 @@ func _get_service(service_id: Services) -> Service:
 	if service_id in services.keys():
 		return services[service_id]
 	else:
-		print("Warning, service not set")
+		print("Warning, service with id {0} not set".format([service_id]))
 		return null
 
 func register_tile_service(service: Service) -> void:
@@ -36,5 +36,5 @@ func get_navigation_service() -> Service:
 func get_combat_service() -> Service:
 	return _get_service(Services.COMBAT_SERVICE)
 
-func get_tile_service() -> Service:
-	return _get_service(Services.TILE_SERVICE)
+func get_tile_service() -> TileService:
+	return _get_service(Services.TILE_SERVICE) as TileService

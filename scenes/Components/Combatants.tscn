@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dftjp2yfqebx3"]
+
+[ext_resource type="Script" path="res://Scripts/Combatants/combatants.gd" id="1_hql81"]
+[ext_resource type="Script" path="res://Scripts/Combatants/player_combatant_group.gd" id="2_ww6my"]
+[ext_resource type="Script" path="res://Scripts/Combatants/enemy_combatant_group.gd" id="3_8g3md"]
+
+[node name="Combatants" type="Node2D" node_paths=PackedStringArray("player_combatant_group", "enemy_combatant_group")]
+script = ExtResource("1_hql81")
+player_combatant_group = NodePath("PlayerCombatantGroup")
+enemy_combatant_group = NodePath("EnemyCombatantGroup")
+
+[node name="PlayerCombatantGroup" type="Node2D" parent="."]
+y_sort_enabled = true
+script = ExtResource("2_ww6my")
+
+[node name="EnemyCombatantGroup" type="Node2D" parent="."]
+y_sort_enabled = true
+script = ExtResource("3_8g3md")

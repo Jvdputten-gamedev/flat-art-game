@@ -1,7 +1,7 @@
 extends Service
 var _cell_occupant: Dictionary
 var navigation_service: Service
-var _tilemap: HexTileMap
+var _tilemap
 
 func _ready():
 	BattleEventBus.connect("CombatantMoved",_on_combatant_moved)
@@ -9,8 +9,7 @@ func _ready():
 func initialize():
 	print("  3.2 Initialize combat service")
 	navigation_service = ServiceLocator.get_navigation_service()
-	_tilemap = navigation_service.tilemap
-	initialize_cell_data()
+	#initialize_cell_data()
 
 
 func initialize_cell_data():

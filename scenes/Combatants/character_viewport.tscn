@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://mj0lsqwow3mu"]
 
-[ext_resource type="PackedScene" uid="uid://b8krdp381ge50" path="res://scenes/dwarf.tscn" id="1_7nksg"]
+[ext_resource type="PackedScene" uid="uid://b8krdp381ge50" path="res://scenes/Combatants/dwarf.tscn" id="1_7nksg"]
 [ext_resource type="Script" path="res://Scripts/Combatants/character_viewport.gd" id="1_plv0s"]
 
 [node name="CharacterViewport" type="Node2D" node_paths=PackedStringArray("character")]
