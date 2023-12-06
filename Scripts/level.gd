@@ -10,7 +10,7 @@ var navigation_service: NavigationService
 
 
 func _ready():
-	services.register()
+	#services.register()
 	environment.initialize()
 	services.initialize()
 	combatants.initialize()

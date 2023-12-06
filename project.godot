@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="Flat Game"
-run/main_scene="res://scenes/level.tscn"
-config/features=PackedStringArray("4.1", "Forward Plus")
+run/main_scene="res://scenes/Prototypes/proto_level_generation.tscn"
+config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://resources/goblin.svg"
 
 [autoload]

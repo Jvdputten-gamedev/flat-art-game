@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqpdorr88xcpy"]
+
+[ext_resource type="Script" path="res://Scripts/Environment/level_generation.gd" id="1_kwl1g"]
+[ext_resource type="PackedScene" uid="uid://bamfqxvw65iu2" path="res://scenes/Environment/basic_tile.tscn" id="2_4xcbt"]
+
+[node name="LevelGenerator" type="Node2D"]
+script = ExtResource("1_kwl1g")
+basic_tile = ExtResource("2_4xcbt")
+
+[node name="GroundTiles" type="Node2D" parent="."]

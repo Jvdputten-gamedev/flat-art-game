@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/Services/navigation_service.gd" id="2_4mu6n"]
 [ext_resource type="Script" path="res://Scripts/Services/combat_service.gd" id="3_q44uj"]
 [ext_resource type="Script" path="res://Scripts/Services/tile_service.gd" id="4_2i183"]
-[ext_resource type="PackedScene" uid="uid://bamfqxvw65iu2" path="res://scenes/Prototypes/basic_tile.tscn" id="5_181ok"]
+[ext_resource type="PackedScene" uid="uid://bamfqxvw65iu2" path="res://scenes/Environment/basic_tile.tscn" id="5_f3iu6"]
 
 [node name="Services" type="Node" node_paths=PackedStringArray("navigation_service", "combat_service", "tile_service")]
 script = ExtResource("1_ga6gv")
@@ -20,4 +20,4 @@ script = ExtResource("3_q44uj")
 
 [node name="TileService" type="Node2D" parent="."]
 script = ExtResource("4_2i183")
-basic_tile = ExtResource("5_181ok")
+basic_tile = ExtResource("5_f3iu6")
