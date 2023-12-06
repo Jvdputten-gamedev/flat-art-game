@@ -13,3 +13,6 @@ func spawn_base_level():
 	for hex in hexes:
 		var tile = tile_service.spawn_at(hex)
 		tile_container.add_child(tile)
+
+
+#TODO: have the camera and tile container be in the environment node
