@@ -8,6 +8,7 @@ enum Services {TILE_SERVICE = 0, NAVIGATION_SERVICE = 1, COMBAT_SERVICE = 2}
 func _ready():
 	print("1. Service locator ready")
 	var services_scene = SERVICES_SCENE.instantiate()
+	add_child(services_scene)
 	register_tile_service(services_scene.tile_service)
 	register_navigation_service(services_scene.navigation_service)
 	register_combat_service(services_scene.combat_service)

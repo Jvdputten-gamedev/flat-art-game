@@ -3,8 +3,12 @@
 [ext_resource type="Script" path="res://Scripts/Environment/level_generation.gd" id="1_kwl1g"]
 [ext_resource type="PackedScene" uid="uid://bamfqxvw65iu2" path="res://scenes/Environment/basic_tile.tscn" id="2_4xcbt"]
 
-[node name="LevelGenerator" type="Node2D"]
+[node name="LevelGenerator" type="Node2D" node_paths=PackedStringArray("tile_container")]
 script = ExtResource("1_kwl1g")
 basic_tile = ExtResource("2_4xcbt")
+tile_container = NodePath("GroundTiles")
 
 [node name="GroundTiles" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)

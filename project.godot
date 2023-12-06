@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Flat Game"
-run/main_scene="res://scenes/Prototypes/proto_level_generation.tscn"
+run/main_scene="res://scenes/Components/Environment.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://resources/goblin.svg"
 

@@ -6,12 +6,10 @@ extends Node
 
 
 func spawn_base_level():
-	print("Spawning level")
+	print("  2.1 Spawning level")
 	var tile_service = ServiceLocator.get_tile_service()
 	var origin = HexCell.new(Vector2(0,0))
 	var hexes = origin.get_all_within(level_size, true)
 	for hex in hexes:
-		if !tile_service.tiles.has(hex.id):
-			var tile = basic_tile.instantiate().initialize(hex)
-			tile_service.tiles[hex.id] = tile
-			tile_container.add_child(tile)
+		var tile = tile_service.spawn_at(hex)
+		tile_container.add_child(tile)

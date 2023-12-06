@@ -12,8 +12,6 @@ func _ready():
 	tilemap = $HighlightGround
 	tilemap.set_layer_modulate(Layers.HIGHLIGHT, highlight_color)
 	tilemap.set_layer_modulate(Layers.AOE, aoe_color)
-
-func initialize():
 	tile_service = ServiceLocator.get_tile_service()
 	
 func _input(event) -> void:

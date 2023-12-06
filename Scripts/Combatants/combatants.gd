@@ -13,15 +13,14 @@ var selected_combatant: Combatant
 
 func _ready():
 	UiEventBus.connect("AttackButtonPressed", _on_attack_button_pressed)
-
-func initialize():
 	navigation_service = ServiceLocator.get_navigation_service()
 	combat_service = ServiceLocator.get_combat_service()
+	initialize()
 
+func initialize():
 	print("4. Initialize combatants")
 	player_combatant_group.initialize()
 	enemy_combatant_group.initialize()
-	
 
 
 func _on_base_state_unhandled_input(event):

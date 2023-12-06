@@ -46,12 +46,14 @@ func delete_tile_at_mouse_position():
 	var tile = get_tile_at_mouse_position()
 	delete(tile)
 
-func spawn_at(hex: HexCell):
+func spawn_at(hex: HexCell) -> BasicTile:
 
+	var tile
 	if !tiles.has(hex.id):
-		var tile = basic_tile.instantiate().initialize(hex)
-		EventBus.emit_signal("TileSpawn", tile)
+		tile = basic_tile.instantiate().initialize(hex)
 		tiles[hex.id] = tile
+	
+	return tile
 
 func spawn_tile_at_mouse_position():
 	spawn_at(mouse_to_hex())
