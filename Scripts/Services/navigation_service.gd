@@ -18,10 +18,17 @@ func get_local_point_path(from_position: Vector2i, to_position: Vector2i) -> Arr
 
 func _unhandled_input(event):
 	if event.is_action_pressed("LMB"):
-		var to_position = get_local_mouse_position()
-		var from_position = Vector2i(0,0)
-		var path = self.get_local_point_path(from_position, to_position)
-		print(path)
+		queue_redraw()
+		
+
+func _draw():
+	var to_position = get_local_mouse_position()
+	var from_position = Vector2i(0,0)
+	var path = self.get_local_point_path(from_position, to_position)
+	draw_polyline(path, Color.BLUE, 5)
+
+
+
 
 # func show_combatant_movement_range(combatant: Combatant):
 # 	var hexcell = HexCell.new(combatant.cell_coord)

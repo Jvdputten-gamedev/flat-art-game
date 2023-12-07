@@ -8,13 +8,9 @@ func _ready():
 
 func _init() -> void:
 	tile_service = ServiceLocator.get_tile_service()
-	_initialize_astar_grid()
+	update()
 	BattleEventBus.connect("CombatantMoved", _on_combatant_moved)
 	#print("connect to CombatantMoved")
-
-	
-func _initialize_astar_grid() -> void:
-	update()
 
 func _compute_cost(from_id: int, to_id: int):
 	# connected points are always adjacent, the cost is always 1
@@ -22,25 +18,23 @@ func _compute_cost(from_id: int, to_id: int):
 	return 1
 
 func update() -> void:
-	var tiles = tile_service.get_used_tiles()
-	_update_astar_grid_points(tiles)
-	_update_astar_connections(tiles)
+	_update_astar_grid_points()
+	_update_astar_connections()
 
-func _update_astar_grid_points(tiles: Array[BasicTile]) -> void:
+func _update_astar_grid_points() -> void:
 	clear()
 	# Loop through all hexes in the grid and add them as points in the astar grid
-	for tile in tiles:
+	for tile in tile_service.tiles.values():
 		self.add_point(tile.id, tile.to_point())
 	
-func _update_astar_connections(tiles: Array[BasicTile]) -> void:
-	for tile in tiles:
+func _update_astar_connections() -> void:
+	for tile in tile_service.tiles.values():
 		_update_neighbor_connections(tile)
 	
 func _update_neighbor_connections(tile: BasicTile) -> void:
 	var neighbors = tile.get_all_adjacent()
-	var tiles = tile_service.get_used_tiles()
 	for neighbor in neighbors:
-		if tiles.has(neighbor.id):
+		if tile_service.has_id(neighbor.id):
 			self.connect_points(tile.id, neighbor.id, false)
 
 func _occupy_hex(tile: BasicTile):
@@ -51,7 +45,7 @@ func _free_hex(tile: BasicTile):
 
 func get_local_point_path(from_pos: Vector2, to_pos: Vector2) -> PackedVector2Array:
 	var from_hex = tile_service.local_to_hex(from_pos)
-	var to_hex = tile_service.local_to_map(to_pos)
+	var to_hex = tile_service.local_to_hex(to_pos)
 	
 	if self.has_point(from_hex.id) and self.has_point(to_hex.id):
 		return Array(self.get_point_path(from_hex.id, to_hex.id))

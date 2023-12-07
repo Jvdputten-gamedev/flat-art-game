@@ -7,9 +7,8 @@ class_name TileService
 var tiles: Dictionary = {}
 var hex_size: float = 128  # Defined as the distance between center and right corner in pixels
 
-
-func get_used_tiles():
-	return tiles.values()	
+func has_id(tile_id: int) -> bool:
+	return tiles.has(tile_id)
 
 func local_to_hex(point: Vector2) -> HexCell:
 	"""
@@ -52,7 +51,6 @@ func spawn_at(hex: HexCell) -> BasicTile:
 	if !tiles.has(hex.id):
 		tile = basic_tile.instantiate().initialize(hex)
 		tiles[hex.id] = tile
-	
 	return tile
 
 func spawn_tile_at_mouse_position():
