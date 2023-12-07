@@ -6,6 +6,7 @@ extends Node2D
 func _ready() -> void:
 	print("2. Initialize environment.")
 	level_generator.spawn_base_level()
+	ServiceLocator.initialize_services()
 
 
 

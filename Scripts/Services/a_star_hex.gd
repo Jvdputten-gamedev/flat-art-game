@@ -14,18 +14,12 @@ func _init() -> void:
 
 	
 func _initialize_astar_grid() -> void:
-	#update()
-	pass
+	update()
 
 func _compute_cost(from_id: int, to_id: int):
 	# connected points are always adjacent, the cost is always 1
 	# The actual cost is defined in the add_point function
 	return 1
-
-
-func _get_astar_cell_id(cell: Vector2i) -> int:
-	var id = abs(hash(str(cell.x) + str(cell.y)))
-	return id
 
 func update() -> void:
 	var tiles = tile_service.get_used_tiles()
@@ -38,16 +32,16 @@ func _update_astar_grid_points(tiles: Array[BasicTile]) -> void:
 	for tile in tiles:
 		self.add_point(tile.id, tile.to_point())
 	
-
 func _update_astar_connections(tiles: Array[BasicTile]) -> void:
 	for tile in tiles:
 		_update_neighbor_connections(tile)
 	
-
 func _update_neighbor_connections(tile: BasicTile) -> void:
 	var neighbors = tile.get_all_adjacent()
+	var tiles = tile_service.get_used_tiles()
 	for neighbor in neighbors:
-		self.connect_points(tile.id, neighbor.id, false)
+		if tiles.has(neighbor.id):
+			self.connect_points(tile.id, neighbor.id, false)
 
 func _occupy_hex(tile: BasicTile):
 	set_point_disabled(tile.id, true)
