@@ -18,8 +18,9 @@ func _on_spawn_tile(tile: BasicTile):
 
 
 func _unhandled_input(event):
-	if event.is_action_pressed("LMB"):
-		ServiceLocator.tile_service.spawn_tile_at_mouse_position()
+	pass
+	# if event.is_action_pressed("LMB"):
+	# 	ServiceLocator.tile_service.spawn_tile_at_mouse_position()
 
-	if event.is_action_released("RMB"):
-		ServiceLocator.tile_service.delete_tile_at_mouse_position()
+	# if event.is_action_released("RMB"):
+	# 	ServiceLocator.tile_service.delete_tile_at_mouse_position()

@@ -56,6 +56,8 @@ func spawn_at(hex: HexCell) -> BasicTile:
 		ServiceLocator.navigation_service.update_astar()
 	return tile
 
+func get_random_available_tile() -> BasicTile:
+	return tiles.values()[randi() % tiles.size()]
 
 func spawn_tile_at_mouse_position():
 	spawn_at(mouse_to_hex())

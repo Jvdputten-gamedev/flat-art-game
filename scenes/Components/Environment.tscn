@@ -15,7 +15,6 @@ highlight_color = Color(1, 1, 1, 1)
 aoe_color = Color(1, 0.462745, 0.392157, 1)
 
 [node name="LevelGenerator" parent="." instance=ExtResource("3_8yo4l")]
-level_size = 2
 
 [node name="TileContainer" type="Node2D" parent="."]
 

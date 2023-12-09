@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxe5rvcn8u8xt"]
+
+[ext_resource type="Script" path="res://Scripts/Components/move_preview_component.gd" id="1_pvi2l"]
+
+[node name="MovePreviewComponent" type="Node2D"]
+script = ExtResource("1_pvi2l")
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 48.0
+default_color = Color(0.909804, 0.917647, 0.67451, 1)
+joint_mode = 2
+begin_cap_mode = 1
+end_cap_mode = 1
+round_precision = 32
+antialiased = true
