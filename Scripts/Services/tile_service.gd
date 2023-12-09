@@ -40,7 +40,7 @@ func delete(tile: BasicTile):
 	if tile:
 		tile.queue_free()
 		tiles.erase(tile.id)
-		ServiceLocator.get_navigation_service().update_astar()
+		ServiceLocator.navigation_service.update_astar()
 
 func delete_tile_at_mouse_position():
 	var tile = get_tile_at_mouse_position()
@@ -49,15 +49,13 @@ func delete_tile_at_mouse_position():
 func spawn_at(hex: HexCell) -> BasicTile:
 	var tile
 	if !tiles.has(hex.id):
-		print(hex.oddq_coords)
 		tile = basic_tile.instantiate().initialize(hex)
 		tiles[hex.id] = tile
 
 		EventBus.SpawnTile.emit(tile)
-		ServiceLocator.get_navigation_service().update_astar()
+		ServiceLocator.navigation_service.update_astar()
 	return tile
 
-	
 
 func spawn_tile_at_mouse_position():
 	spawn_at(mouse_to_hex())
