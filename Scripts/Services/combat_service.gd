@@ -1,4 +1,6 @@
 extends Service
+class_name CombatService
+
 var _cell_occupant: Dictionary
 var navigation_service: Service
 var _tilemap
