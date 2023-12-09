@@ -3,31 +3,25 @@ class_name NavigationService
 
 var tilemap: HexTileMap
 var _astar: AStar2DHex
+@export var _astar_visualiser: AStar2DVisualizer
 
-	
 func initialize() -> void:
-	print("  3.1 Initialize navigation service, setup pathfinding")
+	print("  3.1 Initialize navigation service, setup pathfinding.")
 	_astar = AStar2DHex.new()
 
 func update_astar() -> void: 
-	_astar.update()
+	if _astar:
+		_astar.update()
 
 func get_local_point_path(from_position: Vector2i, to_position: Vector2i) -> Array:
 	return _astar.get_local_point_path(from_position, to_position)
 
 
-func _unhandled_input(event):
-	if event.is_action_pressed("LMB"):
-		queue_redraw()
-		
+func visualize_astar_grid():
+	_astar_visualiser.visualize(_astar)
 
-func _draw():
-	var to_position = get_local_mouse_position()
-	var from_position = Vector2i(0,0)
-	var path = self.get_local_point_path(from_position, to_position)
-	draw_polyline(path, Color.BLUE, 5)
-
-
+func clear_astar_grid():
+	_astar_visualiser.clear()
 
 
 # func show_combatant_movement_range(combatant: Combatant):

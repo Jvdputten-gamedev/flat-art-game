@@ -1,6 +1,6 @@
 extends Node
 
-signal TileSpawn(tile: BasicTile)
+signal SpawnTile(tile: BasicTile)
 
 
 

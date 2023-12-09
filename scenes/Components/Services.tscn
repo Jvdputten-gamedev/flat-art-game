@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://blacj8m7y3qhq"]
+[gd_scene load_steps=7 format=3 uid="uid://blacj8m7y3qhq"]
 
 [ext_resource type="Script" path="res://Scripts/Services/services.gd" id="1_ga6gv"]
 [ext_resource type="Script" path="res://Scripts/Services/navigation_service.gd" id="2_4mu6n"]
+[ext_resource type="PackedScene" uid="uid://bgf3xu3bhappn" path="res://scenes/Components/astar_visualisation_component.tscn" id="3_fb2tm"]
 [ext_resource type="Script" path="res://Scripts/Services/combat_service.gd" id="3_q44uj"]
 [ext_resource type="Script" path="res://Scripts/Services/tile_service.gd" id="4_2i183"]
 [ext_resource type="PackedScene" uid="uid://bamfqxvw65iu2" path="res://scenes/Environment/basic_tile.tscn" id="5_f3iu6"]
@@ -12,8 +13,11 @@ navigation_service = NodePath("NavigationService")
 combat_service = NodePath("CombatService")
 tile_service = NodePath("TileService")
 
-[node name="NavigationService" type="Node2D" parent="."]
+[node name="NavigationService" type="Node2D" parent="." node_paths=PackedStringArray("_astar_visualiser")]
 script = ExtResource("2_4mu6n")
+_astar_visualiser = NodePath("AstarVisualiserComponent")
+
+[node name="AstarVisualiserComponent" parent="NavigationService" instance=ExtResource("3_fb2tm")]
 
 [node name="CombatService" type="Node2D" parent="."]
 script = ExtResource("3_q44uj")
