@@ -1,7 +1,6 @@
 extends Service
 class_name NavigationService
 
-var tilemap: HexTileMap
 var _astar: AStar2DHex
 @export var _astar_visualiser: AStar2DVisualizer
 
@@ -16,6 +15,11 @@ func update_astar() -> void:
 func get_local_point_path(from_position: Vector2i, to_position: Vector2i) -> Array:
 	return _astar.get_local_point_path(from_position, to_position)
 
+func compute_move_cost(from_hex: HexCell, to_hex: HexCell) -> int:
+	return _astar.compute_move_cost(from_hex, to_hex)
+
+func get_astar() -> AStar2DHex:
+	return _astar
 
 func visualize_astar_grid():
 	_astar_visualiser.visualize(_astar)

@@ -36,6 +36,15 @@ func get_tile_at_mouse_position() -> BasicTile:
 	else:
 		return null
 
+func get_tile(tile_id: int) -> BasicTile:
+	if tiles.has(tile_id):
+		return tiles[tile_id]
+	else:
+		return null
+
+func intersect_with_available(hexes: Array[HexCell]) -> Array[HexCell]:
+	return hexes.filter(func(hex): return tiles.has(hex.id))
+
 func delete(tile: BasicTile):
 	if tile:
 		tile.queue_free()

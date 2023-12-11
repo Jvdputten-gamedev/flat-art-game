@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://cbrm52ymlqmct"]
+[gd_scene load_steps=12 format=3 uid="uid://cbrm52ymlqmct"]
 
 [ext_resource type="Texture2D" uid="uid://d0cjukuvca3ot" path="res://resources/art_source/Goober/images/Back.svg" id="1_510jg"]
 [ext_resource type="PackedScene" uid="uid://bxe5rvcn8u8xt" path="res://scenes/Components/move_preview_component.tscn" id="1_j01ux"]
+[ext_resource type="Script" path="res://Scripts/Combatants/units/goober.gd" id="1_nf4gy"]
 [ext_resource type="Texture2D" uid="uid://7gxitso5lv5g" path="res://resources/art_source/dwarf/shaddow.svg" id="1_pirpb"]
 [ext_resource type="Texture2D" uid="uid://coykllwjjuilb" path="res://resources/art_source/Goober/images/Top.svg" id="2_ngl05"]
 [ext_resource type="Texture2D" uid="uid://cf3roeknrro37" path="res://resources/art_source/Goober/images/Bottom.svg" id="3_vtgir"]
@@ -109,19 +110,19 @@ _data = {
 }
 
 [node name="Goober" type="Node2D"]
+script = ExtResource("1_nf4gy")
 
 [node name="MovePreviewComponent" parent="." node_paths=PackedStringArray("mover_visuals") instance=ExtResource("1_j01ux")]
-mover_visuals = NodePath("../Rig")
+mover_visuals = NodePath("../Rig/Sprites")
 
 [node name="Rig" type="Node2D" parent="."]
 scale = Vector2(0.5, 0.5)
 
-[node name="Sprites" type="Node2D" parent="Rig"]
-texture_filter = 1
+[node name="Sprites" type="CanvasGroup" parent="Rig"]
 
 [node name="Shadow" type="Sprite2D" parent="Rig/Sprites"]
-position = Vector2(0, -12)
-scale = Vector2(1.5, 1.5)
+modulate = Color(0.329412, 0.294118, 0.364706, 1)
+scale = Vector2(1.2, 1.2)
 texture = ExtResource("1_pirpb")
 
 [node name="Back" type="Sprite2D" parent="Rig/Sprites"]

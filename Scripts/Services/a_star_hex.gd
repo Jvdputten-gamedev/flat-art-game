@@ -37,10 +37,10 @@ func _update_neighbor_connections(tile: BasicTile) -> void:
 		if tile_service.has_id(neighbor.id):
 			self.connect_points(tile.id, neighbor.id, false)
 
-func _occupy_hex(tile: BasicTile):
+func occupy(tile: BasicTile):
 	set_point_disabled(tile.id, true)
 
-func _free_hex(tile: BasicTile):
+func vacate(tile: BasicTile):
 	set_point_disabled(tile.id, false)
 
 func get_local_point_path(from_pos: Vector2, to_pos: Vector2) -> PackedVector2Array:
@@ -55,8 +55,8 @@ func compute_move_cost(from_hex: HexCell, to_hex: HexCell) -> int:
 	return self.get_point_path(from_hex.id, to_hex.id).size() - 1
 
 ### Signal responses ###
-func _on_combatant_moved(_combatant, from_hex, to_hex):
+func _on_combatant_moved(from_hex, to_hex):
 	print("Movement cost: ", self.get_point_path(from_hex.id, to_hex.id).size() - 1)
 
-	_free_hex(from_hex)
-	_occupy_hex(to_hex)
+	vacate(from_hex)
+	occupy(to_hex)

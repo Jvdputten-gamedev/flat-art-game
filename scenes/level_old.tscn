@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cnlyfljmb4dbr"]
+[gd_scene load_steps=25 format=3 uid="uid://cnlyfljmb4dbr"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_4abod"]
 [ext_resource type="Script" path="res://Scripts/Managers/game_state_manager.gd" id="2_krj6k"]
@@ -19,7 +19,6 @@
 [ext_resource type="Script" path="res://Scripts/Combatants/enemy_combatant_group.gd" id="17_8857u"]
 [ext_resource type="PackedScene" uid="uid://cbrm52ymlqmct" path="res://scenes/Combatants/goober.tscn" id="18_3067y"]
 [ext_resource type="Script" path="res://Scripts/Combatants/units/goober.gd" id="19_7ydr2"]
-[ext_resource type="Script" path="res://Scripts/camera_controller.gd" id="20_0bqh8"]
 [ext_resource type="PackedScene" uid="uid://cnvtjbehch6co" path="res://scenes/Gui/gui.tscn" id="21_nf80v"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="22_jcxpl"]
 
@@ -39,9 +38,8 @@ shader_parameter/water_tint = Color(0.0509804, 0.0941176, 0.298039, 0.607843)
 shader_parameter/speed = 0.03
 shader_parameter/refraction_map = SubResource("NoiseTexture2D_u1agx")
 
-[node name="Level" type="Node2D" node_paths=PackedStringArray("services", "environment", "combatants")]
+[node name="Level" type="Node2D" node_paths=PackedStringArray("environment", "combatants")]
 script = ExtResource("1_4abod")
-services = NodePath("Services")
 environment = NodePath("Environment")
 combatants = NodePath("Combatants")
 
@@ -164,11 +162,9 @@ script = ExtResource("17_8857u")
 position = Vector2(1091, 266)
 script = ExtResource("19_7ydr2")
 
-[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("current_player")]
+[node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(743, 439)
 zoom = Vector2(0.5, 0.5)
-script = ExtResource("20_0bqh8")
-current_player = NodePath("../Combatants/PlayerCombatantGroup/CharacterViewport")
 
 [node name="UI" parent="." instance=ExtResource("21_nf80v")]
 
