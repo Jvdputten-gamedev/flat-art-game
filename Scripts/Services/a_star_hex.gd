@@ -9,8 +9,6 @@ func _ready():
 func _init() -> void:
 	tile_service = ServiceLocator.get_tile_service()
 	update()
-	BattleEventBus.connect("CombatantMoved", _on_combatant_moved)
-	#print("connect to CombatantMoved")
 
 func _compute_cost(from_id: int, to_id: int):
 	# connected points are always adjacent, the cost is always 1
@@ -37,11 +35,11 @@ func _update_neighbor_connections(tile: BasicTile) -> void:
 		if tile_service.has_id(neighbor.id):
 			self.connect_points(tile.id, neighbor.id, false)
 
-func occupy(tile: BasicTile):
-	set_point_disabled(tile.id, true)
+func occupy(hex: HexCell):
+	set_point_disabled(hex.id, true)
 
-func vacate(tile: BasicTile):
-	set_point_disabled(tile.id, false)
+func vacate(hex: HexCell):
+	set_point_disabled(hex.id, false)
 
 func get_local_point_path(from_pos: Vector2, to_pos: Vector2) -> PackedVector2Array:
 	var from_hex = tile_service.local_to_hex(from_pos)
@@ -54,9 +52,4 @@ func get_local_point_path(from_pos: Vector2, to_pos: Vector2) -> PackedVector2Ar
 func compute_move_cost(from_hex: HexCell, to_hex: HexCell) -> int:
 	return self.get_point_path(from_hex.id, to_hex.id).size() - 1
 
-### Signal responses ###
-func _on_combatant_moved(from_hex, to_hex):
-	print("Movement cost: ", self.get_point_path(from_hex.id, to_hex.id).size() - 1)
 
-	vacate(from_hex)
-	occupy(to_hex)

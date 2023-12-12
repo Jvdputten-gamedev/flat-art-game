@@ -30,16 +30,16 @@ initial_state = NodePath("Idle")
 [node name="Idle" type="Node" parent="StateChart/TurnOrders/PlayerTurn"]
 script = ExtResource("3_qr4ll")
 
-[node name="CombatantClicked" type="Node" parent="StateChart/TurnOrders/PlayerTurn"]
+[node name="CombatantSelected" type="Node" parent="StateChart/TurnOrders/PlayerTurn"]
 script = ExtResource("3_qr4ll")
 
 [node name="Attack" type="Node" parent="StateChart/TurnOrders/PlayerTurn"]
 script = ExtResource("3_qr4ll")
 
-[node name="OnCombatantClicked" type="Node" parent="StateChart/TurnOrders/PlayerTurn"]
+[node name="OnCombatantSelected" type="Node" parent="StateChart/TurnOrders/PlayerTurn"]
 script = ExtResource("4_qripp")
-to = NodePath("../CombatantClicked")
-event = &"combatant_clicked"
+to = NodePath("../CombatantSelected")
+event = &"combatant_selected"
 
 [node name="OnActionCanceled" type="Node" parent="StateChart/TurnOrders/PlayerTurn"]
 script = ExtResource("4_qripp")
@@ -56,4 +56,4 @@ script = ExtResource("3_qr4ll")
 
 [connection signal="state_unhandled_input" from="StateChart/TurnOrders/PlayerTurn" to="." method="_on_player_turn_state_unhandled_input"]
 [connection signal="state_unhandled_input" from="StateChart/TurnOrders/PlayerTurn/Idle" to="." method="_on_idle_state_unhandled_input"]
-[connection signal="state_unhandled_input" from="StateChart/TurnOrders/PlayerTurn/CombatantClicked" to="." method="_on_combatant_clicked_state_unhandled_input"]
+[connection signal="state_unhandled_input" from="StateChart/TurnOrders/PlayerTurn/CombatantSelected" to="." method="_on_combatant_clicked_state_unhandled_input"]

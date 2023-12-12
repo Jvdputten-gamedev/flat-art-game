@@ -12,6 +12,8 @@ func _ready():
 	tilemap = $HighlightGround
 	tilemap.set_layer_modulate(Layers.HIGHLIGHT, highlight_color)
 	tilemap.set_layer_modulate(Layers.AOE, aoe_color)
+	BattleEventBus.TileWithCombatantClicked.connect(_on_tile_with_combatant_clicked)
+	BattleEventBus.ActionCanceled.connect(clear_aoe)
 
 func paint_highlight(hex) -> void:
 	var tile_service = ServiceLocator.tile_service
@@ -87,6 +89,12 @@ func show_combatant_movement_range(from: HexCell, movement_range: int):
 	paint_aoe(out)
 
 
+
+### Signal responses ###
+func _on_tile_with_combatant_clicked(tile: BasicTile):
+	clear_highlights()
+	var combatant = tile.get_combatant()
+	show_combatant_movement_range(tile, combatant.movement_range)
 
 
 

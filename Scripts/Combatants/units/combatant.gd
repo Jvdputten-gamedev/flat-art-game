@@ -11,17 +11,23 @@ enum Allegiance {FRIENDLY, NEUTRAL, ENEMY}
 func _to_string():
     return "{name} ({allegiance})".format({"name": unit_name, "allegiance": Allegiance.keys()[allegiance]})
 
+func get_current_hex():
+    return ServiceLocator.tile_service.local_to_hex(position)
 
-func move(to_hex: HexCell):
-    var current_hex = ServiceLocator.tile_service.local_to_hex(position)
-    position = to_hex.to_point()
-    BattleEventBus.CombatantMoved.emit(current_hex, to_hex)
+func get_current_tile():
+    return ServiceLocator.tile_service.local_to_tile(position)
+
+func move(to_tile: BasicTile):
+    var current_tile = get_current_tile()
+    current_tile.vacate()
+    to_tile.occupy(self)
+    position = to_tile.to_point()
 
 func enable_movement_preview():
-    movement_preview.enable()
+    movement_preview.show()
 
 func disable_movement_preview():
-    movement_preview.disable()
+    movement_preview.hide()
 
 
 

@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="2_axe7i"]
 
 [node name="Level" instance=ExtResource("1_s12cp")]
+scale = Vector2(0.99728, 0.971942)
 
 [node name="StateChartDebugger" parent="." index="4" instance=ExtResource("2_axe7i")]
 offset_left = 644.0

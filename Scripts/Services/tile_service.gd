@@ -9,7 +9,7 @@ var tiles: Dictionary = {}
 var hex_size: float = 128  # Defined as the distance between center and right corner in pixels.
 
 func _ready():
-	BattleEventBus.TileWithCombatantClicked.connect(_on_tile_with_combatant_clicked)
+	pass
 
 func highlight() -> void:
 	highlight_component.paint_highlight(mouse_to_hex())
@@ -29,10 +29,19 @@ func local_to_hex(point: Vector2) -> HexCell:
 	[ 2/3, 0  
 	-1/3, 1]
 	"""
+
 	var q = (2./3 * point.x) / hex_size
 	var r = (-1./3 * point.x + point.y) / hex_size
+
 	var hex = HexCell.new(Vector2(q, r))
 	return hex
+
+func local_to_tile(point: Vector2) -> BasicTile:
+	var hex = local_to_hex(point)
+	if tiles.has(hex.id):
+		return tiles[hex.id]
+	else:
+		return null
 
 func mouse_to_hex() -> HexCell:
 	var hex = local_to_hex(get_local_mouse_position())
@@ -85,11 +94,6 @@ func get_random_available_tile() -> BasicTile:
 func spawn_tile_at_mouse_position():
 	spawn_at(mouse_to_hex())
 
-### Signal responses ###
-func _on_tile_with_combatant_clicked(tile: BasicTile):
-	highlight_component.clear_highlights()
-	var combatant = tile.get_combatant()
-	highlight_component.show_combatant_movement_range(tile, combatant.movement_range)
 
 
 

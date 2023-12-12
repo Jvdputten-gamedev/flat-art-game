@@ -2,8 +2,12 @@ extends HexCell
 class_name BasicTile
 
 @export var sprite: Sprite2D
+@export var move_preview_collision_area: Area2D
 
 var _combatant: Combatant  = null
+
+func _ready():
+	move_preview_collision_area.mouse_entered.connect(_on_mouse_entered)
 	
 func initialize(hex: HexCell):
 	position = hex.to_point()
@@ -26,4 +30,7 @@ func has_combatant() -> bool:
 
 func get_combatant() -> Combatant:
 	return self._combatant
+
+func _on_mouse_entered() -> void:
+	EventBus.MovePreviewCollisionEntered.emit(self)
 

@@ -20,5 +20,5 @@ func _unhandled_input(event):
 		print(tile.get_combatant())
 		
 
-	if event.is_action_released("RMB"):
-		ServiceLocator.tile_service.delete_tile_at_mouse_position()
+	# if event.is_action_released("RMB"):
+	# 	ServiceLocator.tile_service.delete_tile_at_mouse_position()
