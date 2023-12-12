@@ -1,18 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://sg1sjsce1v4m"]
+[gd_scene load_steps=3 format=3 uid="uid://sg1sjsce1v4m"]
 
 [ext_resource type="Script" path="res://Scripts/Environment/environment.gd" id="1_g6eek"]
-[ext_resource type="PackedScene" uid="uid://c65s74ie2kw7m" path="res://scenes/Components/highlight_component.tscn" id="2_h08h6"]
 [ext_resource type="PackedScene" uid="uid://cqpdorr88xcpy" path="res://scenes/Environment/level_generator.tscn" id="3_8yo4l"]
 
-[node name="Environment" type="Node2D" node_paths=PackedStringArray("highlight", "level_generator", "tile_container")]
+[node name="Environment" type="Node2D" node_paths=PackedStringArray("level_generator", "tile_container")]
 script = ExtResource("1_g6eek")
-highlight = NodePath("HighlightComponent")
 level_generator = NodePath("LevelGenerator")
 tile_container = NodePath("TileContainer")
-
-[node name="HighlightComponent" parent="." instance=ExtResource("2_h08h6")]
-highlight_color = Color(1, 1, 1, 1)
-aoe_color = Color(1, 0.462745, 0.392157, 1)
 
 [node name="LevelGenerator" parent="." instance=ExtResource("3_8yo4l")]
 

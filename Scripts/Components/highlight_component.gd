@@ -1,10 +1,10 @@
 extends Node2D
+class_name HighlightComponent
 
 @export var highlight_color: Color
 @export var aoe_color: Color
 
 var tilemap: TileMap
-var tile_service: TileService
 
 enum Layers {AOE = 0, HIGHLIGHT = 1}
 
@@ -12,23 +12,24 @@ func _ready():
 	tilemap = $HighlightGround
 	tilemap.set_layer_modulate(Layers.HIGHLIGHT, highlight_color)
 	tilemap.set_layer_modulate(Layers.AOE, aoe_color)
-	tile_service = ServiceLocator.get_tile_service() 
 
-	BattleEventBus.TileWithCombatantClicked.connect(_on_tile_with_combatant_clicked)
-	
-func _input(event) -> void:
-	if event is InputEventMouseMotion:
-		_clear_highlights()
-		
-		var hex = tile_service.mouse_to_hex()
-		if tile_service.tiles.has(hex.id):
-			tilemap.set_cells_terrain_connect(Layers.HIGHLIGHT, [hex.oddq_coords], 0, 0)
+func paint_highlight(hex) -> void:
+	var tile_service = ServiceLocator.tile_service
+	clear_highlights()
+	if tile_service.tiles.has(hex.id):
+		tilemap.set_cells_terrain_connect(Layers.HIGHLIGHT, [hex.oddq_coords], 0, 0)
 
 func paint_aoe(hexes) -> void:
-	_clear_aoe()
-	hexes = tile_service.intersect_with_available(hexes)
+	clear_aoe()
+	hexes = ServiceLocator.tile_service.intersect_with_available(hexes)
 	var oddq_list = hexes.map(func(x): return x.oddq_coords)
 	tilemap.set_cells_terrain_connect(Layers.AOE, oddq_list, 0, 0)
+
+func get_aoe_hexes() -> Array[HexCell]:
+	var out: Array[HexCell] = []
+	for cell in tilemap.get_used_cells_by_id(Layers.AOE):
+		out.append(HexCell.new(cell))
+	return out
 
 
 func highlight_player_spawn() -> void:
@@ -68,15 +69,15 @@ func highlight_enemy_spawn() -> void:
 		hexes.append(HexCell.new(Vector2(4, q)))
 	paint_aoe(hexes)
 
-func _clear_highlights():
+func clear_highlights():
 	tilemap.clear_layer(Layers.HIGHLIGHT)
 
-func _clear_aoe():
+func clear_aoe():
 	tilemap.clear_layer(Layers.AOE)
 
 func show_combatant_movement_range(from: HexCell, movement_range: int):
 	var hexes = from.get_all_within(movement_range)
-	hexes = tile_service.intersect_with_available(hexes)
+	hexes = ServiceLocator.tile_service.intersect_with_available(hexes)
 	
 	var out: Array[HexCell] = []
 	for to in hexes:
@@ -87,11 +88,7 @@ func show_combatant_movement_range(from: HexCell, movement_range: int):
 
 
 
-### Signal responses ###
 
-func _on_tile_with_combatant_clicked(tile: BasicTile):
-	_clear_highlights()
-	show_combatant_movement_range(tile, tile.get_combatant().movement_range)
 
 
 

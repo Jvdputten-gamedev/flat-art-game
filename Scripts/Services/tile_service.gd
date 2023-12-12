@@ -3,12 +3,26 @@ class_name TileService
 
 
 @export var basic_tile: PackedScene
+@export var highlight_component: HighlightComponent
 
 var tiles: Dictionary = {}
-var hex_size: float = 128  # Defined as the distance between center and right corner in pixels
+var hex_size: float = 128  # Defined as the distance between center and right corner in pixels.
+
+func _ready():
+	BattleEventBus.TileWithCombatantClicked.connect(_on_tile_with_combatant_clicked)
+
+func highlight() -> void:
+	highlight_component.paint_highlight(mouse_to_hex())
 
 func has_id(tile_id: int) -> bool:
 	return tiles.has(tile_id)
+
+func tile_in_aoe(tile: BasicTile) -> bool:
+	var aoe = highlight_component.get_aoe_hexes()
+	for hex in aoe:
+		if hex.id == tile.id:
+			return true
+	return false
 
 func local_to_hex(point: Vector2) -> HexCell:
 	"""
@@ -70,6 +84,12 @@ func get_random_available_tile() -> BasicTile:
 
 func spawn_tile_at_mouse_position():
 	spawn_at(mouse_to_hex())
+
+### Signal responses ###
+func _on_tile_with_combatant_clicked(tile: BasicTile):
+	highlight_component.clear_highlights()
+	var combatant = tile.get_combatant()
+	highlight_component.show_combatant_movement_range(tile, combatant.movement_range)
 
 
 

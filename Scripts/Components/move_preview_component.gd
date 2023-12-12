@@ -9,7 +9,6 @@ var mover_shade: CanvasGroup
 var preview_active: bool = false
 
 func _ready():
-	EventBus.Action1Pressed.connect(_on_action_1_pressed)
 	mover_shade = mover_visuals.duplicate()
 	mover_shade.scale = Vector2(0.5, 0.5)
 	mover_shade.material = ghost_shader
@@ -32,7 +31,12 @@ func _input(event):
 func toggle():
 	preview_active = !preview_active
 
+func enable():
+	show()
+	preview_active = true
+
+func disable():
+	hide()
+	preview_active = false
 
 
-func _on_action_1_pressed():
-	toggle()

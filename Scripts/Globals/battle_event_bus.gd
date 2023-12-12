@@ -10,4 +10,6 @@ signal EnemyTurnEnd
 signal ActionCanceled
 signal CombatantMoved(combatant: Combatant, from_hex: HexCell, to_cell: HexCell)
 signal TileWithCombatantClicked(tile: BasicTile)
-signal PlayerCombatantClicked
+signal AoeActive(hexes: Array[HexCell])
+
+signal TileWithPlayerCombatantClicked

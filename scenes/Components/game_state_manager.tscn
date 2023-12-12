@@ -54,4 +54,6 @@ event = &"end_turn_pressed"
 [node name="EnemyAttack" type="Node" parent="StateChart/TurnOrders"]
 script = ExtResource("3_qr4ll")
 
+[connection signal="state_unhandled_input" from="StateChart/TurnOrders/PlayerTurn" to="." method="_on_player_turn_state_unhandled_input"]
 [connection signal="state_unhandled_input" from="StateChart/TurnOrders/PlayerTurn/Idle" to="." method="_on_idle_state_unhandled_input"]
+[connection signal="state_unhandled_input" from="StateChart/TurnOrders/PlayerTurn/CombatantClicked" to="." method="_on_combatant_clicked_state_unhandled_input"]

@@ -1,6 +1,5 @@
 extends Node2D
 
-@export var highlight: Node2D
 @export var level_generator: Node2D
 @export var tile_container: Node2D
 

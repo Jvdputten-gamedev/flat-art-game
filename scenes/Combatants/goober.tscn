@@ -109,8 +109,11 @@ _data = {
 "Walk": SubResource("Animation_yfns4")
 }
 
-[node name="Goober" type="Node2D"]
+[node name="Goober" type="Node2D" node_paths=PackedStringArray("movement_preview")]
 script = ExtResource("1_nf4gy")
+unit_name = "Goober"
+movement_range = 4
+movement_preview = NodePath("MovePreviewComponent")
 
 [node name="MovePreviewComponent" parent="." node_paths=PackedStringArray("mover_visuals") instance=ExtResource("1_j01ux")]
 mover_visuals = NodePath("../Rig/Sprites")
