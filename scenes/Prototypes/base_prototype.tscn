@@ -1,25 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://0xh1jsv6wi7v"]
+[gd_scene load_steps=3 format=3 uid="uid://65i81g62h52u"]
 
-[ext_resource type="Script" path="res://Scripts/level.gd" id="1_qnowb"]
-[ext_resource type="PackedScene" uid="uid://blacj8m7y3qhq" path="res://scenes/Components/Services.tscn" id="2_6j2hm"]
-[ext_resource type="PackedScene" uid="uid://sg1sjsce1v4m" path="res://scenes/Components/Environment.tscn" id="3_2a0w3"]
-[ext_resource type="PackedScene" uid="uid://dftjp2yfqebx3" path="res://scenes/Components/Combatants.tscn" id="4_jvqu4"]
+[ext_resource type="PackedScene" uid="uid://0xh1jsv6wi7v" path="res://scenes/Environment/level_base.tscn" id="1_qp6t1"]
 [ext_resource type="PackedScene" uid="uid://c02lepjl6xu0s" path="res://scenes/Prototypes/PrototypeUI.tscn" id="5_be04x"]
 
-[node name="Level" type="Node2D" node_paths=PackedStringArray("services", "environment", "combatants")]
-script = ExtResource("1_qnowb")
-services = NodePath("Services")
-environment = NodePath("Environment")
-combatants = NodePath("Combatants")
+[node name="Level" instance=ExtResource("1_qp6t1")]
 
-[node name="Services" parent="." instance=ExtResource("2_6j2hm")]
-
-[node name="Environment" parent="." instance=ExtResource("3_2a0w3")]
-
-[node name="Combatants" parent="." instance=ExtResource("4_jvqu4")]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.5, 0.5)
-
-[node name="PrototypeUI" parent="." instance=ExtResource("5_be04x")]
-title = "Base prototype"
+[node name="PrototypeUI" parent="." index="4" instance=ExtResource("5_be04x")]

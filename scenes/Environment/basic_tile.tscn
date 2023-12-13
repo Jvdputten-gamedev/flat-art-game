@@ -3,12 +3,18 @@
 [ext_resource type="Texture2D" uid="uid://bt7obebgypnyg" path="res://resources/tiles/basic_high_tile.svg" id="1_t86s4"]
 [ext_resource type="Script" path="res://Scripts/Prototypes/basic_tile.gd" id="1_uymqs"]
 
-[node name="BasicTile" type="Node2D" node_paths=PackedStringArray("sprite")]
+[node name="BasicTile" type="Node2D" node_paths=PackedStringArray("sprite", "move_preview_collision_area")]
 y_sort_enabled = true
 script = ExtResource("1_uymqs")
 sprite = NodePath("BasicHighTile")
+move_preview_collision_area = NodePath("MovePreviewCollisionArea")
 
 [node name="BasicHighTile" type="Sprite2D" parent="."]
 modulate = Color(0.796078, 0.796078, 0.796078, 1)
 texture = ExtResource("1_t86s4")
 offset = Vector2(0, 64)
+
+[node name="MovePreviewCollisionArea" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MovePreviewCollisionArea"]
+polygon = PackedVector2Array(-56, -57, 60, -56, 112, 0, 60, 57, -59, 56, -114, -1)

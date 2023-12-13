@@ -1,6 +1,7 @@
 extends Node
 
-signal TileSpawn(tile: BasicTile)
+signal SpawnTile(tile: BasicTile)
+signal MovePreviewCollisionEntered(tile: BasicTile)
 
 
 

@@ -2,32 +2,35 @@ extends HexCell
 class_name BasicTile
 
 @export var sprite: Sprite2D
+@export var move_preview_collision_area: Area2D
 
-var occupant: Node2D  
+var _combatant: Combatant  = null
 
-"""
-cellsize is 256 x 128
-the center of cell at 0,0 is at 128, 64
-going down a cell equals transposing by 128
-with (0,0) as reference, the (0, j*128) + (128, 64)
-
-moving right offsets every odd row with 64 on the y-axis, the x-axis increases by 192 px each step (3/4 of the width)
-
-with (0,0) as reference:
-(i*192, 64*i%2) + (128, 64)
-
-
-combined this becomes
-(i*192, j*128 + 64*i%2) + 128, 64
-
-"""
-
+func _ready():
+	move_preview_collision_area.mouse_entered.connect(_on_mouse_entered)
+	
 func initialize(hex: HexCell):
 	position = hex.to_point()
 	cube_coords = hex.cube_coords
 
 	var cell = hex.oddq_coords
 	z_index = -100 + 2*cell.y + abs(cell.x%2)
-
 	return self
+
+func occupy(combatant: Combatant) -> void:
+	ServiceLocator.navigation_service.get_astar().occupy(self)
+	self._combatant = combatant
+
+func vacate() -> void:
+	ServiceLocator.navigation_service.get_astar().vacate(self)
+	self._combatant = null
+
+func has_combatant() -> bool:
+	return self._combatant != null
+
+func get_combatant() -> Combatant:
+	return self._combatant
+
+func _on_mouse_entered() -> void:
+	EventBus.MovePreviewCollisionEntered.emit(self)
 

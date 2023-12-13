@@ -8,6 +8,7 @@ signal EnemyTurnEnd
 
 
 signal ActionCanceled
-signal CombatantMoved(combatant: Combatant, from_cell: Vector2i, to_cell: Vector2i)
-signal CombatantClicked
-signal PlayerCombatantClicked
+signal TileWithCombatantClicked(tile: BasicTile)
+signal AoeActive(hexes: Array[HexCell])
+
+signal TileWithPlayerCombatantClicked

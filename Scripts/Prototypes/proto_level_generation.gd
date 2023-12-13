@@ -9,6 +9,7 @@ func _ready():
 	super()
 	print("Level ready..")
 	spawn_base_level()
+	
 	EventBus.connect("Action1Pressed", _on_action_1_pressed)
 	ui.button1.text = "Player spawn"
 	EventBus.connect("Action2Pressed", _on_action_2_pressed)

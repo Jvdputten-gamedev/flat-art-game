@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://cx3sdp485ynkm"]
+
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="1_84bi4"]
+[ext_resource type="Script" path="res://Scripts/Managers/game_state_manager.gd" id="1_jtjby"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="2_5cwcm"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="3_qr4ll"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="4_qripp"]
+
+[node name="game_state_manager" type="Node" node_paths=PackedStringArray("_state_chart")]
+script = ExtResource("1_jtjby")
+_state_chart = NodePath("StateChart")
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("1_84bi4")
+
+[node name="TurnOrders" type="Node" parent="StateChart"]
+script = ExtResource("2_5cwcm")
+initial_state = NodePath("PlayerTurn")
+
+[node name="EnvironmentEffects" type="Node" parent="StateChart/TurnOrders"]
+script = ExtResource("3_qr4ll")
+
+[node name="EnemyMovement" type="Node" parent="StateChart/TurnOrders"]
+script = ExtResource("3_qr4ll")
+
+[node name="PlayerTurn" type="Node" parent="StateChart/TurnOrders"]
+script = ExtResource("2_5cwcm")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateChart/TurnOrders/PlayerTurn"]
+script = ExtResource("3_qr4ll")
+
+[node name="CombatantSelected" type="Node" parent="StateChart/TurnOrders/PlayerTurn"]
+script = ExtResource("3_qr4ll")
+
+[node name="Attack" type="Node" parent="StateChart/TurnOrders/PlayerTurn"]
+script = ExtResource("3_qr4ll")
+
+[node name="OnCombatantSelected" type="Node" parent="StateChart/TurnOrders/PlayerTurn"]
+script = ExtResource("4_qripp")
+to = NodePath("../CombatantSelected")
+event = &"combatant_selected"
+
+[node name="OnActionCanceled" type="Node" parent="StateChart/TurnOrders/PlayerTurn"]
+script = ExtResource("4_qripp")
+to = NodePath("../Idle")
+event = &"action_canceled"
+
+[node name="OnEndTurnPressed" type="Node" parent="StateChart/TurnOrders/PlayerTurn"]
+script = ExtResource("4_qripp")
+to = NodePath("../../EnemyAttack")
+event = &"end_turn_pressed"
+
+[node name="EnemyAttack" type="Node" parent="StateChart/TurnOrders"]
+script = ExtResource("3_qr4ll")
+
+[connection signal="state_unhandled_input" from="StateChart/TurnOrders/PlayerTurn" to="." method="_on_player_turn_state_unhandled_input"]
+[connection signal="state_unhandled_input" from="StateChart/TurnOrders/PlayerTurn/Idle" to="." method="_on_idle_state_unhandled_input"]
+[connection signal="state_unhandled_input" from="StateChart/TurnOrders/PlayerTurn/CombatantSelected" to="." method="_on_combatant_clicked_state_unhandled_input"]

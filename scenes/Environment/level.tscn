@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bylkfe8ufm8o7"]
+
+[ext_resource type="PackedScene" uid="uid://0xh1jsv6wi7v" path="res://scenes/Environment/level_base.tscn" id="1_s12cp"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="2_axe7i"]
+
+[node name="Level" instance=ExtResource("1_s12cp")]
+scale = Vector2(0.99728, 0.971942)
+
+[node name="StateChartDebugger" parent="." index="4" instance=ExtResource("2_axe7i")]
+offset_left = 644.0
+offset_top = 200.0
+offset_right = 1073.0
+offset_bottom = 706.0
+initial_node_to_watch = NodePath("../Managers/game_state_manager")

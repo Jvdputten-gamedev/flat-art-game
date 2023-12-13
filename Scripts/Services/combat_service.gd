@@ -1,11 +1,13 @@
 extends Service
+class_name CombatService
+
 var _cell_occupant: Dictionary
 var navigation_service: Service
 var _tilemap
 
 func _ready():
-	BattleEventBus.connect("CombatantMoved",_on_combatant_moved)
-
+	pass 
+	
 func initialize():
 	print("  3.2 Initialize combat service")
 	navigation_service = ServiceLocator.get_navigation_service()
@@ -47,13 +49,3 @@ func highlight_attack_pattern(attack_pattern: Array[Vector2i]):
 	_tilemap.paint_AOE_on_map(attack_pattern, Color.RED)
 
 
-
-
-### Signal responses ###
-func _on_combatant_moved(combatant, from_cell, to_cell):
-	#assert(combatant == _cell_occupant[from_cell], "Something went wrong, signaled combatant was not at the initial from_cell")
-
-	_cell_occupant[from_cell] = null
-	_cell_occupant[to_cell] = combatant
-
-	print(combatant.to_string() + " moved from " + str(from_cell) + " to " + str(to_cell))

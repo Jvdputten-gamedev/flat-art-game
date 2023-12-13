@@ -1,12 +1,33 @@
 extends Node
 
+const SERVICES_SCENE: PackedScene = preload("res://scenes/Components/Services.tscn")
+var services_node
 var services = {}
+
+var tile_service: TileService:
+	get:
+		return get_tile_service()
+
+var navigation_service: NavigationService:
+	get:
+		return get_navigation_service()
+
+var combat_service: CombatService:
+	get:
+		return get_combat_service()
 
 enum Services {TILE_SERVICE = 0, NAVIGATION_SERVICE = 1, COMBAT_SERVICE = 2}
 
 func _ready():
-	print("1. Service locator ready")
+	print("1. Service locator ready.")
+	services_node = SERVICES_SCENE.instantiate()
+	add_child(services_node)
+	register_tile_service(services_node.tile_service)
+	register_navigation_service(services_node.navigation_service)
+	register_combat_service(services_node.combat_service)
 
+func initialize_services():
+	services_node.initialize()
 
 func _register_service(service_id: Services, service: Service) -> void:
 	services[service_id] = service

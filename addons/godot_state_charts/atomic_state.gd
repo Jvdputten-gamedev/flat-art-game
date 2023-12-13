@@ -23,3 +23,5 @@ func _get_configuration_warnings() -> PackedStringArray :
 			warnings.append("Atomic states cannot have child nodes other than transitions.")
 			break
 	return warnings
+
+

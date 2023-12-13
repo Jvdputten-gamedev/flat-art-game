@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://ct0toc6ed5ife"]
+
+[ext_resource type="PackedScene" uid="uid://65i81g62h52u" path="res://scenes/Prototypes/base_prototype.tscn" id="1_e3fs7"]
+[ext_resource type="Script" path="res://Scripts/Prototypes/proto_level_generation.gd" id="2_mwcnm"]
+[ext_resource type="PackedScene" uid="uid://bamfqxvw65iu2" path="res://scenes/Environment/basic_tile.tscn" id="3_54siv"]
+
+[node name="Level" node_paths=PackedStringArray("ui") instance=ExtResource("1_e3fs7")]
+script = ExtResource("2_mwcnm")
+level_size = 5
+basic_tile = ExtResource("3_54siv")
+ui = NodePath("PrototypeUI")

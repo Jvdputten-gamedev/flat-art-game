@@ -1,42 +1,32 @@
 extends Service
 class_name NavigationService
 
-var tilemap: HexTileMap
 var _astar: AStar2DHex
+@export var _astar_visualiser: AStar2DVisualizer
 
-	
 func initialize() -> void:
-	print("  3.1 Initialize navigation service, setup pathfinding")
+	print("  3.1 Initialize navigation service, setup pathfinding.")
 	_astar = AStar2DHex.new()
 
 func update_astar() -> void: 
-	_astar.update()
-
-func get_cell_at_local_mouse_position():
-	var cell = tilemap.local_to_map(get_local_mouse_position())
-	if tilemap.cell_has_ground(cell):
-		return cell
-	else:
-		return null
-
-func is_local_mouse_position_in_AOE() -> bool:
-	var mouse_cell = get_cell_at_local_mouse_position()
-	if mouse_cell in tilemap.get_AOE_cells():
-		return true
-	else: 
-		return false
-
-func get_random_available_position():
-	return map_to_local(tilemap.get_random_available_cell())
-
-func map_to_local(coord: Vector2i) -> Vector2:
-	return tilemap.map_to_local(coord)
-
-func local_to_map(_position: Vector2) -> Vector2i:
-	return tilemap.local_to_map(_position)
+	if _astar:
+		_astar.update()
 
 func get_local_point_path(from_position: Vector2i, to_position: Vector2i) -> Array:
 	return _astar.get_local_point_path(from_position, to_position)
+
+func compute_move_cost(from_hex: HexCell, to_hex: HexCell) -> int:
+	return _astar.compute_move_cost(from_hex, to_hex)
+
+func get_astar() -> AStar2DHex:
+	return _astar
+
+func visualize_astar_grid():
+	_astar_visualiser.visualize(_astar)
+
+func clear_astar_grid():
+	_astar_visualiser.clear()
+
 
 # func show_combatant_movement_range(combatant: Combatant):
 # 	var hexcell = HexCell.new(combatant.cell_coord)
