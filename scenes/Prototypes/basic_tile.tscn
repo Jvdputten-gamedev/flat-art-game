@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://tgmwrmjxwkwn"]
+
+[ext_resource type="Texture2D" uid="uid://bt7obebgypnyg" path="res://resources/tiles/basic_high_tile.svg" id="1_t86s4"]
+[ext_resource type="Script" path="res://Scripts/Prototypes/basic_tile.gd" id="1_uymqs"]
+
+[node name="BasicTile" type="Node2D" node_paths=PackedStringArray("sprite")]
+y_sort_enabled = true
+script = ExtResource("1_uymqs")
+sprite = NodePath("BasicHighTile")
+
+[node name="BasicHighTile" type="Sprite2D" parent="."]
+modulate = Color(0.796078, 0.796078, 0.796078, 1)
+texture = ExtResource("1_t86s4")
+offset = Vector2(0, 64)

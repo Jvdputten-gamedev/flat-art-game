@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://djubrotpvxpmt"]
+
+[ext_resource type="PackedScene" uid="uid://0xh1jsv6wi7v" path="res://scenes/Prototypes/base_prototype.tscn" id="1_e3fs7"]
+[ext_resource type="Script" path="res://Scripts/Prototypes/level_generation.gd" id="2_mwcnm"]
+[ext_resource type="PackedScene" path="res://scenes/Prototypes/basic_tile.tscn" id="3_qyhdf"]
+
+[node name="LevelGeneration" node_paths=PackedStringArray("ui") instance=ExtResource("1_e3fs7")]
+script = ExtResource("2_mwcnm")
+level_size = 5
+basic_tile = ExtResource("3_qyhdf")
+ui = NodePath("PrototypeUI")
+
+[node name="game_state_manager" parent="Managers" index="0"]
+_state_chart = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","script":Resource("res://addons/godot_state_charts/state_chart.gd"),"_state":null,"_expression_properties":{},"_queued_events":Array[StringName]([]),"_event_processing_active":false,"_queued_transitions":Array[Dictionary]([]),"_transitions_processing_active":false)
+
+
+[node name="PrototypeUI" parent="." index="3"]
+button1_text = "Test"
