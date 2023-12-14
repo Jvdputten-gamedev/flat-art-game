@@ -23,11 +23,7 @@ func move(to_tile: BasicTile):
     to_tile.occupy(self)
     position = to_tile.to_point()
 
-func enable_movement_preview():
-    movement_preview.show()
 
-func disable_movement_preview():
-    movement_preview.hide()
 
 
 
