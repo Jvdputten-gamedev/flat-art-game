@@ -1,11 +1,8 @@
 extends Node2D
 class_name Combatant
-enum Allegiance {FRIENDLY, NEUTRAL, ENEMY}
 
-@export var allegiance: Allegiance
 @export var unit_name: String
 @export var movement_range: int
-@export var movement_preview: MovePreviewComponent
 
 
 func _to_string():
