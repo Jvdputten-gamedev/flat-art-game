@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://bp8a8e3pic7u0"]
+[gd_scene load_steps=17 format=3 uid="uid://bp8a8e3pic7u0"]
 
 [ext_resource type="PackedScene" uid="uid://q0xr0tecuqxv" path="res://scenes/Combatants/Combatant.tscn" id="1_6ahqt"]
+[ext_resource type="Script" path="res://Scripts/Combatants/units/dwarf.gd" id="2_1wnnr"]
 [ext_resource type="Script" path="res://Scripts/Components/move_preview_component.gd" id="2_l3n0q"]
 [ext_resource type="Texture2D" uid="uid://7gxitso5lv5g" path="res://resources/art_source/dwarf/shaddow.svg" id="2_rkylg"]
 [ext_resource type="Texture2D" uid="uid://dbxgjdkbrgn4y" path="res://resources/art_source/dwarf/Leg.png" id="3_isarr"]
@@ -18,7 +19,10 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ot2t5"]
 shader = ExtResource("3_tjis8")
 
-[node name="Dwarf" instance=ExtResource("1_6ahqt")]
+[node name="Dwarf" node_paths=PackedStringArray("animationplayer", "movement_preview") instance=ExtResource("1_6ahqt")]
+script = ExtResource("2_1wnnr")
+animationplayer = NodePath("AnimationPlayer")
+movement_preview = NodePath("MovePreviewComponent")
 
 [node name="MovePreviewComponent" type="Node2D" parent="." index="0" node_paths=PackedStringArray("mover_visuals")]
 script = ExtResource("2_l3n0q")
@@ -36,14 +40,14 @@ scale = Vector2(3.37634, 2.6337)
 texture = ExtResource("2_rkylg")
 
 [node name="LeftLegUpper" type="Sprite2D" parent="Rig/Sprites" index="1"]
-position = Vector2(-123.499, 45.3347)
-rotation = 0.819529
+position = Vector2(-123.499, 45.3348)
+rotation = 0.819528
 scale = Vector2(0.999937, 0.999937)
 texture = ExtResource("3_isarr")
 
 [node name="LeftLegLower" type="Sprite2D" parent="Rig/Sprites" index="2"]
 position = Vector2(-137.207, 115.274)
-rotation = -0.534478
+rotation = -0.534482
 scale = Vector2(0.999925, 0.999925)
 texture = ExtResource("3_isarr")
 
@@ -54,21 +58,21 @@ scale = Vector2(0.999942, 0.999942)
 texture = ExtResource("3_isarr")
 
 [node name="RightLegLower" type="Sprite2D" parent="Rig/Sprites" index="4"]
-position = Vector2(59.1429, 98.9043)
-rotation = -0.572223
+position = Vector2(59.143, 98.9042)
+rotation = -0.572227
 scale = Vector2(0.999936, 0.999936)
 texture = ExtResource("3_isarr")
 
 [node name="RightFoot" type="Sprite2D" parent="Rig/Sprites" index="5"]
-position = Vector2(-19, 96)
-rotation = -0.0451847
-scale = Vector2(0.999937, 0.999937)
+position = Vector2(-18.9996, 96.0003)
+rotation = -0.0451889
+scale = Vector2(0.999936, 0.999936)
 texture = ExtResource("4_dd0xj")
 centered = false
 
 [node name="LeftFoot" type="Sprite2D" parent="Rig/Sprites" index="6"]
 position = Vector2(-130, 200)
-rotation = -0.00854384
+rotation = -0.0085472
 scale = Vector2(0.999924, 0.999924)
 texture = ExtResource("4_dd0xj")
 
@@ -79,20 +83,20 @@ scale = Vector2(0.999994, 0.999994)
 texture = ExtResource("5_tac70")
 
 [node name="LeftArmLower" type="Sprite2D" parent="Rig/Sprites" index="8"]
-position = Vector2(-169.738, -75.7731)
-rotation = -0.189254
+position = Vector2(-169.738, -75.7726)
+rotation = -0.189263
 scale = Vector2(0.999994, 0.999994)
 texture = ExtResource("6_n1g6h")
 
 [node name="Axe" type="Sprite2D" parent="Rig/Sprites" index="9"]
-position = Vector2(-319.626, -358.624)
-rotation = -0.189254
+position = Vector2(-319.628, -358.622)
+rotation = -0.189263
 scale = Vector2(0.999994, 0.999994)
 texture = ExtResource("7_52820")
 
 [node name="LeftHand" type="Sprite2D" parent="Rig/Sprites" index="10"]
-position = Vector2(-263, -63)
-rotation = -0.189254
+position = Vector2(-262.999, -62.9987)
+rotation = -0.189263
 scale = Vector2(0.999994, 0.999994)
 texture = ExtResource("8_omlu5")
 flip_h = true
@@ -108,15 +112,14 @@ rotation = -0.0632829
 texture = ExtResource("10_ki78g")
 
 [node name="RightArmLower" type="Sprite2D" parent="Rig/Sprites" index="13"]
-position = Vector2(132.665, -53.8374)
-rotation = 2.31532
+position = Vector2(132.664, -53.8376)
+rotation = 2.31533
 scale = Vector2(0.999935, 0.999935)
 texture = ExtResource("6_n1g6h")
 
 [node name="RightArmUpper" type="Sprite2D" parent="Rig/Sprites" index="14"]
 position = Vector2(164.691, -170.245)
-rotation = 1.16721
-scale = Vector2(1, 1)
+rotation = 1.16722
 texture = ExtResource("5_tac70")
 
 [node name="Head" type="Sprite2D" parent="Rig/Sprites" index="15"]
@@ -126,8 +129,8 @@ scale = Vector2(1.00009, 1.00009)
 texture = ExtResource("11_xg2lm")
 
 [node name="Shield" type="Sprite2D" parent="Rig/Sprites" index="16"]
-position = Vector2(63.9311, -9.06247)
-rotation = 2.20676
+position = Vector2(63.9299, -9.06314)
+rotation = 2.20677
 scale = Vector2(0.999935, 0.999935)
 texture = ExtResource("12_cb0hg")
 
@@ -201,7 +204,6 @@ remote_path = NodePath("../../../../../Sprites/RightLegLower")
 [node name="RightFoot" type="Bone2D" parent="Rig/Skeleton2D/Hip/RightLeg/RightLegLower" index="1"]
 position = Vector2(-1.00002, 92)
 rotation = 0.527038
-scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, -1, 92)
 auto_calculate_length_and_angle = false
 length = 60.095
@@ -271,7 +273,6 @@ remote_path = NodePath("../../../../../../Sprites/LeftHand")
 [node name="RightArm" type="Bone2D" parent="Rig/Skeleton2D/Hip" index="6"]
 position = Vector2(153, -210)
 rotation = 1.2305
-scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, 153, -210)
 metadata/_local_pose_override_enabled_ = true
 

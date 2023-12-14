@@ -1,4 +1,4 @@
-extends Node2D
+extends PlayerCombatant
 
 @export var animationplayer: AnimationPlayer
 

@@ -1,4 +1,3 @@
 extends EnemyCombatant
+class_name Goober
 
-
-# A combatant that is controlled by the AI 

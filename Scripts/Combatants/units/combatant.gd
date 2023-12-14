@@ -3,10 +3,11 @@ class_name Combatant
 
 @export var unit_name: String
 @export var movement_range: int
+@export var allegiance: Enums.Allegiance
 
 
 func _to_string():
-    return "{name} ({allegiance})".format({"name": unit_name, "allegiance": Allegiance.keys()[allegiance]})
+    return "{name} ({allegiance})".format({"name": unit_name, "allegiance": Enums.Allegiance.keys()[allegiance]})
 
 func get_current_hex():
     return ServiceLocator.tile_service.local_to_hex(position)
