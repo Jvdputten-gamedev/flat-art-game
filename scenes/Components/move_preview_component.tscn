@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Components/move_preview_component.gd" id="1_pvi2l"]
 [ext_resource type="Shader" path="res://resources/Shaders/move_preview_ghost.gdshader" id="1_uhqyw"]
-[ext_resource type="Shader" path="res://scenes/Components/move_preview_trail.gdshader" id="3_ib2m0"]
+[ext_resource type="Shader" path="res://resources/Shaders/move_preview_trail.gdshader" id="3_ib2m0"]
 [ext_resource type="Texture2D" uid="uid://g451swtdrtk7" path="res://resources/walk_trail.svg" id="3_nj8ud"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i4mvo"]

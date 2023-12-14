@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_qnowb"]
 [ext_resource type="PackedScene" uid="uid://cx3sdp485ynkm" path="res://scenes/Components/game_state_manager.tscn" id="2_g5vjh"]
-[ext_resource type="PackedScene" uid="uid://sg1sjsce1v4m" path="res://scenes/Components/Environment.tscn" id="3_2a0w3"]
-[ext_resource type="PackedScene" uid="uid://dftjp2yfqebx3" path="res://scenes/Components/Combatants.tscn" id="4_jvqu4"]
+[ext_resource type="PackedScene" uid="uid://sg1sjsce1v4m" path="res://scenes/Environment/Environment.tscn" id="3_2a0w3"]
+[ext_resource type="PackedScene" uid="uid://dftjp2yfqebx3" path="res://scenes/Combatants/Combatants.tscn" id="4_jvqu4"]
 [ext_resource type="PackedScene" uid="uid://c02lepjl6xu0s" path="res://scenes/Prototypes/PrototypeUI.tscn" id="5_41ps5"]
 
 [node name="Level" type="Node2D" node_paths=PackedStringArray("environment", "combatants")]
