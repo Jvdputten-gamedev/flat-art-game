@@ -12,7 +12,7 @@ func _ready():
 
 
 	mover_shade = mover_visuals.duplicate()
-	mover_shade.scale = Vector2(0.5, 0.5)
+	mover_shade.scale = Vector2(-0.3, 0.3)
 	mover_shade.material = ghost_shader
 	add_child(mover_shade)
 
@@ -24,7 +24,6 @@ func update_move_preview(path: PackedVector2Array):
 
 ### Signal response ###
 func _on_move_preview_collision_entered(tile: BasicTile):
-
 	if ServiceLocator.tile_service.tile_in_aoe(tile):
 		show()
 	else:

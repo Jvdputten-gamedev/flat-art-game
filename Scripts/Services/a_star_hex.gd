@@ -35,6 +35,12 @@ func _update_neighbor_connections(tile: BasicTile) -> void:
 		if tile_service.has_id(neighbor.id):
 			self.connect_points(tile.id, neighbor.id, false)
 
+func is_vacant(tile: BasicTile) -> bool:
+	return not self.is_point_disabled(tile.id)
+
+func is_occupied(tile: BasicTile) -> bool:
+	return self.is_point_disabled(tile.id)
+
 func occupy(hex: HexCell):
 	set_point_disabled(hex.id, true)
 

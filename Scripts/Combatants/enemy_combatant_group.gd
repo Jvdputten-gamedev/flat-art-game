@@ -2,18 +2,12 @@ extends CombatantGroup
 
 
 func initialize() -> void:
-	print("  4.2 Initializing enemy combatant group")
-	super.initialize()
+	print("    Add nodes to combatant list")
+	for combatant in get_children():
+		num_combatants += 1
+		print("  4.2 Initializing enemy combatant group")
+		var hex = HexCell.new(Vector3(1,0,-1))
+		var tile = ServiceLocator.tile_service.get_tile(hex.id)
+		combatant.move(tile)
 
-func start_turn() -> void:
-	print("Start Enemy turn")
-	BattleEventBus.emit_signal("EnemyTurnStart")
-	await get_tree().create_timer(3).timeout
-	BattleEventBus.emit_signal("EnemyTurnEnd")
-
-	
-
-
-
-	
 

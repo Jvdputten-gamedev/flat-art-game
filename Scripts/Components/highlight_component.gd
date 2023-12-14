@@ -77,12 +77,13 @@ func clear_highlights():
 func clear_aoe():
 	tilemap.clear_layer(Layers.AOE)
 
-func show_combatant_movement_range(from: HexCell, movement_range: int):
-	var hexes = from.get_all_within(movement_range)
-	hexes = ServiceLocator.tile_service.intersect_with_available(hexes)
+func show_combatant_movement_range(from: BasicTile, movement_range: int):
+
+	var _tiles = from.get_all_tiles_within(movement_range)
+	_tiles = ServiceLocator.tile_service.intersect_with_available(_tiles)
 	
-	var out: Array[HexCell] = []
-	for to in hexes:
+	var out: Array[BasicTile] = []
+	for to in _tiles:
 		var move_cost = ServiceLocator.navigation_service.compute_move_cost(from, to)
 		if move_cost <= movement_range:
 			out.append(to)
@@ -95,6 +96,7 @@ func _on_tile_with_combatant_clicked(tile: BasicTile):
 	clear_highlights()
 	var combatant = tile.get_combatant()
 	show_combatant_movement_range(tile, combatant.movement_range)
+
 
 
 

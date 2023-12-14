@@ -65,8 +65,8 @@ func get_tile(tile_id: int) -> BasicTile:
 	else:
 		return null
 
-func intersect_with_available(hexes: Array[HexCell]) -> Array[HexCell]:
-	return hexes.filter(func(hex): return tiles.has(hex.id))
+func intersect_with_available(_tiles: Array[BasicTile]) -> Array[BasicTile]:
+	return _tiles.filter(func(tile): return tiles.has(tile.id) and tile.is_vacant())
 
 func delete(tile: BasicTile):
 	if tile:

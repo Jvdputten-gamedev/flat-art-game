@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dftjp2yfqebx3"]
+[gd_scene load_steps=6 format=3 uid="uid://dftjp2yfqebx3"]
 
 [ext_resource type="Script" path="res://Scripts/Combatants/combatants.gd" id="1_hql81"]
 [ext_resource type="Script" path="res://Scripts/Combatants/player_combatant_group.gd" id="2_ww6my"]
 [ext_resource type="PackedScene" uid="uid://bp8a8e3pic7u0" path="res://scenes/Combatants/Units/Player/dwarf.tscn" id="3_6ddrr"]
 [ext_resource type="Script" path="res://Scripts/Combatants/enemy_combatant_group.gd" id="3_8g3md"]
+[ext_resource type="PackedScene" uid="uid://v0qjquds50ar" path="res://scenes/Combatants/Units/Enemy/goober.tscn" id="5_cdbhg"]
 
 [node name="Combatants" type="Node2D" node_paths=PackedStringArray("player_combatant_group", "enemy_combatant_group")]
 script = ExtResource("1_hql81")
@@ -19,3 +20,5 @@ script = ExtResource("2_ww6my")
 [node name="EnemyCombatantGroup" type="Node2D" parent="."]
 y_sort_enabled = true
 script = ExtResource("3_8g3md")
+
+[node name="Goober" parent="EnemyCombatantGroup" instance=ExtResource("5_cdbhg")]

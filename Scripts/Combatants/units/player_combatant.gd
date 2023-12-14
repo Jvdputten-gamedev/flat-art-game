@@ -4,7 +4,9 @@ class_name PlayerCombatant
 @export var movement_preview: MovePreviewComponent
 
 func enable_movement_preview():
-    movement_preview.show()
+    if movement_preview:
+        movement_preview.show()
 
 func disable_movement_preview():
-    movement_preview.hide()
+    if movement_preview:
+        movement_preview.hide()

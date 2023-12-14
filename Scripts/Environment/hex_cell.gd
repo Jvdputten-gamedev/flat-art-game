@@ -23,12 +23,42 @@ var oddq_coords:
 
 var id:
 	get:
-		return abs(hash(str(oddq_coords.x) + str(oddq_coords.y)))
+		return HexCell.get_id_from_oddq_coords(oddq_coords)
 		
 
 func _init(coords=null):
 	if coords:
 		cube_coords = self.obj_to_coords(coords)
+
+static func get_id_from_oddq_coords(coords):
+	return abs(hash(str(coords.x) + str(coords.y)))
+
+static func get_id_from_cube_coords(coords):
+	return HexCell.get_id_from_oddq_coords(HexCell.cube_to_oddq(coords))
+
+static func axial_to_cube_coords(val) -> Vector3:
+	var x = val.x
+	var y = val.y
+	return Vector3(x, y, -x -y)
+
+static func oddq_to_cube(val: Vector2i) -> Vector3:
+	var q = val.x
+	var r = val.y - (val.x - (val.x&1)) / 2
+	return Vector3(q, r, -q-r)
+
+static func cube_to_oddq(val: Vector3) -> Vector2i:
+	var x = int(val.x)
+	var y = int(val.y)
+	var col = x
+	var row = y + (x - (x & 1)) / 2
+	return Vector2i(col,row)
+
+func set_oddq_coords(val: Vector2i):
+	var x = val.x
+	var y = val.y
+	var q = x
+	var r = y - (x - (x & 1)) / 2
+	self.set_axial_coords(Vector2(q, r))
 
 func new_hex(coords):
 	# Returns a new HexCell instance
@@ -52,11 +82,11 @@ func obj_to_coords(val):
 		return val
 	elif typeof(val) == TYPE_VECTOR2:
 		# Receive Axial coords
-		return axial_to_cube_coords(val)
+		return HexCell.axial_to_cube_coords(val)
 
 	elif typeof(val) == TYPE_VECTOR2I:
 		# Receive oddq coords through TileMap
-		return oddq_to_cube(val)
+		return HexCell.oddq_to_cube(val)
 
 	elif typeof(val) == TYPE_OBJECT and val.has_method("get_cube_coords"):
 		return val.get_cube_coords()
@@ -65,7 +95,7 @@ func obj_to_coords(val):
 func round_coords(val):
 	# Rounds floaty coordinate to the nearest whole number cube coords
 	if typeof(val) == TYPE_VECTOR2:
-		val = axial_to_cube_coords(val)
+		val = HexCell.axial_to_cube_coords(val)
 	
 	# Straight round them
 	var rounded = Vector3(round(val.x), round(val.y), round(val.z))
@@ -86,32 +116,11 @@ func get_axial_coords():
 	return Vector2(self.cube_coords.x, self.cube_coords.y)
 		
 func set_axial_coords(val: Vector2):
-	cube_coords = axial_to_cube_coords(val)
-
-func axial_to_cube_coords(val) -> Vector3:
-	var x = val.x
-	var y = val.y
-	return Vector3(x, y, -x -y)
-
-func oddq_to_cube(val: Vector2i) -> Vector3:
-	var q = val.x
-	var r = val.y - (val.x - (val.x&1)) / 2
-	return Vector3(q, r, -q-r)
-
-func set_oddq_coords(val: Vector2i):
-	var x = val.x
-	var y = val.y
-	var q = x
-	var r = y - (x - (x & 1)) / 2
-	self.set_axial_coords(Vector2(q, r))
+	cube_coords = HexCell.axial_to_cube_coords(val)
 
 
 func get_oddq_coords() -> Vector2i:
-	var x = int(cube_coords.x)
-	var y = int(cube_coords.y)
-	var col = x
-	var row = y + (x - (x & 1)) / 2
-	return Vector2i(col,row)
+	return HexCell.cube_to_oddq(self.cube_coords)
 
 
 func to_point() -> Vector2:
@@ -141,14 +150,14 @@ func get_all_adjacent():
 		hexes.append(get_adjacent(dir.cube_coords))
 	return hexes
 
-func get_all_within(distance: int, add_origin = false):
-	var hexes: Array[HexCell] = []
+func get_all_hexes_within(distance: int, add_origin = false):
+	var tiles: Array[HexCell] = []
 	for dx in range(-distance, distance + 1):
 		for dy in range(max(-distance, -distance - dx), min(distance, distance - dx) + 1):
 			if dx == 0 and dy == 0:
 				continue
-			hexes.append(HexCell.new(self.cube_coords + axial_to_cube_coords(Vector2(dx, dy))))
+			tiles.append(HexCell.new(self.cube_coords + axial_to_cube_coords(Vector2(dx, dy))))
 
 	if add_origin:
-		hexes.append(self)
-	return hexes
+		tiles.append(self)
+	return tiles
