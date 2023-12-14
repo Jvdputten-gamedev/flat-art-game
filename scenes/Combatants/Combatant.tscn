@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://q0xr0tecuqxv"]
+
+[node name="Combatant" type="Node2D"]
+
+[node name="Rig" type="Node2D" parent="."]
+
+[node name="Sprites" type="CanvasGroup" parent="Rig"]
+
+[node name="Skeleton2D" type="Skeleton2D" parent="Rig"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

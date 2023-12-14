@@ -1,0 +1,113 @@
+[gd_scene load_steps=10 format=3 uid="uid://cbrm52ymlqmct"]
+
+[ext_resource type="Script" path="res://Scripts/Combatants/units/goober.gd" id="1_dq537"]
+[ext_resource type="PackedScene" uid="uid://bxe5rvcn8u8xt" path="res://scenes/Components/move_preview_component.tscn" id="2_aocpy"]
+[ext_resource type="Texture2D" uid="uid://7gxitso5lv5g" path="res://resources/art_source/dwarf/shaddow.svg" id="3_5ao4d"]
+[ext_resource type="Texture2D" uid="uid://d0cjukuvca3ot" path="res://resources/art_source/Goober/images/Back.svg" id="4_06sos"]
+[ext_resource type="Texture2D" uid="uid://coykllwjjuilb" path="res://resources/art_source/Goober/images/Top.svg" id="5_ml8rg"]
+[ext_resource type="Texture2D" uid="uid://cf3roeknrro37" path="res://resources/art_source/Goober/images/Bottom.svg" id="6_rqh7q"]
+[ext_resource type="Texture2D" uid="uid://cfdrpikqgr05i" path="res://resources/art_source/Goober/images/LeftLeg.svg" id="7_n8mni"]
+[ext_resource type="Texture2D" uid="uid://dg3sdosj528xh" path="res://resources/art_source/Goober/images/RightLeg.svg" id="8_86vui"]
+[ext_resource type="AnimationLibrary" uid="uid://b2ts5nigsdbj4" path="res://resources/tmp.res" id="9_381mo"]
+
+[node name="Goober" type="Node2D" node_paths=PackedStringArray("movement_preview")]
+script = ExtResource("1_dq537")
+allegiance = null
+unit_name = "Goober"
+movement_range = 4
+movement_preview = NodePath("MovePreviewComponent")
+
+[node name="MovePreviewComponent" parent="." node_paths=PackedStringArray("mover_visuals") instance=ExtResource("2_aocpy")]
+mover_visuals = NodePath("../Rig/Sprites")
+
+[node name="Rig" type="Node2D" parent="."]
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprites" type="CanvasGroup" parent="Rig"]
+
+[node name="Shadow" type="Sprite2D" parent="Rig/Sprites"]
+modulate = Color(0.329412, 0.294118, 0.364706, 1)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("3_5ao4d")
+
+[node name="Back" type="Sprite2D" parent="Rig/Sprites"]
+texture_filter = 1
+position = Vector2(-1, -70.1618)
+texture = ExtResource("4_06sos")
+
+[node name="Head" type="Sprite2D" parent="Rig/Sprites"]
+texture_filter = 3
+position = Vector2(3.06631, -217.082)
+rotation = 0.039489
+texture = ExtResource("5_ml8rg")
+
+[node name="Bottom" type="Sprite2D" parent="Rig/Sprites"]
+position = Vector2(-1, -73.1618)
+texture = ExtResource("6_rqh7q")
+
+[node name="LeftLeg" type="Sprite2D" parent="Rig/Sprites"]
+texture_filter = 1
+position = Vector2(-55.6416, -20.4774)
+rotation = 0.0949609
+texture = ExtResource("7_n8mni")
+
+[node name="RightLeg" type="Sprite2D" parent="Rig/Sprites"]
+position = Vector2(49.3422, -20.7038)
+rotation = -0.147376
+texture = ExtResource("8_86vui")
+
+[node name="Skeleton2D" type="Skeleton2D" parent="Rig"]
+position = Vector2(-1, -103)
+
+[node name="Hip" type="Bone2D" parent="Rig/Skeleton2D"]
+position = Vector2(0, 32.8382)
+rest = Transform2D(1, 0, 0, 1, 0, 30)
+
+[node name="BottomRemote" type="RemoteTransform2D" parent="Rig/Skeleton2D/Hip"]
+position = Vector2(0, -3)
+remote_path = NodePath("../../../Sprites/Bottom")
+
+[node name="BackRemote" type="RemoteTransform2D" parent="Rig/Skeleton2D/Hip"]
+remote_path = NodePath("../../../Sprites/Back")
+
+[node name="LeftLeg" type="Bone2D" parent="Rig/Skeleton2D/Hip"]
+position = Vector2(-49, 1)
+rotation = 0.0949609
+rest = Transform2D(1, 0, 0, 1, -49, 1)
+auto_calculate_length_and_angle = false
+length = 50.0
+bone_angle = 90.0
+
+[node name="LeftLegRemote" type="RemoteTransform2D" parent="Rig/Skeleton2D/Hip/LeftLeg"]
+position = Vector2(-1, 49)
+remote_path = NodePath("../../../../Sprites/LeftLeg")
+
+[node name="RightLeg" type="Bone2D" parent="Rig/Skeleton2D/Hip"]
+position = Vector2(43, 0)
+rotation = -0.147376
+rest = Transform2D(1, 0, 0, 1, 43, 0)
+auto_calculate_length_and_angle = false
+length = 50.0
+bone_angle = 90.0
+
+[node name="RightLegRemote" type="RemoteTransform2D" parent="Rig/Skeleton2D/Hip/RightLeg"]
+position = Vector2(0, 50)
+remote_path = NodePath("../../../../Sprites/RightLeg")
+
+[node name="Head" type="Bone2D" parent="Rig/Skeleton2D/Hip"]
+position = Vector2(0, -44)
+rotation = 0.039489
+rest = Transform2D(1, 0, 0, 1, 0, -61)
+auto_calculate_length_and_angle = false
+length = 108.4
+bone_angle = -90.0
+
+[node name="HeadRemote" type="RemoteTransform2D" parent="Rig/Skeleton2D/Hip/Head"]
+position = Vector2(0, -103)
+remote_path = NodePath("../../../../Sprites/Head")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": ExtResource("9_381mo")
+}
+autoplay = "Idle"

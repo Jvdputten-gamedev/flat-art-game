@@ -1,7 +1,7 @@
 [gd_scene load_steps=25 format=3 uid="uid://cnlyfljmb4dbr"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_4abod"]
-[ext_resource type="Script" path="res://Scripts/Managers/game_state_manager.gd" id="2_krj6k"]
+[ext_resource type="Script" path="res://Scripts/StateMachines/game_states.gd" id="2_krj6k"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="3_dvjsy"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="4_7rl41"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="5_4it1s"]
@@ -17,7 +17,7 @@
 [ext_resource type="Script" path="res://Scripts/Combatants/player_combatant_group.gd" id="15_k5t87"]
 [ext_resource type="PackedScene" uid="uid://mj0lsqwow3mu" path="res://scenes/Combatants/character_viewport.tscn" id="16_k2mvq"]
 [ext_resource type="Script" path="res://Scripts/Combatants/enemy_combatant_group.gd" id="17_8857u"]
-[ext_resource type="PackedScene" uid="uid://cbrm52ymlqmct" path="res://scenes/Combatants/goober.tscn" id="18_3067y"]
+[ext_resource type="PackedScene" uid="uid://cbrm52ymlqmct" path="res://scenes/Combatants/goober_old.tscn" id="18_3067y"]
 [ext_resource type="Script" path="res://Scripts/Combatants/units/goober.gd" id="19_7ydr2"]
 [ext_resource type="PackedScene" uid="uid://cnvtjbehch6co" path="res://scenes/Gui/gui.tscn" id="21_nf80v"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="22_jcxpl"]

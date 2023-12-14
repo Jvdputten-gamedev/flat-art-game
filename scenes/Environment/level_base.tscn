@@ -9,14 +9,12 @@
 [node name="Level" type="Node2D" node_paths=PackedStringArray("environment", "combatants")]
 script = ExtResource("1_qnowb")
 environment = NodePath("Environment")
-combatants = NodePath("Combatants")
+combatants = NodePath("CombatantManager")
 
-[node name="Managers" type="Node" parent="."]
-
-[node name="game_state_manager" parent="Managers" instance=ExtResource("2_g5vjh")]
+[node name="GameStates" parent="." instance=ExtResource("2_g5vjh")]
 
 [node name="Environment" parent="." instance=ExtResource("3_2a0w3")]
 
-[node name="Combatants" parent="." instance=ExtResource("4_jvqu4")]
+[node name="CombatantManager" parent="." instance=ExtResource("4_jvqu4")]
 
 [node name="PrototypeUI" parent="." instance=ExtResource("5_41ps5")]

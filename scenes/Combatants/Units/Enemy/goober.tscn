@@ -1,13 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://cbrm52ymlqmct"]
+[gd_scene load_steps=12 format=3 uid="uid://v0qjquds50ar"]
 
-[ext_resource type="Texture2D" uid="uid://d0cjukuvca3ot" path="res://resources/art_source/Goober/images/Back.svg" id="1_510jg"]
-[ext_resource type="PackedScene" uid="uid://bxe5rvcn8u8xt" path="res://scenes/Components/move_preview_component.tscn" id="1_j01ux"]
-[ext_resource type="Script" path="res://Scripts/Combatants/units/goober.gd" id="1_nf4gy"]
-[ext_resource type="Texture2D" uid="uid://7gxitso5lv5g" path="res://resources/art_source/dwarf/shaddow.svg" id="1_pirpb"]
-[ext_resource type="Texture2D" uid="uid://coykllwjjuilb" path="res://resources/art_source/Goober/images/Top.svg" id="2_ngl05"]
-[ext_resource type="Texture2D" uid="uid://cf3roeknrro37" path="res://resources/art_source/Goober/images/Bottom.svg" id="3_vtgir"]
-[ext_resource type="Texture2D" uid="uid://cfdrpikqgr05i" path="res://resources/art_source/Goober/images/LeftLeg.svg" id="4_l51is"]
-[ext_resource type="Texture2D" uid="uid://dg3sdosj528xh" path="res://resources/art_source/Goober/images/RightLeg.svg" id="5_52ucw"]
+[ext_resource type="PackedScene" uid="uid://q0xr0tecuqxv" path="res://scenes/Combatants/Combatant.tscn" id="1_patly"]
+[ext_resource type="Texture2D" uid="uid://7gxitso5lv5g" path="res://resources/art_source/dwarf/shaddow.svg" id="2_dc4ki"]
+[ext_resource type="Script" path="res://Scripts/Combatants/units/goober.gd" id="2_kvaae"]
+[ext_resource type="Texture2D" uid="uid://d0cjukuvca3ot" path="res://resources/art_source/Goober/images/Back.svg" id="3_5qyyj"]
+[ext_resource type="Texture2D" uid="uid://coykllwjjuilb" path="res://resources/art_source/Goober/images/Top.svg" id="4_4gdnc"]
+[ext_resource type="Texture2D" uid="uid://cf3roeknrro37" path="res://resources/art_source/Goober/images/Bottom.svg" id="5_qwhqi"]
+[ext_resource type="Texture2D" uid="uid://cfdrpikqgr05i" path="res://resources/art_source/Goober/images/LeftLeg.svg" id="6_y5kjx"]
+[ext_resource type="Texture2D" uid="uid://dg3sdosj528xh" path="res://resources/art_source/Goober/images/RightLeg.svg" id="7_4jr6p"]
 
 [sub_resource type="Animation" id="Animation_2fc2f"]
 resource_name = "Idle"
@@ -109,103 +109,89 @@ _data = {
 "Walk": SubResource("Animation_yfns4")
 }
 
-[node name="Goober" type="Node2D" node_paths=PackedStringArray("movement_preview")]
-script = ExtResource("1_nf4gy")
-unit_name = "Goober"
-movement_range = 4
-movement_preview = NodePath("MovePreviewComponent")
+[node name="Goober" instance=ExtResource("1_patly")]
+position = Vector2(0, 1)
+script = ExtResource("2_kvaae")
 
-[node name="MovePreviewComponent" parent="." node_paths=PackedStringArray("mover_visuals") instance=ExtResource("1_j01ux")]
-mover_visuals = NodePath("../Rig/Sprites")
-
-[node name="Rig" type="Node2D" parent="."]
+[node name="Rig" parent="." index="0"]
 scale = Vector2(0.5, 0.5)
 
-[node name="Sprites" type="CanvasGroup" parent="Rig"]
-
-[node name="Shadow" type="Sprite2D" parent="Rig/Sprites"]
+[node name="Shadow" type="Sprite2D" parent="Rig/Sprites" index="0"]
 modulate = Color(0.329412, 0.294118, 0.364706, 1)
 scale = Vector2(1.2, 1.2)
-texture = ExtResource("1_pirpb")
+texture = ExtResource("2_dc4ki")
 
-[node name="Back" type="Sprite2D" parent="Rig/Sprites"]
+[node name="Back" type="Sprite2D" parent="Rig/Sprites" index="1"]
 texture_filter = 1
-position = Vector2(-1, -70.1618)
-texture = ExtResource("1_510jg")
+position = Vector2(4, -79)
+texture = ExtResource("3_5qyyj")
 
-[node name="Head" type="Sprite2D" parent="Rig/Sprites"]
+[node name="Head" type="Sprite2D" parent="Rig/Sprites" index="2"]
 texture_filter = 3
-position = Vector2(3.06631, -217.082)
-rotation = 0.039489
-texture = ExtResource("2_ngl05")
+position = Vector2(4, -226)
+texture = ExtResource("4_4gdnc")
 
-[node name="Bottom" type="Sprite2D" parent="Rig/Sprites"]
-position = Vector2(-1, -73.1618)
-texture = ExtResource("3_vtgir")
+[node name="Bottom" type="Sprite2D" parent="Rig/Sprites" index="3"]
+position = Vector2(4, -82)
+texture = ExtResource("5_qwhqi")
 
-[node name="LeftLeg" type="Sprite2D" parent="Rig/Sprites"]
+[node name="LeftLeg" type="Sprite2D" parent="Rig/Sprites" index="4"]
 texture_filter = 1
-position = Vector2(-55.6416, -20.4774)
-rotation = 0.0949609
-texture = ExtResource("4_l51is")
+position = Vector2(-46, -29)
+texture = ExtResource("6_y5kjx")
 
-[node name="RightLeg" type="Sprite2D" parent="Rig/Sprites"]
-position = Vector2(49.3422, -20.7038)
-rotation = -0.147376
-texture = ExtResource("5_52ucw")
+[node name="RightLeg" type="Sprite2D" parent="Rig/Sprites" index="5"]
+position = Vector2(47, -29)
+texture = ExtResource("7_4jr6p")
 
-[node name="Skeleton2D" type="Skeleton2D" parent="Rig"]
-position = Vector2(-1, -103)
+[node name="Skeleton2D" parent="Rig" index="1"]
+position = Vector2(4, -109)
 
-[node name="Hip" type="Bone2D" parent="Rig/Skeleton2D"]
-position = Vector2(0, 32.8382)
+[node name="Hip" type="Bone2D" parent="Rig/Skeleton2D" index="0"]
+position = Vector2(0, 30)
 rest = Transform2D(1, 0, 0, 1, 0, 30)
 
-[node name="BottomRemote" type="RemoteTransform2D" parent="Rig/Skeleton2D/Hip"]
+[node name="BottomRemote" type="RemoteTransform2D" parent="Rig/Skeleton2D/Hip" index="0"]
 position = Vector2(0, -3)
 remote_path = NodePath("../../../Sprites/Bottom")
 
-[node name="BackRemote" type="RemoteTransform2D" parent="Rig/Skeleton2D/Hip"]
+[node name="BackRemote" type="RemoteTransform2D" parent="Rig/Skeleton2D/Hip" index="1"]
 remote_path = NodePath("../../../Sprites/Back")
 
-[node name="LeftLeg" type="Bone2D" parent="Rig/Skeleton2D/Hip"]
+[node name="LeftLeg" type="Bone2D" parent="Rig/Skeleton2D/Hip" index="2"]
 position = Vector2(-49, 1)
-rotation = 0.0949609
 rest = Transform2D(1, 0, 0, 1, -49, 1)
 auto_calculate_length_and_angle = false
 length = 50.0
 bone_angle = 90.0
 
-[node name="LeftLegRemote" type="RemoteTransform2D" parent="Rig/Skeleton2D/Hip/LeftLeg"]
+[node name="LeftLegRemote" type="RemoteTransform2D" parent="Rig/Skeleton2D/Hip/LeftLeg" index="0"]
 position = Vector2(-1, 49)
 remote_path = NodePath("../../../../Sprites/LeftLeg")
 
-[node name="RightLeg" type="Bone2D" parent="Rig/Skeleton2D/Hip"]
+[node name="RightLeg" type="Bone2D" parent="Rig/Skeleton2D/Hip" index="3"]
 position = Vector2(43, 0)
-rotation = -0.147376
 rest = Transform2D(1, 0, 0, 1, 43, 0)
 auto_calculate_length_and_angle = false
 length = 50.0
 bone_angle = 90.0
 
-[node name="RightLegRemote" type="RemoteTransform2D" parent="Rig/Skeleton2D/Hip/RightLeg"]
+[node name="RightLegRemote" type="RemoteTransform2D" parent="Rig/Skeleton2D/Hip/RightLeg" index="0"]
 position = Vector2(0, 50)
 remote_path = NodePath("../../../../Sprites/RightLeg")
 
-[node name="Head" type="Bone2D" parent="Rig/Skeleton2D/Hip"]
+[node name="Head" type="Bone2D" parent="Rig/Skeleton2D/Hip" index="4"]
 position = Vector2(0, -44)
-rotation = 0.039489
 rest = Transform2D(1, 0, 0, 1, 0, -61)
 auto_calculate_length_and_angle = false
 length = 108.4
 bone_angle = -90.0
 
-[node name="HeadRemote" type="RemoteTransform2D" parent="Rig/Skeleton2D/Hip/Head"]
+[node name="HeadRemote" type="RemoteTransform2D" parent="Rig/Skeleton2D/Hip/Head" index="0"]
 position = Vector2(0, -103)
 remote_path = NodePath("../../../../Sprites/Head")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" parent="." index="1"]
 libraries = {
 "": SubResource("AnimationLibrary_5ds3g")
 }
-autoplay = "Idle"
