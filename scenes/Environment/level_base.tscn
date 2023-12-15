@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://0xh1jsv6wi7v"]
+[gd_scene load_steps=5 format=3 uid="uid://0xh1jsv6wi7v"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_qnowb"]
-[ext_resource type="PackedScene" uid="uid://cx3sdp485ynkm" path="res://scenes/Components/game_state_manager.tscn" id="2_g5vjh"]
+[ext_resource type="PackedScene" path="res://scenes/Components/game_state_manager.tscn" id="2_g5vjh"]
 [ext_resource type="PackedScene" uid="uid://sg1sjsce1v4m" path="res://scenes/Components/Environment.tscn" id="3_2a0w3"]
 [ext_resource type="PackedScene" uid="uid://dftjp2yfqebx3" path="res://scenes/Components/Combatants.tscn" id="4_jvqu4"]
-[ext_resource type="PackedScene" uid="uid://c02lepjl6xu0s" path="res://scenes/Prototypes/PrototypeUI.tscn" id="5_41ps5"]
 
 [node name="Level" type="Node2D" node_paths=PackedStringArray("environment", "combatants")]
 script = ExtResource("1_qnowb")
@@ -18,5 +17,3 @@ combatants = NodePath("Combatants")
 [node name="Environment" parent="." instance=ExtResource("3_2a0w3")]
 
 [node name="Combatants" parent="." instance=ExtResource("4_jvqu4")]
-
-[node name="PrototypeUI" parent="." instance=ExtResource("5_41ps5")]

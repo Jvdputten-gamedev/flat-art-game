@@ -12,6 +12,9 @@ func update_astar() -> void:
 	if _astar:
 		_astar.update()
 
+func get_path_between_tiles(from_tile: BasicTile, to_tile: BasicTile) -> PackedVector2Array:
+	return _astar.get_path_between_tiles(from_tile, to_tile)
+
 func get_local_point_path(from_position: Vector2i, to_position: Vector2i) -> Array:
 	return _astar.get_local_point_path(from_position, to_position)
 

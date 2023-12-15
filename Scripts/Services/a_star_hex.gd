@@ -41,6 +41,11 @@ func occupy(hex: HexCell):
 func vacate(hex: HexCell):
 	set_point_disabled(hex.id, false)
 
+func get_path_between_tiles(from_tile: BasicTile, to_tile: BasicTile) -> PackedVector2Array:
+	if self.has_point(from_tile.id) and self.has_point(to_tile.id):
+		return self.get_point_path(from_tile.id, to_tile.id)
+	return PackedVector2Array()
+
 func get_local_point_path(from_pos: Vector2, to_pos: Vector2) -> PackedVector2Array:
 	var from_hex = tile_service.local_to_hex(from_pos)
 	var to_hex = tile_service.local_to_hex(to_pos)

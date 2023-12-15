@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Services/services.gd" id="1_ga6gv"]
 [ext_resource type="Script" path="res://Scripts/Services/navigation_service.gd" id="2_4mu6n"]
-[ext_resource type="PackedScene" uid="uid://bgf3xu3bhappn" path="res://scenes/Components/astar_visualisation_component.tscn" id="3_fb2tm"]
+[ext_resource type="PackedScene" path="res://scenes/Components/astar_visualisation_component.tscn" id="3_fb2tm"]
 [ext_resource type="Script" path="res://Scripts/Services/combat_service.gd" id="3_q44uj"]
 [ext_resource type="Script" path="res://Scripts/Services/tile_service.gd" id="4_2i183"]
 [ext_resource type="PackedScene" uid="uid://bamfqxvw65iu2" path="res://scenes/Environment/basic_tile.tscn" id="5_f3iu6"]

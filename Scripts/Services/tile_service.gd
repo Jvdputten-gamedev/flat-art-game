@@ -53,11 +53,11 @@ func mouse_to_hex_center():
 
 func get_tile_at_mouse_position() -> BasicTile:
 	var hex = mouse_to_hex()
-	if tiles.has(hex.id):
-		var tile = tiles[hex.id]
-		return tile
-	else:
-		return null
+	return get_tile(hex.id)
+
+func get_tile_at_position(pos: Vector2) -> BasicTile:
+	var hex = local_to_hex(pos)
+	return get_tile(hex.id)	
 
 func get_tile(tile_id: int) -> BasicTile:
 	if tiles.has(tile_id):

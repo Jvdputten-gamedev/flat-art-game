@@ -32,5 +32,5 @@ func get_combatant() -> Combatant:
 	return self._combatant
 
 func _on_mouse_entered() -> void:
-	EventBus.MovePreviewCollisionEntered.emit(self)
+	EventBus.MouseEnteredMovePreviewCollision.emit(self)
 
