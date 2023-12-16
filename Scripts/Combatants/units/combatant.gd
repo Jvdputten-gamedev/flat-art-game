@@ -13,10 +13,8 @@ func _to_string():
 
 func get_current_hex():
 	return ServiceLocator.tile_service.local_to_hex(position)
-	return ServiceLocator.tile_service.local_to_hex(position)
 
 func get_current_tile():
-	return ServiceLocator.tile_service.local_to_tile(position)
 	return ServiceLocator.tile_service.local_to_tile(position)
 
 func move(to_tile: BasicTile):
@@ -24,12 +22,6 @@ func move(to_tile: BasicTile):
 	current_tile.vacate()
 	to_tile.occupy(self)
 	position = to_tile.to_point()
-	var current_tile = get_current_tile()
-	current_tile.vacate()
-	to_tile.occupy(self)
-	position = to_tile.to_point()
-
-
 
 
 ### Signal response ###
