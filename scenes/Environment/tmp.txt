@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bylkfe8ufm8o7"]
+
+[ext_resource type="PackedScene" uid="uid://0xh1jsv6wi7v" path="res://scenes/Environment/level_base.tscn" id="1_s12cp"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="2_axe7i"]
+
+[node name="Level" instance=ExtResource("1_s12cp")]
+
+
+[node name="game_state_manager" parent="Managers" index="0"]
+_state_chart = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","script":Resource("res://addons/godot_state_charts/state_chart.gd"),"_state":null,"_expression_properties":{},"_queued_events":Array[StringName]([]),"_event_processing_active":false,"_queued_transitions":Array[Dictionary]([]),"_transitions_processing_active":false)
+
+[node name="StateChartDebugger" parent="." index="4" instance=ExtResource("2_axe7i")]
+offset_left = 644.0
+offset_top = 200.0
+offset_right = 1073.0
+offset_bottom = 706.0
+initial_node_to_watch = NodePath("../Managers/game_state_manager")

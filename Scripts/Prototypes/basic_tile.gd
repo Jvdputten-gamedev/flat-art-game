@@ -48,5 +48,5 @@ func get_all_tiles_within(distance: int, add_origin = false):
 
 ## Signal responses
 func _on_mouse_entered() -> void:
-	EventBus.MovePreviewCollisionEntered.emit(self)
+	EventBus.MouseEnteredMovePreviewCollision.emit(self)
 

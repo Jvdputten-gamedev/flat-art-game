@@ -1,9 +1,7 @@
 extends Node
 
 signal SpawnTile(tile: BasicTile)
-signal MovePreviewCollisionEntered(tile: BasicTile)
-
-
+signal MouseEnteredMovePreviewCollision(tile: BasicTile)
 
 
 # Prototype

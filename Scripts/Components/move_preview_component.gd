@@ -8,9 +8,6 @@ class_name MovePreviewComponent
 var mover_shade: CanvasGroup
 
 func _ready():
-	EventBus.MovePreviewCollisionEntered.connect(_on_move_preview_collision_entered)
-
-
 	mover_shade = mover_visuals.duplicate()
 	mover_shade.scale = Vector2(-0.3, 0.3)
 	mover_shade.material = ghost_shader
@@ -18,20 +15,10 @@ func _ready():
 
 func update_move_preview(path: PackedVector2Array):
 	if path:
-		line.points = path
-		mover_shade.position = path[-1]
+		line.points = Array(path).map(func(x): return line.to_local(x))
+		mover_shade.global_position = path[-1]
 
 
-### Signal response ###
-func _on_move_preview_collision_entered(tile: BasicTile):
-	if ServiceLocator.tile_service.tile_in_aoe(tile):
-		show()
-	else:
-		hide()
-		return
 
-	var nav = ServiceLocator.navigation_service
-	var path = nav.get_local_point_path(mover_visuals.position, tile.position)
-	update_move_preview(path)
 
 
