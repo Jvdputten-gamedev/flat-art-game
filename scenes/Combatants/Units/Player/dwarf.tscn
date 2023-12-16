@@ -1,10 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://bp8a8e3pic7u0"]
+[gd_scene load_steps=17 format=3 uid="uid://bp8a8e3pic7u0"]
 
 [ext_resource type="PackedScene" uid="uid://q0xr0tecuqxv" path="res://scenes/Combatants/Combatant.tscn" id="1_6ahqt"]
 [ext_resource type="Script" path="res://Scripts/Combatants/units/dwarf.gd" id="2_1wnnr"]
 [ext_resource type="Texture2D" uid="uid://7gxitso5lv5g" path="res://resources/art_source/dwarf/shaddow.svg" id="2_rkylg"]
+[ext_resource type="Script" path="res://Scripts/Combatants/player_combatant_state_chart.gd" id="3_7kycn"]
 [ext_resource type="Texture2D" uid="uid://dbxgjdkbrgn4y" path="res://resources/art_source/dwarf/Leg.png" id="3_isarr"]
+[ext_resource type="Script" path="res://Scripts/Components/move_preview_component.gd" id="3_o80ju"]
 [ext_resource type="Texture2D" uid="uid://cu8mc1tumtjb0" path="res://resources/art_source/dwarf/Foot.png" id="4_dd0xj"]
+[ext_resource type="Material" uid="uid://b7rtj1758t08o" path="res://resources/Shaders/move_preview_material.tres" id="4_yienw"]
 [ext_resource type="Texture2D" uid="uid://bcd367wuu18n3" path="res://resources/art_source/dwarf/UpperArm.png" id="5_tac70"]
 [ext_resource type="Texture2D" uid="uid://cgt2msbjd801s" path="res://resources/art_source/dwarf/LowerArm.png" id="6_n1g6h"]
 [ext_resource type="Texture2D" uid="uid://ca5rylwaoppb6" path="res://resources/art_source/dwarf/axe.png" id="7_52820"]
@@ -14,14 +17,23 @@
 [ext_resource type="Texture2D" uid="uid://5fjydeg6kpf3" path="res://resources/art_source/dwarf/Head.png" id="11_xg2lm"]
 [ext_resource type="Texture2D" uid="uid://bqd1qevcj7hda" path="res://resources/art_source/dwarf/shield.png" id="12_cb0hg"]
 
-[node name="Dwarf" node_paths=PackedStringArray("animationplayer", "movement_preview") instance=ExtResource("1_6ahqt")]
+[node name="Dwarf" node_paths=PackedStringArray("animationplayer", "movement_preview", "state_chart") instance=ExtResource("1_6ahqt")]
 script = ExtResource("2_1wnnr")
 animationplayer = NodePath("AnimationPlayer")
-movement_preview = NodePath("")
+movement_preview = NodePath("MovePreviewComponent")
+state_chart = NodePath("PlayerCombatantStateChart")
 combatant_name = "Dwarf"
 movement_range = 3
 
-[node name="Rig" parent="." index="0"]
+[node name="PlayerCombatantStateChart" type="Node" parent="." index="0"]
+script = ExtResource("3_7kycn")
+
+[node name="MovePreviewComponent" type="Node2D" parent="." index="1" node_paths=PackedStringArray("mover_visuals")]
+script = ExtResource("3_o80ju")
+mover_visuals = NodePath("../Rig/Sprites")
+ghost_shader = ExtResource("4_yienw")
+
+[node name="Rig" parent="." index="2"]
 position = Vector2(-7, -91)
 scale = Vector2(-0.3, 0.3)
 

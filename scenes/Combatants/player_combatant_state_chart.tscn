@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://tuacyso3kqhd"]
+
+[ext_resource type="Script" path="res://Scripts/Combatants/player_combatant_state_chart.gd" id="1_efdk6"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_lcu3k"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="3_munmu"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="4_u5hwx"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="5_4hgng"]
+
+[node name="PlayerCombatantStateChart" type="Node" node_paths=PackedStringArray("state_chart")]
+script = ExtResource("1_efdk6")
+state_chart = NodePath("PlayerCombatantStateChart")
+
+[node name="PlayerCombatantStateChart" type="Node" parent="."]
+script = ExtResource("2_lcu3k")
+
+[node name="PlayerStates" type="Node" parent="PlayerCombatantStateChart"]
+script = ExtResource("3_munmu")
+initial_state = NodePath("Ready")
+
+[node name="Ready" type="Node" parent="PlayerCombatantStateChart/PlayerStates"]
+script = ExtResource("4_u5hwx")
+
+[node name="Selected" type="Node" parent="PlayerCombatantStateChart/PlayerStates"]
+script = ExtResource("4_u5hwx")
+
+[node name="Moved" type="Node" parent="PlayerCombatantStateChart/PlayerStates"]
+script = ExtResource("4_u5hwx")
+
+[node name="Done" type="Node" parent="PlayerCombatantStateChart/PlayerStates"]
+script = ExtResource("4_u5hwx")
+
+[node name="player_selected" type="Node" parent="PlayerCombatantStateChart/PlayerStates"]
+script = ExtResource("5_4hgng")
+to = NodePath("../Selected")
+event = &"selected"
+
+[node name="player_moved" type="Node" parent="PlayerCombatantStateChart/PlayerStates"]
+script = ExtResource("5_4hgng")
+to = NodePath("../Moved")
+event = &"moved"
+
+[node name="player_action_taken" type="Node" parent="PlayerCombatantStateChart/PlayerStates"]
+script = ExtResource("5_4hgng")
+to = NodePath("../Done")
+event = &"action_taken"

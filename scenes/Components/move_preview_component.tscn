@@ -12,9 +12,10 @@ shader = ExtResource("1_uhqyw")
 shader = ExtResource("3_ib2m0")
 shader_parameter/color = Color(0.32549, 0.588235, 0.4, 1)
 
-[node name="MovePreviewComponent" type="Node2D"]
+[node name="MovePreviewComponent" type="Node2D" node_paths=PackedStringArray("line")]
 script = ExtResource("1_pvi2l")
 ghost_shader = SubResource("ShaderMaterial_i4mvo")
+line = NodePath("Line2D")
 
 [node name="Line2D" type="Line2D" parent="."]
 texture_repeat = 2

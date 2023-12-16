@@ -12,7 +12,7 @@ func _on_idle_state_unhandled_input(event: InputEvent):
 			selected_combatant = tile.get_combatant()
 			_state_chart.send_event("combatant_selected")
 			BattleEventBus.TileWithCombatantClicked.emit(tile)
-			#tile.get_combatant().enable_movement_preview()
+			tile.get_combatant().enable_movement_preview()
 			return
 
 

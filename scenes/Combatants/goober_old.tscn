@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cbrm52ymlqmct"]
+[gd_scene load_steps=11 format=3 uid="uid://cbrm52ymlqmct"]
 
 [ext_resource type="Script" path="res://Scripts/Combatants/units/goober.gd" id="1_dq537"]
 [ext_resource type="PackedScene" uid="uid://bxe5rvcn8u8xt" path="res://scenes/Components/move_preview_component.tscn" id="2_aocpy"]
 [ext_resource type="Texture2D" uid="uid://7gxitso5lv5g" path="res://resources/art_source/dwarf/shaddow.svg" id="3_5ao4d"]
+[ext_resource type="Material" uid="uid://b7rtj1758t08o" path="res://resources/Shaders/move_preview_material.tres" id="3_sm40r"]
 [ext_resource type="Texture2D" uid="uid://d0cjukuvca3ot" path="res://resources/art_source/Goober/images/Back.svg" id="4_06sos"]
 [ext_resource type="Texture2D" uid="uid://coykllwjjuilb" path="res://resources/art_source/Goober/images/Top.svg" id="5_ml8rg"]
 [ext_resource type="Texture2D" uid="uid://cf3roeknrro37" path="res://resources/art_source/Goober/images/Bottom.svg" id="6_rqh7q"]
@@ -10,15 +11,14 @@
 [ext_resource type="Texture2D" uid="uid://dg3sdosj528xh" path="res://resources/art_source/Goober/images/RightLeg.svg" id="8_86vui"]
 [ext_resource type="AnimationLibrary" uid="uid://b2ts5nigsdbj4" path="res://resources/tmp.res" id="9_381mo"]
 
-[node name="Goober" type="Node2D" node_paths=PackedStringArray("movement_preview")]
+[node name="Goober" type="Node2D"]
 script = ExtResource("1_dq537")
-allegiance = null
-unit_name = "Goober"
 movement_range = 4
-movement_preview = NodePath("MovePreviewComponent")
+allegiance = null
 
 [node name="MovePreviewComponent" parent="." node_paths=PackedStringArray("mover_visuals") instance=ExtResource("2_aocpy")]
 mover_visuals = NodePath("../Rig/Sprites")
+ghost_shader = ExtResource("3_sm40r")
 
 [node name="Rig" type="Node2D" parent="."]
 scale = Vector2(0.5, 0.5)
